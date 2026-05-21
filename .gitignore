@@ -1,0 +1,23 @@
+# Quarto build artifacts
+/.quarto/
+/_site/
+/_freeze/
+
+# RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+
+# Local data (do not commit TPEX data per their terms)
+/data/
+/tpex_curve_xls/
+*.xls
+*.xlsx
