@@ -2,22 +2,58 @@ project:
   type: website
 
 website:
-  description: "A blog built with Quarto"
+  description: "Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management."
   site-url: https://kelvin1189.github.io/actuarial-modeling-notes/ # you must change this appropriately for RSS feeds to work properly
-  title: "WONG | Actuarial Modeling Studies Notes"
+  repo-url: https://github.com/kelvin1189/actuarial-modeling-notes
+  repo-actions: [edit, issue]
+
+  title: "WONG | Actuarial & Risk Modeling Notes"
   navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: yield-curves.qmd
+        text: Yield Curves
+      - href: solvency.qmd
+        text: Solvency
+      - href: risk-modeling.qmd
+        text: Risk Modeling
+      - href: notes.qmd
+        text: Notes
+      - href: about.qmd
+        text: About
     right:
-      - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/kelvin1189
+        aria-label: GitHub
       - icon: bluesky
-        href: https://bsky.app/
+        href: https://bsky.app/profile/yourhandle.bsky.social
+        aria-label: Bluesky
+
+  page-footer:
+    left: "© 2026 WONG"
+    right:
+      - icon: github
+        href: https://github.com/kelvin1189
+      - icon: bluesky
+        href: https://bsky.app/profile/yourhandle.bsky.social
+
 format:
   html:
     theme:
       light: cosmo
       dark: darkly
     css: styles.css
+    highlight-style:
+      light: github
+      dark: github-dark
+    respect-user-color-scheme: true
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    anchor-sections: true
+    smooth-scroll: true
 
+author: "WONG"
 
 
