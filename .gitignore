@@ -21,3 +21,5 @@ Thumbs.db
 /tpex_curve_xls/
 *.xls
 *.xlsx
+
+**/*.quarto_ipynb

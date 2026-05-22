@@ -4,7 +4,7 @@ project:
 website:
   description: "A blog built with Quarto"
   site-url: https://your-website-url.example.com # you must change this appropriately for RSS feeds to work properly
-  title: "Actuarial Modeling & Risk Management Notes"
+  title: "Welcome to My Blog"
   navbar:
     right:
       - about.qmd
