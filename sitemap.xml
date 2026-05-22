@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-website-url.example.com/posts/welcome/index.html</loc>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/index.html</loc>
     <lastmod>2026-05-22T17:17:41.685Z</lastmod>
   </url>
   <url>
-    <loc>https://your-website-url.example.com/index.html</loc>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/index.html</loc>
+    <lastmod>2026-05-22T17:29:56.779Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/about.html</loc>
     <lastmod>2026-05-22T17:17:41.685Z</lastmod>
   </url>
   <url>
-    <loc>https://your-website-url.example.com/about.html</loc>
-    <lastmod>2026-05-22T17:17:41.685Z</lastmod>
-  </url>
-  <url>
-    <loc>https://your-website-url.example.com/posts/post-with-code/index.html</loc>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/index.html</loc>
     <lastmod>2026-05-22T17:17:41.685Z</lastmod>
   </url>
 </urlset>
