@@ -5,17 +5,18 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>WONG | Actuarial Modeling Studies Notes</title>
+<title>WONG | Actuarial &amp; Risk Modeling Notes</title>
 <link>https://kelvin1189.github.io/actuarial-modeling-notes/</link>
 <atom:link href="https://kelvin1189.github.io/actuarial-modeling-notes/index.xml" rel="self" type="application/rss+xml"/>
-<description>A blog built with Quarto</description>
+<description>Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management.</description>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Wed, 20 May 2026 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 21 May 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Post With Code</title>
   <dc:creator>Harlow Malloc</dc:creator>
   <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -30,7 +31,7 @@
   <category>code</category>
   <category>analysis</category>
   <guid>https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/</guid>
-  <pubDate>Wed, 20 May 2026 16:00:00 GMT</pubDate>
+  <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
   <media:content url="https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -38,6 +39,7 @@
   <dc:creator>Tristan O&#39;Malley</dc:creator>
   <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -52,7 +54,7 @@
  ]]></description>
   <category>news</category>
   <guid>https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/</guid>
-  <pubDate>Sun, 17 May 2026 16:00:00 GMT</pubDate>
+  <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
