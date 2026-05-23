@@ -140,7 +140,7 @@ body.quarto-dark h2 {
     margin-bottom: 20px;
 }
 
-/* 5. Bold Text (Dark Mode) */
+/* 5. Bold & Italic Text (Dark Mode) */
 html[data-bs-theme="dark"] strong,
 html[data-bs-theme="dark"] b,
 body.quarto-dark strong,
@@ -148,6 +148,14 @@ body.quarto-dark b {
     font-family: 'Times New Roman', serif !important;
     color: #0000FF !important; 
     font-weight: bold !important; 
+}
+
+/* Reset italics inside standard paragraphs to normal text color (No Blue) */
+html[data-bs-theme="dark"] p em,
+html[data-bs-theme="dark"] p i,
+body.quarto-dark p em,
+body.quarto-dark p i {
+    color: inherit !important;
 }
 
 
@@ -160,6 +168,12 @@ html:not([data-bs-theme="dark"]) em,
 html:not([data-bs-theme="dark"]) i {
     color: #0251fa !important; 
     font-family: 'Georgia', serif !important; 
+}
+
+/* Reset italics inside standard paragraphs to normal text color (No Blue) */
+html:not([data-bs-theme="dark"]) p em,
+html:not([data-bs-theme="dark"]) p i {
+    color: inherit !important; 
 }
 
 
