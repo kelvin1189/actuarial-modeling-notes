@@ -35,11 +35,10 @@
   <media:content url="https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title>Welcome To My Blog</title>
-  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <title>ICS DNS interest rate model with Taiwan Treasury yield data</title>
+  <dc:creator>Kelvin Wong</dc:creator>
   <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/</link>
   <description><![CDATA[ 
-
 
 
 
@@ -51,8 +50,16 @@
 
 
 
- ]]></description>
-  <category>news</category>
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div> ]]></description>
+  <category>modeling</category>
+  <category>actuarial</category>
+  <category>risk management</category>
   <guid>https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/</guid>
   <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
 </item>
