@@ -1,11 +1,11 @@
 ---
 title: "A Working Series on the ICS Interest Rate Model"
-subtitle: "Six articles, from regulatory text to capital charge"
+subtitle: "Series Articles from regulatory text to capital charge"
 author: "Kelvin Wong"
 date: "2026-05-18"
 categories: [yield-curves, solvency, DNS, Taiwan]
 image: thumbnail.jpg
-description: "A multi-article working series on the IAIS Insurance Capital Standard's interest rate risk model and its Taiwan data implementation, from regulatory text to capital charge."
+description: "A multi-article working series on the IAIS Insurance Capital Standard's interest rate risk model and using Taiwan data implementation, from regulatory text to capital charge."
 listing:
   contents: 
     - "*/index.qmd"
@@ -25,7 +25,7 @@ format:
     toc: false
 ---
 
-A multi-article working series on the IAIS Insurance Capital Standard's interest rate risk model and its Taiwan implementation. Start with **Article 0** for the series scope and disclaimers, or jump to any article below.
+A multi-article working series on the IAIS Insurance Capital Standard's interest rate risk model and using Taiwan data implementation. Start with **Article 0** for the series scope and disclaimers, or jump to any article below.
 
 ::: {#series-articles}
 :::
