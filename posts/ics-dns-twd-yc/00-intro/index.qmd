@@ -23,7 +23,7 @@ I am not an expert on this topic. Since I am working in Taiwan's financial indus
 
 The ICS interest rate risk module describes how an Internationally Active Insurance Group (IAIG) should compute the regulatory capital charge for interest rate risk. At its core, the methodology fits a Dynamic Nelson-Siegel (DNS) model to a long history of zero-coupon yield curves, calibrates the model's parameters by Kalman Filter maximum likelihood, and then uses the calibrated parameters to construct three stress scenarios — a mean-reversion shock and a pair of level shocks — that drive the capital charge.
 
-The series implements this pipeline end-to-end using publicly available data on Taiwan's central government bond zero-coupon yield curve from TPEX. The five subsequent articles are:
+The series implements this pipeline end-to-end using publicly available data on Taiwan's central government bond zero-coupon yield curve from TPEX. The subsequent articles are:
 
 - **Article 1: A Visual Tour of TPEX's Yield Curve.** Sixteen years of TWD government bond zero-coupon curves from TPEX, sampled weekly at the ten integer-year tenors that the ICS calibration specifies. Animation, summary statistics, and the data conventions used throughout the series. No mathematics — the point is to see what the data does before modelling it.
 
