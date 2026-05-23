@@ -14,7 +14,7 @@
 <item>
   <title>ICS DNS interest rate model with Taiwan Treasury yield data</title>
   <dc:creator>Kelvin Wong</dc:creator>
-  <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/</link>
+  <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/</link>
   <description><![CDATA[ 
 
 
@@ -22,7 +22,7 @@
 
 
 <p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p><img src="https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/thumbnail.jpg" class="img-fluid"></p>
 <p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
 
 
@@ -37,7 +37,7 @@
   <category>modeling</category>
   <category>actuarial</category>
   <category>risk management</category>
-  <guid>https://kelvin1189.github.io/actuarial-modeling-notes/posts/welcome/</guid>
+  <guid>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/</guid>
   <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
