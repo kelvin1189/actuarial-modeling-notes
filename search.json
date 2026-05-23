@@ -39,7 +39,7 @@
     "href": "index.html",
     "title": "#Actuarial #Modeling #Risk-Management",
     "section": "",
-    "text": "ICS DNS interest rate model with Taiwan Treasury yield data\n\n\n\nyield-curves\n\nICS\n\nDNS\n\ninterest-rate-risk\n\n\n\nA multi-article working series on the IAIS Insurance Capital Standard’s interest rate risk model and using TPEX data implementation, from regulatory text to capital charge.\n\n\n\nKelvin Wong\n\n\nMay 18, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "ICS DNS interest rate model with Taiwan Treasury yield data\n\n\n\nyield-curves\n\nICS\n\nDNS\n\ninterest-rate-risk\n\n\n\nA multi-post series implementing the IAIS Insurance Capital Standard’s interest rate risk module on TPEx yield data, from regulatory text to capital charge.\n\n\n\nKelvin Wong\n\n\nMay 18, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/ics-dns-twd-yc/00-intro/index.html",
@@ -102,7 +102,7 @@
     "href": "posts/ics-dns-twd-yc/index.html",
     "title": "ICS DNS interest rate model with Taiwan Treasury yield data",
     "section": "",
-    "text": "A multi-article working series on the IAIS Insurance Capital Standard’s interest rate risk model and using TPEX data implementation. Start with Article 0 for the series scope and disclaimers, or jump to any article below.\n\n\n\n\n\nSeries introduction, scope, and disclaimers\n\n\nArticle 0\n\n\n\n\n\nMay 18, 2026\n\n8 min\n\n \n\n\n\n\n\nNo matching items\n\n\nComments and corrections welcome. Please reach out to the author on GitHub"
+    "text": "A multi-post series implementing the IAIS Insurance Capital Standard’s interest rate risk module on TPEx yield data, from regulatory text to capital charge. Start with Article 0 for the series scope and disclaimers, or jump to any article below.\n\n\n\n\n\nSeries introduction, scope, and disclaimers\n\n\nArticle 0\n\n\n\n\n\nMay 18, 2026\n\n8 min\n\n \n\n\n\n\n\nNo matching items\n\n\nComments and corrections welcome. Please reach out to the author on GitHub"
   },
   {
     "objectID": "contact.html",
