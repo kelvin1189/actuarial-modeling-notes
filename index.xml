@@ -12,7 +12,7 @@
 <generator>quarto-1.9.37</generator>
 <lastBuildDate>Mon, 18 May 2026 00:00:00 GMT</lastBuildDate>
 <item>
-  <title>A Working Series on the ICS Interest Rate Model</title>
+  <title>ICS DNS interest rate model with Taiwan Treasury yield data</title>
   <dc:creator>Kelvin Wong</dc:creator>
   <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/</link>
   <description><![CDATA[ 
@@ -24,7 +24,7 @@
 <p>A multi-article working series on the IAIS Insurance Capital Standard’s interest rate risk model and using TPEX data implementation. Start with <em>Article 0</em> for the series scope and disclaimers, or jump to any article below.</p>
 <div id="listing-series-articles" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDSUNTJTJDRE5TJTJDeWllbGQtY3VydmVz" data-listing-date-sort="1779062400000" data-listing-file-modified-sort="1779534682313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1568">
+<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDSUNTJTJDRE5TJTJDeWllbGQtY3VydmVz" data-listing-date-sort="1779062400000" data-listing-file-modified-sort="1779537241736" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1568">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">Series introduction, scope, and disclaimers</a>
