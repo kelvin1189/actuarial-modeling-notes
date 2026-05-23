@@ -327,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
 <p class="subtitle lead">Article 0</p>
   <div class="quarto-categories">
     <div class="quarto-category">series</div>
-    <div class="quarto-category">ics</div>
+    <div class="quarto-category">ICS</div>
     <div class="quarto-category">DNS</div>
     <div class="quarto-category">yield-curves</div>
   </div>
@@ -378,12 +378,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="what-the-series-covers" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-series-covers">What the series covers</h2>
 <p>The ICS interest rate risk module describes how an Internationally Active Insurance Group (IAIG) should compute the regulatory capital charge for interest rate risk. At its core, the methodology fits a Dynamic Nelson-Siegel (DNS) model to a long history of zero-coupon yield curves, calibrates the model’s parameters by Kalman Filter maximum likelihood, and then uses the calibrated parameters to construct three stress scenarios — a mean-reversion shock and a pair of level shocks — that drive the capital charge.</p>
-<p>The series implements this pipeline end-to-end using publicly available data on Taiwan’s central government bond zero-coupon yield curve. The five subsequent articles are:</p>
+<p>The series implements this pipeline end-to-end using publicly available data on Taiwan’s central government bond zero-coupon yield curve from TPEX. The five subsequent articles are:</p>
 <ul>
 <li><p><strong>Article 1: A Visual Tour of TPEX’s Yield Curve.</strong> Sixteen years of TWD government bond zero-coupon curves from TPEX, sampled weekly at the ten integer-year tenors that the ICS calibration specifies. Animation, summary statistics, and the data conventions used throughout the series. No mathematics — the point is to see what the data does before modelling it.</p></li>
 <li><p><strong>Article 2: Principal Component Analysis on the Yield Curve.</strong> PCA on the same dataset, showing that essentially all curve variation across ten tenors lives in three orthogonal components that correspond to level, slope, and curvature. This is the empirical motivation for the three-factor structure that Nelson-Siegel imposes parametrically.</p></li>
-<li><p><strong>Article 3: </strong></p></li>
-<li><p><strong>Article 4:The ICS Framework and the Dynamic Nelson-Siegel Model.</strong> The regulatory context — what TW-ICS asks for, why the DNS model was chosen, what the calibration document specifies — followed by the DNS model itself: the loading equations, the state-space dynamics, and the discrete-time form used for estimation.</p></li>
+<li><p><strong>Article 3: Mean-Reversion Diagnostics on the Principal Component Scores.</strong> Before imposing the OU dynamics that DNS assumes, this article tests whether the three empirical factors from Article 2 actually behave like OU processes. Stationarity tests (ADF and KPSS), AR(1) fits with the implied continuous-time mean-reversion speeds and half-lives, residual diagnostics for autocorrelation and non-normality, and a subsample split that exposes a regime change in mean-reversion speed. The PC scores are not the DNS factors — DNS imposes its own parametric loadings and recovers its factors by Kalman MLE — but they are the cleanest empirical proxy available at this stage of the series, and the diagnostics flag in advance what the OU specification will and will not absorb.</p></li>
+<li><p><strong>Article 4:The ICS Framework and the Dynamic Nelson-Siegel Model.</strong> The regulatory context — what ICS asks for, why the DNS model was chosen, what the calibration document specifies — followed by the DNS model itself: the loading equations, the state-space dynamics, and the discrete-time form used for estimation.</p></li>
 <li><p><strong>Article 5: Calibration via Kalman Filter Maximum Likelihood.</strong> A from-scratch R implementation of the Kalman Filter and the log-likelihood, optimised to recover the twelve DNS parameters the ICS specifies. I am building the Kalman Filter from scratch rather than calling a state-space package, because writing the recursion myself is the part of the work I most want to understand. The result will be validated against an off-the-shelf state-space package as a sanity check.</p></li>
 <li><p><strong>Article 6: From Calibrated Parameters to Stress Scenarios.</strong> The five-step shock-construction algorithm from the ICS calibration document, applied to the TWD calibration from Article 4. Produces the mean-reversion shock and the level shocks that determine the interest rate risk capital charge for TWD exposures.</p></li>
 </ul>
