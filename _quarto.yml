@@ -28,6 +28,9 @@ website:
     
 format:
   html:
+    include-in-header: 
+      - text: |
+          <meta name="google-site-verification" content="<meta name="google-site-verification" content="haUJj-wPPgU5a0qyePIluTiO4UIAxMqEWfWtq-IIPjA" />" />
     theme:
       light: cosmo
       dark: darkly
