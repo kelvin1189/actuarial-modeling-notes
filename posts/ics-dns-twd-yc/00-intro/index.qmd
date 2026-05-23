@@ -4,7 +4,7 @@ subtitle: "Article 0"
 author: "Kelvin Wong"
 date: "2026-05-18"
 order: 0
-categories: [series, ics]
+categories: [series, ics, DNS, yield-curves]
 description: "Series introduction: what the series covers, what it is not, who it is for, data and code, methodological choices, errata policy, and tone."
 image: thumbnail.jpg
 format:
