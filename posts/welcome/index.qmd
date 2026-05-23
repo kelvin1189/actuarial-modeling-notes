@@ -1,8 +1,17 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "ICS DNS interest rate model with Taiwan Treasury yield data"
+author: "Kelvin Wong"
 date: "2026-05-18"
-categories: [news]
+categories: [modeling, actuarial, risk management]
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: false
 ---
 
 This is the first post in a Quarto blog. Welcome!
