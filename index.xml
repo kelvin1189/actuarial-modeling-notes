@@ -5,7 +5,7 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>WONG | Actuarial &amp; Risk Modeling Notes</title>
+<title>WONG | Notes</title>
 <link>https://kelvin1189.github.io/actuarial-modeling-notes/</link>
 <atom:link href="https://kelvin1189.github.io/actuarial-modeling-notes/index.xml" rel="self" type="application/rss+xml"/>
 <description>Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management.</description>
