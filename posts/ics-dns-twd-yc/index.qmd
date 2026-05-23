@@ -25,11 +25,11 @@ format:
     toc: false
 ---
 
-A multi-article working series on the IAIS Insurance Capital Standard's interest rate risk model and using TPEX data implementation. Start with **Article 0** for the series scope and disclaimers, or jump to any article below.
+A multi-article working series on the IAIS Insurance Capital Standard's interest rate risk model and using TPEX data implementation. Start with *Article 0* for the series scope and disclaimers, or jump to any article below.
 
 ::: {#series-articles}
 :::
 
 ---
 
-*Comments and corrections welcome.*
+Comments and corrections welcome. Please reach out to the author on [GitHub](https://github.com/kelvin1189)
