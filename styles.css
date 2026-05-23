@@ -89,3 +89,16 @@ body:not(.quarto-dark) .page-footer {
 p {
     text-align: justify;
 }
+
+/* Force soft slate background ONLY in Dark Mode */
+body.quarto-dark, 
+html[data-bs-theme="dark"] body {
+    background-color: #282c34 !important;
+    color: #e0e6ed !important;
+}
+
+/* Force dark navy navbar ONLY in Dark Mode */
+body.quarto-dark .navbar,
+html[data-bs-theme="dark"] .navbar {
+    background-color: #1c1f24 !important;
+}
