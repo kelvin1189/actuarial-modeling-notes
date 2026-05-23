@@ -81,3 +81,11 @@ body:not(.quarto-dark) .page-footer {
     padding: 1rem !important;
   }
 }
+
+/* =============================================================
+   Misc
+   ============================================================= */
+/* Force all paragraph text to justify perfectly to both margins */
+p {
+    text-align: justify;
+}
