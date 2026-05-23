@@ -19,9 +19,9 @@ website:
       - icon: github
         href: https://github.com/kelvin1189
         aria-label: GitHub
-  page-footer: |
-      **Disclaimer:** The content on this website is for educational and informational purposes only and does not constitute financial, investment, or professional actuarial advice. 
-      The views expressed here are my own and do not reflect the position of my employers. All code and models are provided "as is" without warranty. 
+  page-footer: 
+    left: |
+      **Disclaimer:** The content on this website is for educational and informational purposes only and does not constitute financial, investment, or professional actuarial advice. The views expressed here are my own and do not reflect the position of my employers. All code and models are provided "as is" without warranty. 
       
       © 2026 Kelvin Wong.
     

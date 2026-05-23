@@ -2,18 +2,41 @@
 title: "About"
 image: profile.jpg
 about:
-  template: jolla
+  template: trestles
+  image-shape: round
+  image-width: 15em
   links:
-    - icon: bluesky
-      text: Bluesky
-      href: https://bsky.app/
+    - icon: github
+      text: GitHub
+      href: https://github.com/kelvin1189
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
-    - icon: github
-      text: Github
-      href: https://github.com
-
+      href: https://www.linkedin.com/in/your-handle
 ---
 
-About this blog
+## Hi, I'm Kelvin Wong
+
+I'm a senior specialist based in Taiwan working on **life insurance valuation and capital modeling**. This blog is where I work through ideas in actuarial modeling, yield-curve construction, and quantitative risk management — usually with code, usually using public Taiwanese market data.
+
+## What this blog covers
+
+The recurring threads here are:
+
+- **Yield curve modeling** — Dynamic Nelson-Siegel, Svensson, and arbitrage-free term-structure models, applied to TPEx and Taiwan Treasury data
+- **Insurance capital frameworks** — ICS, Solvency II, and scenario-based interest rate risk
+- **Quantitative risk methods** — Kalman filtering, factor models, and stochastic interest rate modeling
+- **Paper notes** — short summaries of papers I've worked through, with reproductions where useful
+
+Everything published here is my own opinion and does not represent the views of any employer.
+
+## Background
+
+- *Master* M.Sc. in Actuarial Science, *NKFUST*
+- *Candidate* of the *SOA*
+- *3* years working in life insurance valuation and ALM
+- 6+ years working in risk management and financial modeling in P&C insurance
+- 10+ years of programming experience in R, Python, and SQL
+
+## Get in touch
+
+The fastest ways to reach me are GitHub (for code/blog corrections) or LinkedIn (for everything else). For technical errors in posts, opening a GitHub issue against the [blog repo](https://github.com/kelvin1189/actuarial-modeling-notes) is most efficient.

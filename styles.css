@@ -1,0 +1,83 @@
+/* =============================================================
+   Custom theme toggle: sun/moon icons
+   ============================================================= */
+
+/* Light mode active → show MOON (signals "click to go dark") */
+.quarto-color-scheme-toggle:not(.alternate) .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%234a5568" class="bi bi-moon-stars-fill" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/></svg>') !important;
+}
+
+/* Dark mode active → show SUN (signals "click to go light") */
+body.quarto-dark .quarto-color-scheme-toggle > .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23d1d5db" class="bi bi-sun-fill" viewBox="0 0 16 16"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707z"/></svg>') !important;
+}
+
+/* Breathing room between toggle and search icon */
+.quarto-color-scheme-toggle {
+  margin-right: 8px !important;
+}
+
+
+/* =============================================================
+   Full-width footer
+   ============================================================= */
+
+/* 1. Footer band: full viewport width, visual separation, spacing */
+.nav-footer,
+.page-footer {
+  max-width: none !important;
+  width: 100% !important;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.75);
+
+  /* Override the default flex row layout */
+  display: block !important;
+}
+
+/* 2. Inner Bootstrap containers: also span full width */
+.nav-footer-container,
+.page-footer .container,
+.page-footer .container-fluid {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 3. Force the left column to take full width */
+.nav-footer .nav-footer-left,
+.page-footer .nav-footer-left {
+  max-width: none !important;
+  width: 100% !important;
+  flex: 1 1 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+/* 4. Force any paragraph or content wrapper inside to also be full width */
+.nav-footer .nav-footer-left > *,
+.page-footer .nav-footer-left > * {
+  max-width: none !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+/* 5. Light mode override */
+body:not(.quarto-dark) .nav-footer,
+body:not(.quarto-dark) .page-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.65);
+}
+
+/* 6. Mobile: tighter horizontal padding */
+@media (max-width: 600px) {
+  .nav-footer,
+  .page-footer {
+    padding: 1rem !important;
+  }
+}
