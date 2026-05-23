@@ -90,15 +90,133 @@ p {
     text-align: justify;
 }
 
-/* Force soft slate background ONLY in Dark Mode */
+/* ==============================================================
+   DARK MODE CUSTOMIZATIONS
+   ============================================================== */
+
+/* 1. Main Background and Text */
 body.quarto-dark, 
 html[data-bs-theme="dark"] body {
     background-color: #282c34 !important;
     color: #e0e6ed !important;
 }
 
-/* Force dark navy navbar ONLY in Dark Mode */
+/* 2. Navbar */
 body.quarto-dark .navbar,
 html[data-bs-theme="dark"] .navbar {
     background-color: #1c1f24 !important;
+}
+html[data-bs-theme="dark"] .navbar-nav .nav-link.active,
+body.quarto-dark .navbar-nav .nav-link.active {
+    color: #0000FF !important;
+    font-weight: bold; 
+}
+
+/* 3. Callout Boxes (Info/Note) */
+html[data-bs-theme="dark"] div.callout-note,
+body.quarto-dark div.callout-note {
+    border-left-color: #0000FF !important;
+}
+html[data-bs-theme="dark"] div.callout-note .callout-icon::before,
+body.quarto-dark div.callout-note .callout-icon::before {
+    color: #0000FF !important;
+    filter: invert(13%) sepia(99%) saturate(7469%) hue-rotate(244deg) brightness(101%) contrast(143%) !important;
+}
+
+/* 4. Headings */
+html[data-bs-theme="dark"] h1,
+html[data-bs-theme="dark"] h2,
+html[data-bs-theme="dark"] h3,
+body.quarto-dark h1,
+body.quarto-dark h2,
+body.quarto-dark h3 {
+    color: #ffffff !important; 
+    font-weight: 900 !important; 
+}
+html[data-bs-theme="dark"] h2,
+body.quarto-dark h2 {
+    border-bottom: 1px solid #ffffff !important;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* 5. Bold Text (Dark Mode) */
+html[data-bs-theme="dark"] strong,
+html[data-bs-theme="dark"] b,
+body.quarto-dark strong,
+body.quarto-dark b {
+    font-family: 'Times New Roman', serif !important;
+    color: #0000FF !important; 
+    font-weight: bold !important; 
+}
+
+
+/* ==============================================================
+   LIGHT MODE CUSTOMIZATIONS
+   ============================================================== */ 
+
+/* 1. Italic Text (Light Mode) */
+html:not([data-bs-theme="dark"]) em,
+html:not([data-bs-theme="dark"]) i {
+    color: #0251fa !important; 
+    font-family: 'Georgia', serif !important; 
+}
+
+
+/* ==============================================================
+   ARTICLE LISTING CARDS (THE DUAL-THEME ENGINE)
+   ============================================================== */
+
+/* --- BASE DEFAULT (LIGHT MODE) --- */
+.quarto-post {
+    background-color: #f0f8ff !important; 
+    border-left: 4px solid #0000FF !important; 
+    padding: 20px !important;            
+    border-radius: 4px !important;       
+    margin-bottom: 15px !important;      
+    transition: background-color 0.2s ease-in-out; 
+}
+.quarto-post:hover {
+    background-color: #e6f2ff !important;
+    cursor: pointer;
+}
+.quarto-post h3,
+.quarto-post p,
+.quarto-post .listing-date,
+.quarto-post .listing-reading-time,
+.quarto-post .listing-author {
+    color: #222222 !important; 
+}
+.quarto-post .listing-subtitle {
+    color: #0000FF !important;
+    font-weight: 500;
+}
+
+
+/* --- THE DARK MODE OVERRIDE --- */
+body.quarto-dark .quarto-post,
+html[data-bs-theme="dark"] .quarto-post {
+    background-color: #343a40 !important; 
+    border-left: none !important; 
+    border-radius: 8px !important; 
+}
+body.quarto-dark .quarto-post:hover,
+html[data-bs-theme="dark"] .quarto-post:hover {
+    background-color: #3f474e !important;
+}
+body.quarto-dark .quarto-post h3,
+body.quarto-dark .quarto-post p,
+body.quarto-dark .quarto-post .listing-date,
+body.quarto-dark .quarto-post .listing-reading-time,
+body.quarto-dark .quarto-post .listing-author,
+html[data-bs-theme="dark"] .quarto-post h3,
+html[data-bs-theme="dark"] .quarto-post p,
+html[data-bs-theme="dark"] .quarto-post .listing-date,
+html[data-bs-theme="dark"] .quarto-post .listing-reading-time,
+html[data-bs-theme="dark"] .quarto-post .listing-author {
+    color: #e0e6ed !important; 
+}
+body.quarto-dark .quarto-post .listing-subtitle,
+html[data-bs-theme="dark"] .quarto-post .listing-subtitle {
+    color: #66b2ff !important; 
 }
