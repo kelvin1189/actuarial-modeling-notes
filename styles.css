@@ -69,12 +69,12 @@ body {
   color: var(--text-primary) !important;
 }
 
-/* Paragraphs left-aligned by default.
-   For justified blocks, add class="justified" in the .qmd. */
-.justified {
+p {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;  /* min word length 6, min before break 3, min after 3 */
 }
 
 

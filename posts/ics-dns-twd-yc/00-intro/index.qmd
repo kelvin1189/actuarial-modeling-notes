@@ -35,7 +35,7 @@ The series implements this pipeline end-to-end using publicly available data on 
 
 - *Article 5: Calibration via Kalman Filter Maximum Likelihood.* A from-scratch R implementation of the Kalman Filter and the log-likelihood, optimised to recover the DNS parameters the ICS specifies. I am building the Kalman Filter from scratch rather than calling a state-space package, because writing the recursion myself is the part of the work I most want to understand. The result will be validated against an off-the-shelf state-space package as a sanity check.
 
-- *Article 6: From Calibrated Parameters to Stress Scenarios.* The five-step shock-construction algorithm from the ICS calibration document, applied to the TWD calibration from Article 4. Produces the mean-reversion shock and the level shocks that determine the interest rate risk capital charge for TWD exposures.
+- *Article 6: From Calibrated Parameters to Stress Scenarios.* The five-step shock-construction algorithm from the ICS calibration document, applied to the TWD calibration from Article 5. Produces the mean-reversion shock and the level shocks that determine the interest rate risk capital charge for TWD exposures.
 
 ## What the series is not
 
@@ -77,7 +77,17 @@ A few choices that affect the whole series and are easier to flag once than to r
 
 **Svensson curve as input.** The TPEx zero-coupon curve is itself a parametric fit to bond trade data. Using it as the input to a DNS calibration means I am fitting a parametric factor model to data that has already been smoothed by another parametric model. The ICS methodology specifically works with fitted zero-coupon spot rates, so this is consistent with the regulatory specification, but it means volatility estimates downstream reflect the volatility of the *fitted* curve, not raw bond market microstructure.
 
-**Tenors capped at 10 years.** The ICS document lists maturities up to 30 years where available. I am capping at 1–10 years because TPEx's Svensson extrapolation at longer tenors is less reliably anchored to traded bonds. This is a deviation from the strict specification and will be disclosed in each article that uses the data.
+**Tenors capped at 10 years.** TWD's Last Observable Term (LOT) under the IAIS yield curve methodology is 10 years,[^twd-lot] 
+reflecting where the TWD government bond market ceases to satisfy the depth, liquidity, and transparency criteria. The ICS 
+calibration document specifies that 20- and 30-year tenors are omitted from the calibration dataset when the LOT for a currency 
+is 10 years.[^ics-tenors] The series therefore uses tenors 1–10 only, which is the prescribed coverage for TWD rather than a 
+deviation. Readers comparing TWD results to currencies with longer LOTs — USD, EUR, JPY, and others at LOT 20 or 30 — should 
+note that TWD calibration is anchored to a substantially shorter section of the curve.
+
+[^twd-lot]: IAIS, *Base Yield Curve Methodology for ICS Version 2.0* (2022), Section 4.2 and Table p.9.
+
+[^ics-tenors]: IAIS, *ICS Calibration Document* (5 December 2024), paragraph 88: "Maturities used for the calibration are (in years) 
+1,2,3,4,5,6,7,8,9,10,20,30 to the extent available (eg if the Last Observable Term is at year 10, then no data for years 20 and 30 are used)."
 
 **Weekly sampling at end of ISO week.** Typically Friday close, with fallback to earlier weekdays when Friday is a holiday. The ICS document specifies weekly observations but does not specify a weekday; I picked this convention because it is robust to holiday placement.
 
