@@ -21,7 +21,7 @@ I am not an expert on this topic. Since I am working in Taiwan's financial indus
 
 ## What the series covers
 
-The ICS interest rate risk module describes how an Internationally Active Insurance Group (IAIG) should compute the regulatory capital charge for interest rate risk. At its core, the methodology fits a Dynamic Nelson-Siegel (DNS) model to a long history of zero-coupon yield curves, calibrates the model's twelve parameters by Kalman Filter maximum likelihood, and then uses the calibrated parameters to construct three stress scenarios — a mean-reversion shock and a pair of level shocks — that drive the capital charge.
+The ICS interest rate risk module describes how an Internationally Active Insurance Group (IAIG) should compute the regulatory capital charge for interest rate risk. At its core, the methodology fits a Dynamic Nelson-Siegel (DNS) model to a long history of zero-coupon yield curves, calibrates the model's parameters by Kalman Filter maximum likelihood, and then uses the calibrated parameters to construct three stress scenarios — a mean-reversion shock and a pair of level shocks — that drive the capital charge.
 
 The series implements this pipeline end-to-end using publicly available data on Taiwan's central government bond zero-coupon yield curve. The five subsequent articles are:
 
@@ -51,7 +51,7 @@ A few things I want to be explicit about, because the topic intersects with acti
 
 ## Who this is for
 
-The intended reader is someone quantitatively comfortable who wants to understand the ICS interest rate model with enough depth to implement, audit, or critique it. Actuaries working on TW-ICS preparation, exam candidates studying related material, financial modellers, risk managers, and academic researchers in insurance regulation are all plausible audiences.
+The intended reader is someone quantitatively comfortable who wants to understand the ICS interest rate model with enough depth to implement, audit, or critique it.
 
 The series assumes comfort with linear algebra and basic time-series concepts. It does not assume prior familiarity with state-space models, Kalman filtering, or the ICS framework — those are explained as they appear.
 
@@ -79,7 +79,7 @@ A few choices that affect the whole series and are easier to flag once than to r
 
 **Weekly sampling at end of ISO week.** Typically Friday close, with fallback to earlier weekdays when Friday is a holiday. The ICS document specifies weekly observations but does not specify a weekday; I picked this convention because it is robust to holiday placement.
 
-**Credit risk adjustment of 10 basis points.** The ICS methodology adds 10 bp to non-risk-free instruments. Taiwan central government bonds are not classified as fully risk-free under the ICS framework, so the adjustment applies. It will be added at the calibration stage in Article 4, not in the raw data.
+**Credit risk adjustment of 10 basis points.** The ICS methodology adds 10 bp to non-risk-free instruments. Taiwan central government bonds are classified as fully risk-free under the ICS framework, so the adjustment does not apply.
 
 **Calibration document version.** The series follows the IAIS ICS calibration document of 5 December 2024, adopted as a Prescribed Capital Requirement on the same date. The IAIS may revise the calibration document; if it does, parts of this series may become inconsistent with the current methodology.
 
