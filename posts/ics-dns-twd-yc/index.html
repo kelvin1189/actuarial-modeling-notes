@@ -8,8 +8,9 @@
 
 <meta name="author" content="Kelvin Wong">
 <meta name="dcterms.date" content="2026-05-18">
+<meta name="description" content="A six-article working series on the IAIS Insurance Capital Standard’s interest rate risk model and its Taiwan implementation, from regulatory text to capital charge.">
 
-<title>ICS DNS interest rate model with Taiwan Treasury yield data – WONG | Notes</title>
+<title>A Working Series on the ICS Interest Rate Model – WONG | Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -81,20 +82,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-series-articles .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-order','listing-title','listing-subtitle','listing-date','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-series-articles'] = new List('listing-series-articles', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -361,26 +362,32 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ICS DNS interest rate model with Taiwan Treasury yield data</h1>
+<h1 class="title">A Working Series on the ICS Interest Rate Model</h1>
+<p class="subtitle lead">Six articles, from regulatory text to capital charge</p>
   <div class="quarto-categories">
-    <div class="quarto-category">modeling</div>
-    <div class="quarto-category">actuarial</div>
-    <div class="quarto-category">risk management</div>
+    <div class="quarto-category">yield-curves</div>
+    <div class="quarto-category">solvency</div>
+    <div class="quarto-category">dns</div>
+    <div class="quarto-category">taiwan</div>
+    <div class="quarto-category">series</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    A six-article working series on the IAIS Insurance Capital Standard’s interest rate risk model and its Taiwan implementation, from regulatory text to capital charge.
+  </div>
+</div>
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-page">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -404,19 +411,40 @@ window.Quarto = {
 </header>
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<p>A six-article working series on the IAIS Insurance Capital Standard’s interest rate risk model and its Taiwan implementation. Start with <strong>Article 0</strong> for the series scope and disclaimers, or jump to any article below.</p>
+<div id="listing-series-articles" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-
+<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDaWNz" data-listing-date-sort="1779062400000" data-listing-file-modified-sort="1779521164385" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1497">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">Series introduction, scope, and disclaimers</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">Article 0</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">
+<div class="listing-date">
+May 18, 2026
+</div>
+<div class="listing-reading-time">8 min</div>
+<div class="metadata-value listing-order">
+&nbsp;
+</div>
+</a>
+</div>
+</div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</div>
+<hr>
+<p><em>Comments and corrections welcome.</em></p>
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

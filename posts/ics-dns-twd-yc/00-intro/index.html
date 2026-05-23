@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Kelvin Wong">
+<meta name="dcterms.date" content="2026-05-18">
+<meta name="description" content="Series introduction: what the series covers, what it is not, who it is for, data and code, methodological choices, errata policy, and tone.">
 
-<title>#Actuarial #Modeling #Risk-Management – WONG | Notes</title>
+<title>Series introduction, scope, and disclaimers – WONG | Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,29 +29,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-23bbe8b5e4efc1e257f6d59dce478b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0fee84e8b8ba1d6a9eb33727da05394f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-7a11e25dd7a1f7df286c0b684d1075db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-0fee84e8b8ba1d6a9eb33727da05394f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-23bbe8b5e4efc1e257f6d59dce478b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-0fee84e8b8ba1d6a9eb33727da05394f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-7a11e25dd7a1f7df286c0b684d1075db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-0fee84e8b8ba1d6a9eb33727da05394f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,69 +77,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="WONG | Notes" href="index.xml" data-external="1"></head>
+<link rel="stylesheet" href="../../../styles.css">
+</head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -318,7 +261,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">WONG | Notes</span>
     </a>
   </div>
@@ -329,15 +272,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
+    <a class="nav-link" href="../../../contact.html"> 
 <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
@@ -356,26 +299,60 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZG5z">dns <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2VyaWVz">series <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c29sdmVuY3k=">solvency <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGFpd2Fu">taiwan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="eWllbGQtY3VydmVz">yield-curves <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-the-series-covers" id="toc-what-the-series-covers" class="nav-link active" data-scroll-target="#what-the-series-covers">What the series covers</a></li>
+  <li><a href="#what-the-series-is-not" id="toc-what-the-series-is-not" class="nav-link" data-scroll-target="#what-the-series-is-not">What the series is not</a></li>
+  <li><a href="#who-this-is-for" id="toc-who-this-is-for" class="nav-link" data-scroll-target="#who-this-is-for">Who this is for</a></li>
+  <li><a href="#data-and-code" id="toc-data-and-code" class="nav-link" data-scroll-target="#data-and-code">Data and code</a></li>
+  <li><a href="#methodological-choices-and-limitations" id="toc-methodological-choices-and-limitations" class="nav-link" data-scroll-target="#methodological-choices-and-limitations">Methodological choices and limitations</a></li>
+  <li><a href="#errata-and-updates" id="toc-errata-and-updates" class="nav-link" data-scroll-target="#errata-and-updates">Errata and updates</a></li>
+  <li><a href="#a-note-on-tone" id="toc-a-note-on-tone" class="nav-link" data-scroll-target="#a-note-on-tone">A note on tone</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">#Actuarial #Modeling #Risk-Management</h1>
+<h1 class="title">Series introduction, scope, and disclaimers</h1>
+<p class="subtitle lead">Article 0</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">series</div>
+    <div class="quarto-category">ics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Series introduction: what the series covers, what it is not, who it is for, data and code, methodological choices, errata policy, and tone.
+  </div>
 </div>
 
 
+<div class="quarto-title-meta">
 
-<div class="quarto-title-meta column-page-left">
-
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kelvin Wong </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 18, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -385,52 +362,75 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="eWllbGQtY3VydmVzJTJDc29sdmVuY3klMkNkbnMlMkN0YWl3YW4lMkNzZXJpZXM=" data-listing-date-sort="1779062400000" data-listing-file-modified-sort="1779521164385" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="38">
-<a href="./posts/ics-dns-twd-yc/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/ics-dns-twd-yc/thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-A Working Series on the ICS Interest Rate Model
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('eWllbGQtY3VydmVz'); return false;">yield-curves</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c29sdmVuY3k='); return false;">solvency</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZG5z'); return false;">dns</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dGFpd2Fu'); return false;">taiwan</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2VyaWVz'); return false;">series</div>
-
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="card-text listing-description delink">
-<p>A six-article working series on the IAIS Insurance Capital Standard’s interest rate risk model and its Taiwan implementation, from regulatory text to capital charge.</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Kelvin Wong
-</div>
-<div class="listing-date">
-May 18, 2026
+<div class="callout-body-container">
+<p>This is the opening note of a series I am writing as I work through the interest rate risk model in the IAIS Insurance Capital Standard (ICS), and its Taiwan implementation TW-ICS, from regulatory text to capital charge. I am sharing the work as I do it.</p>
 </div>
 </div>
 </div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>I am not an expert on this topic. Since I am working in Taiwan’s financial industry, I am interested in building financial models, and I came across the ICS interest rate model in the IAIS documentation and the supporting academic literature in my leisure time. The articles are a record of that learning, written as I work through the material.</p>
+<section id="what-the-series-covers" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-series-covers">What the series covers</h2>
+<p>The ICS interest rate risk module describes how an Internationally Active Insurance Group (IAIG) should compute the regulatory capital charge for interest rate risk. At its core, the methodology fits a Dynamic Nelson-Siegel (DNS) model to a long history of zero-coupon yield curves, calibrates the model’s twelve parameters by Kalman Filter maximum likelihood, and then uses the calibrated parameters to construct three stress scenarios — a mean-reversion shock and a pair of level shocks — that drive the capital charge.</p>
+<p>The series implements this pipeline end-to-end using publicly available data on Taiwan’s central government bond zero-coupon yield curve. The five subsequent articles are:</p>
+<ul>
+<li><p><strong>Article 1: A Visual Tour of Taiwan’s Yield Curve.</strong> Sixteen years of TWD government bond zero-coupon curves, sampled weekly at the ten integer-year tenors that the ICS calibration specifies. Animation, summary statistics, and the data conventions used throughout the series. No mathematics — the point is to see what the data does before modelling it.</p></li>
+<li><p><strong>Article 2: Principal Component Analysis on the Yield Curve.</strong> PCA on the same dataset, showing that essentially all curve variation across ten tenors lives in three orthogonal components that correspond to level, slope, and curvature. This is the empirical motivation for the three-factor structure that Nelson-Siegel imposes parametrically.</p></li>
+<li><p><strong>Article 3: The ICS Framework and the Dynamic Nelson-Siegel Model.</strong> The regulatory context — what TW-ICS asks for, why the DNS model was chosen, what the calibration document specifies — followed by the DNS model itself: the loading equations, the state-space dynamics, and the discrete-time form used for estimation.</p></li>
+<li><p><strong>Article 4: Calibration via Kalman Filter Maximum Likelihood.</strong> A from-scratch R implementation of the Kalman Filter and the log-likelihood, optimised to recover the twelve DNS parameters the ICS specifies. I am building the Kalman Filter from scratch rather than calling a state-space package, because writing the recursion myself is the part of the work I most want to understand. The result will be validated against an off-the-shelf state-space package as a sanity check.</p></li>
+<li><p><strong>Article 5: From Calibrated Parameters to Stress Scenarios.</strong> The five-step shock-construction algorithm from the ICS calibration document, applied to the TWD calibration from Article 4. Produces the mean-reversion shock and the level shocks that determine the interest rate risk capital charge for TWD exposures.</p></li>
+</ul>
+</section>
+<section id="what-the-series-is-not" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-series-is-not">What the series is not</h2>
+<p>A few things I want to be explicit about, because the topic intersects with active professional and regulatory work:</p>
+<p><strong>It is not professional advice.</strong> Nothing in this series should be relied on for any TW-ICS or ICS implementation work, capital adequacy calculation, regulatory filing, internal model approval, audit position, or business decision. If you need any of those, talk to a qualified actuary at your firm or to a regulatory consultant who has the appropriate professional standing and engagement letter.</p>
+<p><strong>It is not an official interpretation of TW-ICS or ICS.</strong> The Taiwan Financial Supervisory Commission (FSC) is responsible for TW-ICS, and the International Association of Insurance Supervisors (IAIS) is responsible for ICS. Where my reading of the calibration document differs from theirs, theirs is correct.</p>
+<p><strong>It is not a substitute for the underlying documents.</strong> The series quotes and paraphrases the IAIS ICS calibration document of 5 December 2024 throughout, but readers doing actual implementation should read the calibration document themselves. The series omits sections that are not directly relevant to my modelling exercise — including most of what the document says about credit risk, market risk other than interest rate, mortgage loans, and aggregation across risk modules.</p>
+<p><strong>It is not connected to my employer.</strong> Anything I write here reflects my own work in my own time. It does not represent the views, methods, or positions of any current or past employer.</p>
+<p><strong>It is not finished.</strong> I expect to find errors as I work through the articles, and as readers point things out. I will correct mistakes, note significant revisions in the text, and try to do so visibly rather than silently. If you find an error, please tell me; I would rather publish a correction with attribution than leave a confident wrong statement standing.</p>
+</section>
+<section id="who-this-is-for" class="level2">
+<h2 class="anchored" data-anchor-id="who-this-is-for">Who this is for</h2>
+<p>The intended reader is someone quantitatively comfortable who wants to understand the ICS interest rate model with enough depth to implement, audit, or critique it. Actuaries working on TW-ICS preparation, exam candidates studying related material, financial modellers, risk managers, and academic researchers in insurance regulation are all plausible audiences.</p>
+<p>The series assumes comfort with linear algebra and basic time-series concepts. It does not assume prior familiarity with state-space models, Kalman filtering, or the ICS framework — those are explained as they appear.</p>
+<p>The series is not written for a general audience. Readers without a quantitative background may find Article 1 readable but will find the later articles dense.</p>
+</section>
+<section id="data-and-code" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-code">Data and code</h2>
+<p>All data analysis in the series uses the daily Svensson zero-coupon yield curve published by the Taipei Exchange (TPEX) for Taiwan central government bonds, sampled weekly. The data source is:</p>
+<p><a href="https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html" class="uri">https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html</a></p>
+<p>Per TPEX’s terms of use, the underlying dataset is not redistributed in the series. Derived statistics and visualisations are presented with TPEX cited as the source, in the manner permitted under Taiwan Copyright Act Article 52 (quotation of published works within reasonable scope) and TPEX’s website terms. Readers who want to reproduce the work should download the data directly from TPEX and review TPEX’s terms of use before any systematic use:</p>
+<p><a href="https://www.tpex.org.tw/en-us/gtsm_disclaimer.html" class="uri">https://www.tpex.org.tw/en-us/gtsm_disclaimer.html</a></p>
+<p>Code from the series will be made available in a public GitHub repository, linked in each article. The code is shared for educational purposes, without any warranty of correctness, fitness for purpose, or fitness for any specific application. Use at your own risk.</p>
+</section>
+<section id="methodological-choices-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="methodological-choices-and-limitations">Methodological choices and limitations</h2>
+<p>A few choices that affect the whole series and are easier to flag once than to repeat in every article:</p>
+<p><strong>Svensson curve as input.</strong> The TPEX zero-coupon curve is itself a parametric fit to bond trade data. Using it as the input to a DNS calibration means I am fitting a parametric factor model to data that has already been smoothed by another parametric model. The ICS methodology specifically works with fitted zero-coupon spot rates, so this is consistent with the regulatory specification, but it means volatility estimates downstream reflect the volatility of the <em>fitted</em> curve, not raw bond market microstructure.</p>
+<p><strong>Tenors capped at 10 years.</strong> The ICS document lists maturities up to 30 years where available. I am capping at 1–10 years because TPEX’s Svensson extrapolation at longer tenors is less reliably anchored to traded bonds. This is a deviation from the strict specification and will be disclosed in each article that uses the data.</p>
+<p><strong>Weekly sampling at end of ISO week.</strong> Typically Friday close, with fallback to earlier weekdays when Friday is a holiday. The ICS document specifies weekly observations but does not specify a weekday; I picked this convention because it is robust to holiday placement.</p>
+<p><strong>Credit risk adjustment of 10 basis points.</strong> The ICS methodology adds 10 bp to non-risk-free instruments. Taiwan central government bonds are not classified as fully risk-free under the ICS framework, so the adjustment applies. It will be added at the calibration stage in Article 4, not in the raw data.</p>
+<p><strong>Calibration document version.</strong> The series follows the IAIS ICS calibration document of 5 December 2024, adopted as a Prescribed Capital Requirement on the same date. The IAIS may revise the calibration document; if it does, parts of this series may become inconsistent with the current methodology.</p>
+</section>
+<section id="errata-and-updates" class="level2">
+<h2 class="anchored" data-anchor-id="errata-and-updates">Errata and updates</h2>
+<p>If you find an error in the analysis, the code, the regulatory interpretation, or anywhere else, please reach out. I will correct mistakes promptly and note significant revisions visibly in the affected article. Substantive corrections that change a conclusion will be acknowledged with attribution if the contributor agrees.</p>
+<p>The series reflects my understanding as of the date each article is published. I do not commit to updating the articles as the underlying methodology evolves, though I may write follow-up notes if the methodology changes materially.</p>
+</section>
+<section id="a-note-on-tone" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-tone">A note on tone</h2>
+<p>This series is written in the first person and acknowledges uncertainty where it exists. Where I am unsure, I will say so. Where I make a methodological choice that a reasonable reader might dispute, I will flag the choice and the alternative. Where I disagree with how the ICS document expresses something, I will say that too, while recognising that the document — not my reading of it — is the authoritative reference.</p>
+<p>The next article begins by looking at what Taiwan’s yield curve has actually done over the past sixteen years.</p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -863,5 +863,5 @@ May 18, 2026
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
