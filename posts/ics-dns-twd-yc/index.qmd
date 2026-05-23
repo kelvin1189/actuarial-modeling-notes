@@ -1,5 +1,5 @@
 ---
-title: "A Working Series on the ICS Interest Rate Model"
+title: "ICS DNS interest rate model with Taiwan Treasury yield data"
 subtitle: "Series Articles from regulatory text to capital charge"
 author: "Kelvin Wong"
 date: "2026-05-18"
