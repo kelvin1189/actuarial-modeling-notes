@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -298,38 +298,75 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+  <ul>
+  <li><a href="#hi-im-kelvin-wong" id="toc-hi-im-kelvin-wong" class="nav-link active" data-scroll-target="#hi-im-kelvin-wong">Hi, I’m Kelvin Wong</a></li>
+  <li><a href="#what-this-blog-covers" id="toc-what-this-blog-covers" class="nav-link" data-scroll-target="#what-this-blog-covers">What this blog covers</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#get-in-touch" id="toc-get-in-touch" class="nav-link" data-scroll-target="#get-in-touch">Get in touch</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="profile.jpg" class="about-image
+<div class="quarto-about-trestles">
+  <div class="about-entity">
+    <img src="profile.jpg" class="about-image
   round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">About</h1>
 </div>
 <div class="quarto-title-meta">
   </div>
-</header><main class="content" id="quarto-document-content">
-
-<p>About this blog</p>
-
-
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="https://bsky.app/" class="about-link" rel="" target="">
-    <i class="bi bi-bluesky"></i>
-     <span class="about-link-text">Bluesky</span>
+</header>
+    <div class="about-links">
+  <a href="https://github.com/kelvin1189" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text">GitHub</span>
   </a>
-  <a href="https://linkedin.com" class="about-link" rel="" target="">
+  <a href="https://www.linkedin.com/in/your-handle" class="about-link" rel="" target="">
     <i class="bi bi-linkedin"></i>
      <span class="about-link-text">LinkedIn</span>
   </a>
-  <a href="https://github.com" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
 </div>
+  </div>
+  <div class="about-contents"><main class="content" id="quarto-document-content">
+
+
+<section id="hi-im-kelvin-wong" class="level2">
+<h2 data-anchor-id="hi-im-kelvin-wong">Hi, I’m Kelvin Wong</h2>
+<p>I’m a senior specialist based in Taiwan working on <strong>life insurance valuation and capital modeling</strong>. This blog is where I work through ideas in actuarial modeling, yield-curve construction, and quantitative risk management — usually with code, usually using public Taiwanese market data.</p>
+</section>
+<section id="what-this-blog-covers" class="level2">
+<h2 data-anchor-id="what-this-blog-covers">What this blog covers</h2>
+<p>The recurring threads here are:</p>
+<ul>
+<li><strong>Yield curve modeling</strong> — Dynamic Nelson-Siegel, Svensson, and arbitrage-free term-structure models, applied to TPEx and Taiwan Treasury data</li>
+<li><strong>Insurance capital frameworks</strong> — ICS, Solvency II, and scenario-based interest rate risk</li>
+<li><strong>Quantitative risk methods</strong> — Kalman filtering, factor models, and stochastic interest rate modeling</li>
+<li><strong>Paper notes</strong> — short summaries of papers I’ve worked through, with reproductions where useful</li>
+</ul>
+<p>Everything published here is my own opinion and does not represent the views of any employer.</p>
+</section>
+<section id="background" class="level2">
+<h2 data-anchor-id="background">Background</h2>
+<ul>
+<li><em>Master</em> M.Sc. in Actuarial Science, <em>NKFUST</em></li>
+<li><em>Candidate</em> of the <em>SOA</em></li>
+<li><em>3</em> years working in life insurance valuation and ALM</li>
+<li>6+ years working in risk management and financial modeling in P&amp;C insurance</li>
+<li>10+ years of programming experience in R, Python, and SQL</li>
+</ul>
+</section>
+<section id="get-in-touch" class="level2">
+<h2 data-anchor-id="get-in-touch">Get in touch</h2>
+<p>The fastest ways to reach me are GitHub (for code/blog corrections) or LinkedIn (for everything else). For technical errors in posts, opening a GitHub issue against the <a href="https://github.com/kelvin1189/actuarial-modeling-notes">blog repo</a> is most efficient.</p>
+
+
+</section>
+</main></div>
 </div>
  <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -742,12 +779,12 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
 <p><strong>Disclaimer:</strong> The content on this website is for educational and informational purposes only and does not constitute financial, investment, or professional actuarial advice. The views expressed here are my own and do not reflect the position of my employers. All code and models are provided “as is” without warranty.</p>
 <p>© 2026 Kelvin Wong.</p>
-</div>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

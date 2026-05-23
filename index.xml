@@ -10,30 +10,7 @@
 <atom:link href="https://kelvin1189.github.io/actuarial-modeling-notes/index.xml" rel="self" type="application/rss+xml"/>
 <description>Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management.</description>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Thu, 21 May 2026 00:00:00 GMT</lastBuildDate>
-<item>
-  <title>Post With Code</title>
-  <dc:creator>Harlow Malloc</dc:creator>
-  <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-
-<p>This is a post with executable code.</p>
-
-
-
- ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <guid>https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/</guid>
-  <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
-  <media:content url="https://kelvin1189.github.io/actuarial-modeling-notes/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
-</item>
+<lastBuildDate>Mon, 18 May 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>ICS DNS interest rate model with Taiwan Treasury yield data</title>
   <dc:creator>Kelvin Wong</dc:creator>
