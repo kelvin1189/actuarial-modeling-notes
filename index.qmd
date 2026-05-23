@@ -1,7 +1,8 @@
 ---
 title: "#Actuarial #Modeling #Risk-Management"
 listing:
-  contents: posts
+  contents: 
+    - "posts/*/index.qmd"
   feed: true
   sort: "date desc"
   type: grid

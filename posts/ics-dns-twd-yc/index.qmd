@@ -1,21 +1,35 @@
 ---
-title: "ICS DNS interest rate model with Taiwan Treasury yield data"
+title: "A Working Series on the ICS Interest Rate Model"
+subtitle: "Six articles, from regulatory text to capital charge"
 author: "Kelvin Wong"
 date: "2026-05-18"
-categories: [modeling, actuarial, risk management]
+categories: [yield-curves, solvency, dns, taiwan, series]
+image: thumbnail.jpg
+description: "A six-article working series on the IAIS Insurance Capital Standard's interest rate risk model and its Taiwan implementation, from regulatory text to capital charge."
 listing:
-  contents: posts
-  sort: "date desc"
+  contents: 
+    - "*/index.qmd"
+  sort: "order asc"
   type: default
-  categories: true
+  fields: [order, title, subtitle, date, reading-time]
+  field-display-names:
+    order: "#"
+  categories: false
   sort-ui: false
   filter-ui: false
+  id: series-articles
 page-layout: full
 title-block-banner: false
+format:
+  html:
+    toc: false
 ---
 
-This is the first post in a Quarto blog. Welcome!
+A six-article working series on the IAIS Insurance Capital Standard's interest rate risk model and its Taiwan implementation. Start with **Article 0** for the series scope and disclaimers, or jump to any article below.
 
-![](thumbnail.jpg)
+::: {#series-articles}
+:::
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+---
+
+*Comments and corrections welcome.*
