@@ -1,6 +1,7 @@
 project:
   type: website
-
+  resources:
+    - "googlec9b5f51460a9302a.html"
 website:
   description: "Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management."
   site-url: https://kelvin1189.github.io/actuarial-modeling-notes/ # you must change this appropriately for RSS feeds to work properly
