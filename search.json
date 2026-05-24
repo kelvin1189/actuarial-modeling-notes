@@ -4,35 +4,49 @@
     "href": "about.html",
     "title": "Kelvin Wong",
     "section": "",
-    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management. This blog is where I work through ideas in actuarial modeling and quantitative risk management — usually with code, usually using public market data."
+    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management — valuation, ALM, and the modeling that underpins both. This blog is where I work through ideas adjacent to that work, usually with code, usually using public market data."
   },
   {
     "objectID": "about.html#about-me",
     "href": "about.html#about-me",
     "title": "Kelvin Wong",
     "section": "",
-    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management. This blog is where I work through ideas in actuarial modeling and quantitative risk management — usually with code, usually using public market data."
+    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management — valuation, ALM, and the modeling that underpins both. This blog is where I work through ideas adjacent to that work, usually with code, usually using public market data."
+  },
+  {
+    "objectID": "about.html#about-this-blog",
+    "href": "about.html#about-this-blog",
+    "title": "Kelvin Wong",
+    "section": "About this blog",
+    "text": "About this blog\nThe blog opens with a multi-article series on the Dynamic Nelson-Siegel interest rate model under the IAIS Insurance Capital Standard, applied to TWD government bond data. That choice isn’t accidental — it’s a topic I’m thinking about in my current work, and writing about it publicly forces me to be explicit about my reasoning in a way that internal documents do not.\nI want this site to function less as polished publication and more as a working notebook: a record of how I think through a problem, what I tried and discarded, where I’m still uncertain. Posts will sometimes be longer and more exploratory than typical technical blog posts as a result. The hope is that readers can see the actual decision points, not only the cleaned-up answer.\nEverything published here is my own opinion and does not represent the views of any current or past employer."
   },
   {
     "objectID": "about.html#what-this-blog-covers",
     "href": "about.html#what-this-blog-covers",
     "title": "Kelvin Wong",
     "section": "What this blog covers",
-    "text": "What this blog covers\nThe recurring threads here are:\n\nYield curve modeling — Dynamic Nelson-Siegel, CIR,Vasicek, and other interest rate models\nInsurance capital frameworks — ICS, Solvency II, and scenario-based risk simulation\nQuantitative risk modeling — EWMA, GARCH, and other volatility models\nPaper notes — short summaries of papers I’ve worked through, with reproductions where useful\n\nEverything published here is my own opinion and does not represent the views of any employer."
+    "text": "What this blog covers\nThe recurring threads here are:\n\nYield curve modeling — Dynamic Nelson-Siegel, Vasicek, CIR, and other interest rate models\nInsurance capital frameworks — ICS, Solvency II, and scenario-based risk simulation\nQuantitative risk modeling — EWMA, GARCH, Kalman filtering, and related techniques used in valuation and risk\nPaper notes — short summaries of papers I’ve worked through, with reproductions where useful"
   },
   {
     "objectID": "about.html#background",
     "href": "about.html#background",
     "title": "Kelvin Wong",
     "section": "Background",
-    "text": "Background\n\nMaster M.Sc. in Risk Management and Insurance\nCandidate of the SOA\n3+ years working in life insurance solvency and capital modeling\n6+ years working in risk management and capital modeling in P&C insurance\n3 years of graduate research assistant of NSTC Research Project supported by the National Science Council in financial risk management and insurance\nPhysics undergrad, with double major in Mathematics\n10+ years of programming experience in R, Python, and SQL"
+    "text": "Background\nEducation\n\nM.Sc. in Risk Management and Insurance\nUndergraduate in Physics, with a double major in Mathematics\n\nCredentials\n\nSOA candidate\n\nExperience\n\n3+ years in life insurance solvency and capital modeling\n6+ years in risk management and capital modeling in P&C insurance\n3 years as a graduate research assistant on a financial risk management and insurance project funded by Taiwan’s National Science Council (now NSTC)\n\nTools\n\n10+ years using R, Python, and SQL"
+  },
+  {
+    "objectID": "about.html#a-note-on-ai-assistance",
+    "href": "about.html#a-note-on-ai-assistance",
+    "title": "Kelvin Wong",
+    "section": "A note on AI assistance",
+    "text": "A note on AI assistance\nEnglish is my second language; my first is Chinese. Throughout the work on this blog I make active use of large language models — principally Claude (Anthropic), Gemini (Google), and Grok (xAI) — for English revision, code debugging, document structuring, and as a sparring partner when I want to stress-test an argument before committing it to a post.\nThe substantive content is mine: the choice of topics, the modeling decisions, the interpretation of results, and the conclusions. The AI tools help me express that content more clearly than I could on my own in a second language, and they sometimes catch errors I would have missed. Any errors that remain in published posts are also mine.\nI mention this for transparency, and because the question of how to use these tools well in technical writing seems to me worth being open about rather than quietly working around."
   },
   {
     "objectID": "about.html#get-in-touch",
     "href": "about.html#get-in-touch",
     "title": "Kelvin Wong",
     "section": "Get in touch",
-    "text": "Get in touch\nThe fastest ways to reach me are GitHub (for code/blog corrections) or LinkedIn (for everything else). For technical errors in posts, opening a GitHub issue against the blog repo is most efficient."
+    "text": "Get in touch\nThe fastest ways to reach me are GitHub (for code or blog corrections) or LinkedIn (for everything else). For technical errors in posts, opening a GitHub issue against the blog repo is the most efficient route."
   },
   {
     "objectID": "index.html",
