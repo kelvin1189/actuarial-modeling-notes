@@ -20,28 +20,13 @@ I'm Malaysian by birth, did my graduate work in Taiwan, and have stayed there si
 
 ## About this blog
 
-The blog opens with a multi-article series on the Dynamic Nelson-Siegel
-interest rate model under the IAIS Insurance Capital Standard, applied
-to TWD government bond data. That choice isn't accidental — it's a
-topic I'm thinking about in my work, and writing about it
-publicly forces me to be explicit about my reasoning in a way that
-internal documents do not.
+The blog opens with a multi-article series on the Dynamic Nelson-Siegel interest rate model under the IAIS Insurance Capital Standard, applied to TWD government bond data. That choice isn't accidental — it's a topic I'm thinking about in my work, and writing about it publicly forces me to be explicit about my reasoning in a way that internal documents do not.
 
-I want this site to function less as polished publication and more as a
-working notebook: a record of how I think through a problem, what I
-tried and discarded, where I'm still uncertain. Posts will sometimes be
-longer and more exploratory than typical technical blog posts as a
-result. The hope is that readers can see the actual decision points,
-not only the cleaned-up answer.
+I want this site to function less as polished publication and more as a working notebook: a record of how I think through a problem, what I tried and discarded, where I'm still uncertain. Posts will sometimes be longer and more exploratory than typical technical blog posts as a result. The hope is that readers can see the actual decision points, not only the cleaned-up answer.
 
-The recurring themes are actuarial and quantitative — yield-curve
-modeling, insurance capital frameworks, risk methods — but the
-notebook framing means I may occasionally write on adjacent topics
-where the same modes of thinking apply. I'd rather follow a question
-where it leads than confine the blog to a strict scope.
+The recurring themes are actuarial and quantitative — yield-curve modeling, insurance capital frameworks, risk methods — but the notebook framing means I may occasionally write on adjacent topics where the same modes of thinking apply. I'd rather follow a question where it leads than confine the blog to a strict scope.
 
-Everything published here is my own opinion and does not represent the
-views of any current or past employer.
+Everything published here is my own opinion and does not represent the views of any current or past employer.
 
 ## Background
 
@@ -49,7 +34,7 @@ I hold an M.Sc. in Risk Management and Insurance from Taiwan and an undergraduat
 
 ## A note on AI assistance
 
-English is my second language; my first is Chinese. Throughout the work on this blog I make active use of large language models — principally Claude (Anthropic), Gemini (Google), and Grok (xAI) — for English revision, code debugging, document structuring, and as a sparring partner when I want to stress-test an argument before committing it to a post.
+Throughout the work on this blog I make active use of large language models — principally Claude (Anthropic), Gemini (Google), and Grok (xAI) — for English revision, code debugging, document structuring, and as a sparring partner when I want to stress-test an argument before committing it to a post.
 
 I should be honest about a second use case as well. I had wanted to start a blog like this for nearly a decade, and repeatedly got stuck not on the substance but on the publishing stack itself: choosing between Jekyll, Hugo, and Quarto; learning Git workflows for content rather than code; building a site design that looked credible without a frontend background. These are real skills, and none of them are taught by a quantitative or actuarial education. AI tools let me work through that stack quickly enough to actually get a site live, which I had not previously been able to do on my own.
 
