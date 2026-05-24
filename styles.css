@@ -138,6 +138,30 @@ html[data-bs-theme="dark"] .quarto-color-scheme-toggle > .bi::before {
   width: 100% !important;
   text-align: left !important;
 }
+
+/* --- Footer meta line: copyright, source, build credit --- */
+/* Quieter than the disclaimer paragraph above it.
+   Used via `[…]{.footer-meta}` span syntax in _quarto.yml. */
+.nav-footer .footer-meta,
+.page-footer .footer-meta {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+  text-align: left;       /* override the global p { justify } */
+}
+.nav-footer .footer-meta a,
+.page-footer .footer-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 2px;
+}
+.nav-footer .footer-meta a:hover,
+.page-footer .footer-meta a:hover {
+  color: var(--accent);
+}
+
 @media (max-width: 600px) {
   .nav-footer,
   .page-footer {

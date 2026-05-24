@@ -2,13 +2,19 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/ics-dns-twd-yc/index.html"
+      "/posts/ics-dns-twd-yc/00-intro/index.html"
     ]
   },
   {
     "listing": "/posts/ics-dns-twd-yc/index.html",
     "items": [
       "/posts/ics-dns-twd-yc/00-intro/index.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/posts/ics-dns-twd-yc/index.html"
     ]
   }
 ]

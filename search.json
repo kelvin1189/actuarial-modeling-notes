@@ -51,9 +51,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "#Actuarial #Modeling #Risk-Management",
+    "title": "Latest Posts",
     "section": "",
-    "text": "ICS DNS interest rate model with Taiwan Treasury yield data\n\n\n\nyield-curves\n\nICS\n\nDNS\n\ninterest-rate-risk\n\n\n\nA multi-post series implementing the IAIS Insurance Capital Standard’s interest rate risk module on TPEx yield data, from regulatory text to capital charge.\n\n\n\nKelvin Wong\n\n\nMay 18, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Series introduction, scope, and disclaimers\n\n9 min\n\n\nseries\n\nICS\n\nDNS\n\nyield-curves\n\n\n\nSeries introduction: what the series covers, what it is not, who it is for, data and code, methodological choices, errata policy, and tone.\n\n\n\nMay 18, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/ics-dns-twd-yc/00-intro/index.html",
@@ -126,10 +126,10 @@
     "text": "Translating regulatory text into functioning capital models. This series explores the IAIS ICS interest rate module through a practical lens, calculating capital charges using Taiwan’s TPEx yield data. Read Article 0 for project scope and disclaimers, or jump straight to the implementations below.\n\n\n\n\n\nSeries introduction, scope, and disclaimers\n\n\nArticle 0\n\n\n\n\n\nMay 18, 2026\n\n9 min\n\n \n\n\n\n\n\nNo matching items\n\n\nComments and corrections welcome. Please reach out to the author on GitHub"
   },
   {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact",
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
     "section": "",
-    "text": "Feel free to reach out if you want to discuss actuarial modeling, R programming, or potential collaborations!\n\n\n ✉️ Send Me an Email"
+    "text": "ICS DNS interest rate model with Taiwan Treasury yield data\n\n\n\nyield-curves\n\nICS\n\nDNS\n\ninterest-rate-risk\n\n\n\nA multi-post series implementing the IAIS Insurance Capital Standard’s interest rate risk module on TPEx yield data, from regulatory text to capital charge.\n\n\n\nKelvin Wong\n\n\nMay 18, 2026\n\n\n\n\n\n\nNo matching items"
   }
 ]

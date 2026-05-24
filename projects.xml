@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>WONG | Notes</title>
+<link>https://kelvin1189.github.io/actuarial-modeling-notes/projects.html</link>
+<atom:link href="https://kelvin1189.github.io/actuarial-modeling-notes/projects.xml" rel="self" type="application/rss+xml"/>
+<description>Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management.</description>
+<generator>quarto-1.9.37</generator>
+<lastBuildDate>Mon, 18 May 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>ICS DNS interest rate model with Taiwan Treasury yield data</title>
+  <dc:creator>Kelvin Wong</dc:creator>
+  <link>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Translating regulatory text into functioning capital models. This series explores the IAIS ICS interest rate module through a practical lens, calculating capital charges using Taiwan’s TPEx yield data. Read <em>Article 0</em> for project scope and disclaimers, or jump straight to the implementations below.</p>
+<div id="listing-series-articles" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDSUNTJTJDRE5TJTJDeWllbGQtY3VydmVz" data-listing-date-sort="1779062400000" data-listing-file-modified-sort="1779613865732" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1704">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">Series introduction, scope, and disclaimers</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">Article 0</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">
+<div class="listing-date">
+May 18, 2026
+</div>
+<div class="listing-reading-time">9 min</div>
+<div class="metadata-value listing-order">
+&nbsp;
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+<hr>
+<p>Comments and corrections welcome. Please reach out to the author on <a href="https://github.com/kelvin1189">GitHub</a></p>
+
+
+
+
+ ]]></description>
+  <category>yield-curves</category>
+  <category>ICS</category>
+  <category>DNS</category>
+  <category>interest-rate-risk</category>
+  <guid>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/</guid>
+  <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>
