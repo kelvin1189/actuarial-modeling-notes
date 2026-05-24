@@ -11,34 +11,59 @@ about:
       href: https://github.com/kelvin1189
     - icon: linkedin
       text: LinkedIn
-      href: https://www.linkedin.com/in/your-handle
+      href: https://www.linkedin.com/in/[YOUR-LINKEDIN-SLUG]
 ---
 
-## About Me
+## About me
 
-I'm a senior specialist based in Taiwan working on life insurance risk management. This blog is where I work through ideas in actuarial modeling and quantitative risk management — usually with code, usually using public market data.
+I'm a senior specialist based in Taiwan working on life insurance risk management — valuation, ALM, and the modeling that underpins both. This blog is where I work through ideas adjacent to that work, usually with code, usually using public market data.
+
+## About this blog
+
+The blog opens with a multi-article series on the Dynamic Nelson-Siegel interest rate model under the IAIS Insurance Capital Standard, applied to TWD government bond data. That choice isn't accidental — it's a topic I'm thinking about in my current work, and writing about it publicly forces me to be explicit about my reasoning in a way that internal documents do not.
+
+I want this site to function less as polished publication and more as a working notebook: a record of how I think through a problem, what I tried and discarded, where I'm still uncertain. Posts will sometimes be longer and more exploratory than typical technical blog posts as a result. The hope is that readers can see the actual decision points, not only the cleaned-up answer.
+
+Everything published here is my own opinion and does not represent the views of any current or past employer.
 
 ## What this blog covers
 
 The recurring threads here are:
 
-- **Yield curve modeling** — Dynamic Nelson-Siegel, CIR,Vasicek, and other interest rate models 
+- **Yield curve modeling** — Dynamic Nelson-Siegel, Vasicek, CIR, and other interest rate models
 - **Insurance capital frameworks** — ICS, Solvency II, and scenario-based risk simulation
-- **Quantitative risk modeling** — EWMA, GARCH, and other volatility models
+- **Quantitative risk modeling** — EWMA, GARCH, Kalman filtering, and related techniques used in valuation and risk
 - **Paper notes** — short summaries of papers I've worked through, with reproductions where useful
-
-Everything published here is my own opinion and does not represent the views of any employer.
 
 ## Background
 
-- *Master* M.Sc. in Risk Management and Insurance 
-- *Candidate* of the *SOA*
-- 3+ years working in life insurance solvency and capital modeling
-- 6+ years working in risk management and capital modeling in P&C insurance
-- 3 years of graduate research assistant of NSTC Research Project supported by the National Science Council in financial risk management and insurance
-- Physics undergrad, with double major in Mathematics
-- 10+ years of programming experience in R, Python, and SQL
+**Education**
+
+- M.Sc. in Risk Management and Insurance
+- Undergraduate in Physics, with a double major in Mathematics
+
+**Credentials**
+
+- SOA candidate
+
+**Experience**
+
+- 3+ years in life insurance solvency and capital modeling
+- 6+ years in risk management and capital modeling in P&C insurance
+- 3 years as a graduate research assistant on a financial risk management and insurance project funded by Taiwan's National Science Council (now NSTC)
+
+**Tools**
+
+- 10+ years using R, Python, and SQL
+
+## A note on AI assistance
+
+English is my second language; my first is Chinese. Throughout the work on this blog I make active use of large language models — principally Claude (Anthropic), Gemini (Google), and Grok (xAI) — for English revision, code debugging, document structuring, and as a sparring partner when I want to stress-test an argument before committing it to a post.
+
+The substantive content is mine: the choice of topics, the modeling decisions, the interpretation of results, and the conclusions. The AI tools help me express that content more clearly than I could on my own in a second language, and they sometimes catch errors I would have missed. Any errors that remain in published posts are also mine.
+
+I mention this for transparency, and because the question of how to use these tools well in technical writing seems to me worth being open about rather than quietly working around.
 
 ## Get in touch
 
-The fastest ways to reach me are GitHub (for code/blog corrections) or LinkedIn (for everything else). For technical errors in posts, opening a GitHub issue against the [blog repo](https://github.com/kelvin1189/actuarial-modeling-notes) is most efficient.
+The fastest ways to reach me are GitHub (for code or blog corrections) or LinkedIn (for everything else). For technical errors in posts, opening a GitHub issue against the [blog repo](https://github.com/kelvin1189/actuarial-modeling-notes) is the most efficient route.
