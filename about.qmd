@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Kelvin Wong"
 image: profile.jpg
 about:
   template: trestles
@@ -14,27 +14,29 @@ about:
       href: https://www.linkedin.com/in/your-handle
 ---
 
-## Hi, I'm Kelvin Wong
+## About Me
 
-I'm a senior specialist based in Taiwan working on **life insurance valuation and capital modeling**. This blog is where I work through ideas in actuarial modeling, yield-curve construction, and quantitative risk management — usually with code, usually using public Taiwanese market data.
+I'm a senior specialist based in Taiwan working on life insurance risk management. This blog is where I work through ideas in actuarial modeling and quantitative risk management — usually with code, usually using public market data.
 
 ## What this blog covers
 
 The recurring threads here are:
 
-- **Yield curve modeling** — Dynamic Nelson-Siegel, Svensson, and arbitrage-free term-structure models, applied to TPEx and Taiwan Treasury data
-- **Insurance capital frameworks** — ICS, Solvency II, and scenario-based interest rate risk
-- **Quantitative risk methods** — Kalman filtering, factor models, and stochastic interest rate modeling
+- **Yield curve modeling** — Dynamic Nelson-Siegel, CIR,Vasicek, and other interest rate models 
+- **Insurance capital frameworks** — ICS, Solvency II, and scenario-based risk simulation
+- **Quantitative risk modeling** — EWMA, GARCH, and other volatility models
 - **Paper notes** — short summaries of papers I've worked through, with reproductions where useful
 
 Everything published here is my own opinion and does not represent the views of any employer.
 
 ## Background
 
-- *Master* M.Sc. in Actuarial Science, *NKFUST*
+- *Master* M.Sc. in Risk Management and Insurance 
 - *Candidate* of the *SOA*
-- *3* years working in life insurance valuation and ALM
-- 6+ years working in risk management and financial modeling in P&C insurance
+- 3+ years working in life insurance solvency and capital modeling
+- 6+ years working in risk management and capital modeling in P&C insurance
+- 3 years of graduate research assistant of NSTC Research Project supported by the National Science Council in financial risk management and insurance
+- Physics undergrad, with double major in Mathematics
 - 10+ years of programming experience in R, Python, and SQL
 
 ## Get in touch
