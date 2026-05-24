@@ -32,4 +32,4 @@ Translating regulatory text into functioning capital models. This series explore
 
 ---
 
-Comments and corrections welcome. Please reach out to the author on [GitHub](https://github.com/kelvin1189)
+Comments and corrections welcome. Please reach out to the author on [GitHub](https://github.com/kelvin1189/actuarial-modeling-notes/issues/new)

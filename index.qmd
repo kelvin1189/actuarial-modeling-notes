@@ -4,7 +4,7 @@ listing:
   contents: 
     - "posts/*/*/index.qmd"
   sort: "date desc"
-  type: grid
+  type: default
   fields: [date, title, reading-time, description, categories]
   feed: true
   categories: true
