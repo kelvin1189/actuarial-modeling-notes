@@ -2,35 +2,35 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Kelvin Wong",
     "section": "",
-    "text": "I’m a senior specialist based in Taiwan working on life insurance valuation and capital modeling. This blog is where I work through ideas in actuarial modeling, yield-curve construction, and quantitative risk management — usually with code, usually using public Taiwanese market data."
+    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management. This blog is where I work through ideas in actuarial modeling and quantitative risk management — usually with code, usually using public market data."
   },
   {
-    "objectID": "about.html#hi-im-kelvin-wong",
-    "href": "about.html#hi-im-kelvin-wong",
-    "title": "About",
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "Kelvin Wong",
     "section": "",
-    "text": "I’m a senior specialist based in Taiwan working on life insurance valuation and capital modeling. This blog is where I work through ideas in actuarial modeling, yield-curve construction, and quantitative risk management — usually with code, usually using public Taiwanese market data."
+    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management. This blog is where I work through ideas in actuarial modeling and quantitative risk management — usually with code, usually using public market data."
   },
   {
     "objectID": "about.html#what-this-blog-covers",
     "href": "about.html#what-this-blog-covers",
-    "title": "About",
+    "title": "Kelvin Wong",
     "section": "What this blog covers",
-    "text": "What this blog covers\nThe recurring threads here are:\n\nYield curve modeling — Dynamic Nelson-Siegel, Svensson, and arbitrage-free term-structure models, applied to TPEx and Taiwan Treasury data\nInsurance capital frameworks — ICS, Solvency II, and scenario-based interest rate risk\nQuantitative risk methods — Kalman filtering, factor models, and stochastic interest rate modeling\nPaper notes — short summaries of papers I’ve worked through, with reproductions where useful\n\nEverything published here is my own opinion and does not represent the views of any employer."
+    "text": "What this blog covers\nThe recurring threads here are:\n\nYield curve modeling — Dynamic Nelson-Siegel, CIR,Vasicek, and other interest rate models\nInsurance capital frameworks — ICS, Solvency II, and scenario-based risk simulation\nQuantitative risk modeling — EWMA, GARCH, and other volatility models\nPaper notes — short summaries of papers I’ve worked through, with reproductions where useful\n\nEverything published here is my own opinion and does not represent the views of any employer."
   },
   {
     "objectID": "about.html#background",
     "href": "about.html#background",
-    "title": "About",
+    "title": "Kelvin Wong",
     "section": "Background",
-    "text": "Background\n\nMaster M.Sc. in Actuarial Science, NKFUST\nCandidate of the SOA\n3 years working in life insurance valuation and ALM\n6+ years working in risk management and financial modeling in P&C insurance\n10+ years of programming experience in R, Python, and SQL"
+    "text": "Background\n\nMaster M.Sc. in Risk Management and Insurance\nCandidate of the SOA\n3+ years working in life insurance solvency and capital modeling\n6+ years working in risk management and capital modeling in P&C insurance\n3 years of graduate research assistant of NSTC Research Project supported by the National Science Council in financial risk management and insurance\nPhysics undergrad, with double major in Mathematics\n10+ years of programming experience in R, Python, and SQL"
   },
   {
     "objectID": "about.html#get-in-touch",
     "href": "about.html#get-in-touch",
-    "title": "About",
+    "title": "Kelvin Wong",
     "section": "Get in touch",
     "text": "Get in touch\nThe fastest ways to reach me are GitHub (for code/blog corrections) or LinkedIn (for everything else). For technical errors in posts, opening a GitHub issue against the blog repo is most efficient."
   },
