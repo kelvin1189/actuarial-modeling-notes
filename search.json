@@ -4,42 +4,35 @@
     "href": "about.html",
     "title": "Kelvin Wong",
     "section": "",
-    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management — valuation, ALM, and the modeling that underpins both. This blog is where I work through ideas adjacent to that work, usually with code, usually using public market data."
+    "text": "I’m Malaysian by birth, did my graduate work in Taiwan, and have stayed there since. I’m a senior specialist based in Taiwan working on life insurance risk management — valuation, ALM, and the modeling that underpins both. This blog is where I work through ideas adjacent to that work, usually with code, usually using public market data."
   },
   {
     "objectID": "about.html#about-me",
     "href": "about.html#about-me",
     "title": "Kelvin Wong",
     "section": "",
-    "text": "I’m a senior specialist based in Taiwan working on life insurance risk management — valuation, ALM, and the modeling that underpins both. This blog is where I work through ideas adjacent to that work, usually with code, usually using public market data."
+    "text": "I’m Malaysian by birth, did my graduate work in Taiwan, and have stayed there since. I’m a senior specialist based in Taiwan working on life insurance risk management — valuation, ALM, and the modeling that underpins both. This blog is where I work through ideas adjacent to that work, usually with code, usually using public market data."
   },
   {
     "objectID": "about.html#about-this-blog",
     "href": "about.html#about-this-blog",
     "title": "Kelvin Wong",
     "section": "About this blog",
-    "text": "About this blog\nThe blog opens with a multi-article series on the Dynamic Nelson-Siegel interest rate model under the IAIS Insurance Capital Standard, applied to TWD government bond data. That choice isn’t accidental — it’s a topic I’m thinking about in my current work, and writing about it publicly forces me to be explicit about my reasoning in a way that internal documents do not.\nI want this site to function less as polished publication and more as a working notebook: a record of how I think through a problem, what I tried and discarded, where I’m still uncertain. Posts will sometimes be longer and more exploratory than typical technical blog posts as a result. The hope is that readers can see the actual decision points, not only the cleaned-up answer.\nEverything published here is my own opinion and does not represent the views of any current or past employer."
-  },
-  {
-    "objectID": "about.html#what-this-blog-covers",
-    "href": "about.html#what-this-blog-covers",
-    "title": "Kelvin Wong",
-    "section": "What this blog covers",
-    "text": "What this blog covers\nThe recurring threads here are:\n\nYield curve modeling — Dynamic Nelson-Siegel, Vasicek, CIR, and other interest rate models\nInsurance capital frameworks — ICS, Solvency II, and scenario-based risk simulation\nQuantitative risk modeling — EWMA, GARCH, Kalman filtering, and related techniques used in valuation and risk\nPaper notes — short summaries of papers I’ve worked through, with reproductions where useful"
+    "text": "About this blog\nThe blog opens with a multi-article series on the Dynamic Nelson-Siegel interest rate model under the IAIS Insurance Capital Standard, applied to TWD government bond data. That choice isn’t accidental — it’s a topic I’m thinking about in my work, and writing about it publicly forces me to be explicit about my reasoning in a way that internal documents do not.\nI want this site to function less as polished publication and more as a working notebook: a record of how I think through a problem, what I tried and discarded, where I’m still uncertain. Posts will sometimes be longer and more exploratory than typical technical blog posts as a result. The hope is that readers can see the actual decision points, not only the cleaned-up answer.\nThe recurring themes are actuarial and quantitative — yield-curve modeling, insurance capital frameworks, risk methods — but the notebook framing means I may occasionally write on adjacent topics where the same modes of thinking apply. I’d rather follow a question where it leads than confine the blog to a strict scope.\nEverything published here is my own opinion and does not represent the views of any current or past employer."
   },
   {
     "objectID": "about.html#background",
     "href": "about.html#background",
     "title": "Kelvin Wong",
     "section": "Background",
-    "text": "Background\nEducation\n\nM.Sc. in Risk Management and Insurance\nUndergraduate in Physics, with a double major in Mathematics\n\nCredentials\n\nSOA candidate\n\nExperience\n\n3+ years in life insurance solvency and capital modeling\n6+ years in risk management and capital modeling in P&C insurance\n3 years as a graduate research assistant on a financial risk management and insurance project funded by Taiwan’s National Science Council (now NSTC)\n\nTools\n\n10+ years using R, Python, and SQL"
+    "text": "Background\nI hold an M.Sc. in Risk Management and Insurance from Taiwan and an undergraduate degree in Mathematics and Physics. I’m an SOA candidate. I have experience across life and P&C insurance capital and risk modeling, and I work primarily in R, Python, and SQL."
   },
   {
     "objectID": "about.html#a-note-on-ai-assistance",
     "href": "about.html#a-note-on-ai-assistance",
     "title": "Kelvin Wong",
     "section": "A note on AI assistance",
-    "text": "A note on AI assistance\nEnglish is my second language; my first is Chinese. Throughout the work on this blog I make active use of large language models — principally Claude (Anthropic), Gemini (Google), and Grok (xAI) — for English revision, code debugging, document structuring, and as a sparring partner when I want to stress-test an argument before committing it to a post.\nThe substantive content is mine: the choice of topics, the modeling decisions, the interpretation of results, and the conclusions. The AI tools help me express that content more clearly than I could on my own in a second language, and they sometimes catch errors I would have missed. Any errors that remain in published posts are also mine.\nI mention this for transparency, and because the question of how to use these tools well in technical writing seems to me worth being open about rather than quietly working around."
+    "text": "A note on AI assistance\nEnglish is my second language; my first is Chinese. Throughout the work on this blog I make active use of large language models — principally Claude (Anthropic), Gemini (Google), and Grok (xAI) — for English revision, code debugging, document structuring, and as a sparring partner when I want to stress-test an argument before committing it to a post.\nI should be honest about a second use case as well. I had wanted to start a blog like this for nearly a decade, and repeatedly got stuck not on the substance but on the publishing stack itself: choosing between Jekyll, Hugo, and Quarto; learning Git workflows for content rather than code; building a site design that looked credible without a frontend background. These are real skills, and none of them are taught by a quantitative or actuarial education. AI tools let me work through that stack quickly enough to actually get a site live, which I had not previously been able to do on my own.\nWhat stays mine: the choice of topics, the modeling decisions, the interpretation of results, and the conclusions. The AI tools help me express that content more clearly than I could on my own in a second language, and they help me ship the wrapper around the content. Any errors that remain in published posts are also mine.\nI mention this for transparency, and because the question of how to use these tools well in technical writing seems worth being open about rather than quietly working around."
   },
   {
     "objectID": "about.html#get-in-touch",
