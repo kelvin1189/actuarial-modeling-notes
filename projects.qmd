@@ -1,11 +1,10 @@
 ---
-title: "Latest Posts"
+title: "Projects"
 listing:
   contents: 
-    - "posts/*/*/index.qmd"
+    - "posts/*/index.qmd"
   sort: "date desc"
   type: grid
-  fields: [date, title, reading-time, description, categories]
   feed: true
   categories: true
   sort-ui: false
