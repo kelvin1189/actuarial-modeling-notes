@@ -37,7 +37,7 @@
 <h2 class="anchored" data-anchor-id="where-the-data-comes-from">Where the data comes from</h2>
 <p>The Taipei Exchange (TPEx) publishes the daily zero-coupon yield curve for Taiwan central government bonds at maturities from one month to thirty years, available at:</p>
 <p><a href="https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html" class="uri">https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html</a></p>
-<p>TPEX provides two fitting methodologies for each day: a Cubic B-Spline non-parametric smoothing fit and a Svensson parametric fit (an extended form of the Nelson-Siegel curve). I use the Svensson curves throughout this series, because Svensson is from the same parametric family as Nelson-Siegel, which keeps the modelling framework internally consistent when the Dynamic Nelson-Siegel model is calibrated in <a href="../04-dns/index.qmd">Article 4</a>.</p>
+<p>TPEx provides two fitting methodologies for each day: a Cubic B-Spline non-parametric smoothing fit and a Svensson parametric fit (an extended form of the Nelson-Siegel curve). I use the Svensson curves throughout this series, because Svensson is from the same parametric family as Nelson-Siegel, which keeps the modelling framework internally consistent when the Dynamic Nelson-Siegel model is calibrated in <a href="../04-dns/index.qmd">Article 4</a>.</p>
 </section>
 <section id="how-the-sample-is-constructed" class="level2">
 <h2 class="anchored" data-anchor-id="how-the-sample-is-constructed">How the sample is constructed</h2>
@@ -45,7 +45,7 @@
 <ul>
 <li><strong>Frequency</strong>: weekly observations</li>
 <li><strong>Sampling day</strong>: last available trading day in each ISO calendar week — typically Friday close, with fallback to an earlier trading day when Friday is a holiday</li>
-<li><strong>Tenors</strong>: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 years — the integer-year maturities listed in the ICS calibration methodology. For TWD, ICS specifies that 20Y and 30Y data are omitted because the Last Observable Term is at year 10 (see <a href="../../../posts/ics-dns-twd-yc/00-intro/index.html">Article 0</a>). As a secondary consideration, TPEX’s Svensson curve at longer tenors is less reliably anchored to traded bonds, which gives an empirical reason to be cautious about long-tenor data even where it is reported.</li>
+<li><strong>Tenors</strong>: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 years — the integer-year maturities listed in the ICS calibration methodology. For TWD, ICS specifies that 20Y and 30Y data are omitted because the Last Observable Term is at year 10 (see <a href="../../../posts/ics-dns-twd-yc/00-intro/index.html">Article 0</a>). As a secondary consideration, TPEx’s Svensson curve at longer tenors is less reliably anchored to traded bonds, which gives an empirical reason to be cautious about long-tenor data even where it is reported.</li>
 <li><strong>Date range</strong>: 8 January 2010 to 31 December 2025</li>
 </ul>
 <p>This yields <strong>824 weekly observations</strong>, one for each ISO calendar week in the range — 100% ISO-week coverage. Of these, 752 fall on Fridays. Earlier weekdays appear when Friday is a holiday — most commonly during Lunar New Year week. A small number of observations fall on a Saturday: Taiwan occasionally schedules a make-up trading day on a Saturday to compensate for a weekday holiday adjacent to a long break. These are legitimate trading days and are included as such.</p>
@@ -60,7 +60,7 @@
 <img src="https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/01-visual-tour/historical_yield_animation.gif" class="img-fluid figure-img" alt="Animated weekly yield curves from 2010 to 2025">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yield-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Animation of TWD zero-coupon yield curves at ICS tenors (1Y–10Y), weekly observations January 2010 – December 2025. Source: derived from TPEX Treasury Yield Curve data, Svensson methodology.
+Figure&nbsp;1: Animation of TWD zero-coupon yield curves at ICS tenors (1Y–10Y), weekly observations January 2010 – December 2025. Source: derived from TPEx Treasury Yield Curve data, Svensson methodology.
 </figcaption>
 </figure>
 </div>
@@ -78,7 +78,7 @@ Figure&nbsp;1: Animation of TWD zero-coupon yield curves at ICS tenors (1Y–10Y
 <div id="tbl-summary-stats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Summary statistics by tenor across 824 weekly observations, 2010-01-08 to 2025-12-31. Source: derived from TPEX Treasury Yield Curve data (Svensson methodology).
+Table&nbsp;1: Summary statistics by tenor across 824 weekly observations, 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology).
 </figcaption>
 <div aria-describedby="tbl-summary-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -216,6 +216,354 @@ Table&nbsp;1: Summary statistics by tenor across 824 weekly observations, 2010-0
 <li>Mean yields rise nearly linearly across tenors from 0.69% at 1Y to 1.21% at 10Y. The standard deviation also rises with tenor, from 0.32% to 0.40% — longer tenors are modestly more volatile in absolute terms.</li>
 <li>The dispersion within any single tenor (standard deviation of around 0.3%–0.4%) is comparable to the dispersion across tenors at any single date (10Y mean minus 1Y mean is 0.51%). This means level shifts and slope shifts are both first-order drivers of curve variation. Neither dominates the other. Article 2 will revisit this observation through principal component analysis.</li>
 </ul>
+<section id="cross-tenor-correlations" class="level3">
+<h3 class="anchored" data-anchor-id="cross-tenor-correlations">Cross-Tenor Correlations</h3>
+<p>Beyond the summary statistics of individual tenors, understanding how yields move together is critical. The tables below show the correlation of yield levels and the correlation of weekly yield changes across the tenors.</p>
+<div id="tbl-corr-levels" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corr-levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Correlation matrix of yield curve levels across tenors.
+</figcaption>
+<div aria-describedby="tbl-corr-levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tenor</th>
+<th>1 year</th>
+<th>2 year</th>
+<th>3 year</th>
+<th>4 year</th>
+<th>5 year</th>
+<th>6 year</th>
+<th>7 year</th>
+<th>8 year</th>
+<th>9 year</th>
+<th>10 year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 year</td>
+<td>1.0000</td>
+<td>0.9821</td>
+<td>0.9397</td>
+<td>0.8855</td>
+<td>0.8286</td>
+<td>0.7735</td>
+<td>0.7219</td>
+<td>0.6748</td>
+<td>0.6325</td>
+<td>0.5953</td>
+</tr>
+<tr class="even">
+<td>2 year</td>
+<td>0.9821</td>
+<td>1.0000</td>
+<td>0.9864</td>
+<td>0.9544</td>
+<td>0.9141</td>
+<td>0.8714</td>
+<td>0.8292</td>
+<td>0.7892</td>
+<td>0.7524</td>
+<td>0.7191</td>
+</tr>
+<tr class="odd">
+<td>3 year</td>
+<td>0.9397</td>
+<td>0.9864</td>
+<td>1.0000</td>
+<td>0.9902</td>
+<td>0.9673</td>
+<td>0.9378</td>
+<td>0.9057</td>
+<td>0.8732</td>
+<td>0.8418</td>
+<td>0.8126</td>
+</tr>
+<tr class="even">
+<td>4 year</td>
+<td>0.8855</td>
+<td>0.9544</td>
+<td>0.9902</td>
+<td>1.0000</td>
+<td>0.9931</td>
+<td>0.9764</td>
+<td>0.9542</td>
+<td>0.9295</td>
+<td>0.9042</td>
+<td>0.8795</td>
+</tr>
+<tr class="odd">
+<td>5 year</td>
+<td>0.8286</td>
+<td>0.9141</td>
+<td>0.9673</td>
+<td>0.9931</td>
+<td>1.0000</td>
+<td>0.9949</td>
+<td>0.9823</td>
+<td>0.9653</td>
+<td>0.9462</td>
+<td>0.9264</td>
+</tr>
+<tr class="even">
+<td>6 year</td>
+<td>0.7735</td>
+<td>0.8714</td>
+<td>0.9378</td>
+<td>0.9764</td>
+<td>0.9949</td>
+<td>1.0000</td>
+<td>0.9961</td>
+<td>0.9865</td>
+<td>0.9734</td>
+<td>0.9585</td>
+</tr>
+<tr class="odd">
+<td>7 year</td>
+<td>0.7219</td>
+<td>0.8292</td>
+<td>0.9057</td>
+<td>0.9542</td>
+<td>0.9823</td>
+<td>0.9961</td>
+<td>1.0000</td>
+<td>0.9970</td>
+<td>0.9896</td>
+<td>0.9795</td>
+</tr>
+<tr class="even">
+<td>8 year</td>
+<td>0.6748</td>
+<td>0.7892</td>
+<td>0.8732</td>
+<td>0.9295</td>
+<td>0.9653</td>
+<td>0.9865</td>
+<td>0.9970</td>
+<td>1.0000</td>
+<td>0.9977</td>
+<td>0.9920</td>
+</tr>
+<tr class="odd">
+<td>9 year</td>
+<td>0.6325</td>
+<td>0.7524</td>
+<td>0.8418</td>
+<td>0.9042</td>
+<td>0.9462</td>
+<td>0.9734</td>
+<td>0.9896</td>
+<td>0.9977</td>
+<td>1.0000</td>
+<td>0.9983</td>
+</tr>
+<tr class="even">
+<td>10 year</td>
+<td>0.5953</td>
+<td>0.7191</td>
+<td>0.8126</td>
+<td>0.8795</td>
+<td>0.9264</td>
+<td>0.9585</td>
+<td>0.9795</td>
+<td>0.9920</td>
+<td>0.9983</td>
+<td>1.0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As expected, yields of adjacent tenors are highly correlated in levels, often exceeding 0.98. The correlation decays as the distance between tenors increases, but even the 1-year and 10-year yield levels maintain a correlation of roughly 0.60.</p>
+<div id="tbl-corr-changes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corr-changes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Correlation matrix of weekly yield curve changes across tenors.
+</figcaption>
+<div aria-describedby="tbl-corr-changes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tenor</th>
+<th>1 year</th>
+<th>2 year</th>
+<th>3 year</th>
+<th>4 year</th>
+<th>5 year</th>
+<th>6 year</th>
+<th>7 year</th>
+<th>8 year</th>
+<th>9 year</th>
+<th>10 year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 year</td>
+<td>1.0000</td>
+<td>0.9087</td>
+<td>0.6730</td>
+<td>0.4442</td>
+<td>0.3044</td>
+<td>0.2347</td>
+<td>0.2057</td>
+<td>0.1991</td>
+<td>0.2042</td>
+<td>0.2150</td>
+</tr>
+<tr class="even">
+<td>2 year</td>
+<td>0.9087</td>
+<td>1.0000</td>
+<td>0.9087</td>
+<td>0.7399</td>
+<td>0.6093</td>
+<td>0.5304</td>
+<td>0.4881</td>
+<td>0.4688</td>
+<td>0.4632</td>
+<td>0.4653</td>
+</tr>
+<tr class="odd">
+<td>3 year</td>
+<td>0.6730</td>
+<td>0.9087</td>
+<td>1.0000</td>
+<td>0.9497</td>
+<td>0.8706</td>
+<td>0.8070</td>
+<td>0.7632</td>
+<td>0.7346</td>
+<td>0.7167</td>
+<td>0.7051</td>
+</tr>
+<tr class="even">
+<td>4 year</td>
+<td>0.4442</td>
+<td>0.7399</td>
+<td>0.9497</td>
+<td>1.0000</td>
+<td>0.9792</td>
+<td>0.9442</td>
+<td>0.9117</td>
+<td>0.8845</td>
+<td>0.8622</td>
+<td>0.8425</td>
+</tr>
+<tr class="odd">
+<td>5 year</td>
+<td>0.3044</td>
+<td>0.6093</td>
+<td>0.8706</td>
+<td>0.9792</td>
+<td>1.0000</td>
+<td>0.9906</td>
+<td>0.9724</td>
+<td>0.9523</td>
+<td>0.9318</td>
+<td>0.9104</td>
+</tr>
+<tr class="even">
+<td>6 year</td>
+<td>0.2347</td>
+<td>0.5304</td>
+<td>0.8070</td>
+<td>0.9442</td>
+<td>0.9906</td>
+<td>1.0000</td>
+<td>0.9948</td>
+<td>0.9830</td>
+<td>0.9673</td>
+<td>0.9482</td>
+</tr>
+<tr class="odd">
+<td>7 year</td>
+<td>0.2057</td>
+<td>0.4881</td>
+<td>0.7632</td>
+<td>0.9117</td>
+<td>0.9724</td>
+<td>0.9948</td>
+<td>1.0000</td>
+<td>0.9963</td>
+<td>0.9867</td>
+<td>0.9718</td>
+</tr>
+<tr class="even">
+<td>8 year</td>
+<td>0.1991</td>
+<td>0.4688</td>
+<td>0.7346</td>
+<td>0.8845</td>
+<td>0.9523</td>
+<td>0.9830</td>
+<td>0.9963</td>
+<td>1.0000</td>
+<td>0.9968</td>
+<td>0.9874</td>
+</tr>
+<tr class="odd">
+<td>9 year</td>
+<td>0.2042</td>
+<td>0.4632</td>
+<td>0.7167</td>
+<td>0.8622</td>
+<td>0.9318</td>
+<td>0.9673</td>
+<td>0.9867</td>
+<td>0.9968</td>
+<td>1.0000</td>
+<td>0.9967</td>
+</tr>
+<tr class="even">
+<td>10 year</td>
+<td>0.2150</td>
+<td>0.4653</td>
+<td>0.7051</td>
+<td>0.8425</td>
+<td>0.9104</td>
+<td>0.9482</td>
+<td>0.9718</td>
+<td>0.9874</td>
+<td>0.9967</td>
+<td>1.0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>When looking at weekly changes, the correlations are naturally lower but still exhibit a strong positive relationship, particularly among adjacent tenors. This comovement is what allows models like the Nelson-Siegel framework to effectively capture curve dynamics using a small number of factors.</p>
+</section>
 </section>
 <section id="the-slope-10-year-minus-1-year-spread" class="level2">
 <h2 class="anchored" data-anchor-id="the-slope-10-year-minus-1-year-spread">The slope: 10-year minus 1-year spread</h2>
@@ -234,7 +582,7 @@ Table&nbsp;1: Summary statistics by tenor across 824 weekly observations, 2010-0
 <img src="https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/01-visual-tour/slope_timeseries.png" class="img-fluid figure-img" alt="Time series of 10Y minus 1Y spread">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slope-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: 10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEX Treasury Yield Curve data, Svensson methodology.
+Figure&nbsp;2: 10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data, Svensson methodology.
 </figcaption>
 </figure>
 </div>
@@ -249,7 +597,7 @@ Figure&nbsp;2: 10Y minus 1Y spread over time, weekly observations 2010-01-08 to 
 <div id="tbl-annual-10y" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-annual-10y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Annual mean of the 10-year zero-coupon rate. Source: derived from TPEX Treasury Yield Curve data (Svensson methodology), weekly sample.
+Table&nbsp;4: Annual mean of the 10-year zero-coupon rate. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology), weekly sample.
 </figcaption>
 <div aria-describedby="tbl-annual-10y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
