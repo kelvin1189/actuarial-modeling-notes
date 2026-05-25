@@ -109,6 +109,8 @@ The table below summarises the level, dispersion, and range of yields
 at each of the ten ICS tenors, computed across the 824 weekly
 observations.
 
+:::{style="max-width: 100%;max-height: 400px; overflow-x: auto;"}
+
 | Tenor    | Mean   | Std Dev | Min    | 5th pct | Median | 95th pct | Max    |
 |----------|--------|---------|--------|---------|--------|----------|--------|
 | 1 year   | 0.691% | 0.322%  | 0.042% | 0.219%  | 0.635% | 1.350%   | 1.452% |
@@ -123,6 +125,7 @@ observations.
 | 10 year  | 1.205% | 0.400%  | 0.255% | 0.420%  | 1.264% | 1.727%   | 1.913% |
 
 : Summary statistics by tenor across 824 weekly observations, 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology). {#tbl-summary-stats}
+:::
 
 A few observations from the table:
 
@@ -134,6 +137,7 @@ A few observations from the table:
 
 Beyond the summary statistics of individual tenors, understanding how yields move together is critical. The tables below show the correlation of yield levels and the correlation of weekly yield changes across the tenors.
 
+:::{style="max-width: 100%;max-height: 400px; overflow-x: auto;"}
 | Tenor | 1 year | 2 year | 3 year | 4 year | 5 year | 6 year | 7 year | 8 year | 9 year | 10 year |
 |-------|------|------|------|------|------|------|------|------|------|-------|
 | 1 year | 1.0000 | 0.9821 | 0.9397 | 0.8855 | 0.8286 | 0.7735 | 0.7219 | 0.6748 | 0.6325 | 0.5953 |
@@ -148,10 +152,11 @@ Beyond the summary statistics of individual tenors, understanding how yields mov
 | 10 year | 0.5953 | 0.7191 | 0.8126 | 0.8795 | 0.9264 | 0.9585 | 0.9795 | 0.9920 | 0.9983 | 1.0000 |
 
 : Correlation matrix of yield curve levels across tenors. {#tbl-corr-levels}
-
+:::
 
 As expected, yields of adjacent tenors are highly correlated in levels, often exceeding 0.98. The correlation decays as the distance between tenors increases, but even the 1-year and 10-year yield levels maintain a correlation of roughly 0.60.
 
+:::{style="max-width: 100%;max-height: 400px; overflow-x: auto;"}
 | Tenor | 1 year | 2 year | 3 year | 4 year | 5 year | 6 year | 7 year | 8 year | 9 year | 10 year |
 |-------|------|------|------|------|------|------|------|------|------|-------|
 | 1 year | 1.0000 | 0.9087 | 0.6730 | 0.4442 | 0.3044 | 0.2347 | 0.2057 | 0.1991 | 0.2042 | 0.2150 |
@@ -166,7 +171,7 @@ As expected, yields of adjacent tenors are highly correlated in levels, often ex
 | 10 year | 0.2150 | 0.4653 | 0.7051 | 0.8425 | 0.9104 | 0.9482 | 0.9718 | 0.9874 | 0.9967 | 1.0000 |
 
 : Correlation matrix of weekly yield curve changes across tenors. {#tbl-corr-changes}
-
+:::
 
 When looking at weekly changes, the correlations are naturally lower but still exhibit a strong positive relationship, particularly among adjacent tenors. This comovement is what allows models like the Nelson-Siegel framework to effectively capture curve dynamics using a small number of factors.
 
@@ -212,6 +217,7 @@ but long rates had not yet declined.
 **Annual averages of the 10-year rate** illustrate the broader
 structure of the sample:
 
+:::{style="max-width: 100%;max-height: 400px; overflow-x: auto;"}
 | Year | Mean 10Y rate |
 |------|---------------|
 | 2010 | 1.64%         |
@@ -233,6 +239,8 @@ structure of the sample:
 
 : Annual mean of the 10-year zero-coupon rate. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology), weekly sample. {#tbl-annual-10y}
 
+:::
+
 The 10-year rate spent approximately three years (2019--2021) below 1%,
 returned to roughly its 2010 level by 2024, and has been broadly stable
 since. The DNS model that this series calibrates in [Article 4](../04-dns/index.qmd) will
@@ -244,10 +252,10 @@ a question worth coming back to once the model has been estimated.
 
 Three observations from this article carry directly into the next ones:
 
-- Yields move together across tenors, but not identically. Both level and shape change over time. [**Article 2 (PCA)**](../02-pca/index.qmd) quantifies how much of the variation lies in each direction.
-- Volatility increases with tenor in absolute terms. The model in [**Article 4 (DNS framework)**](../04-dns/index.qmd) allows different factors to have different volatilities, which is consistent with this observation.
+- Yields move together across tenors, but not identically. Both level and shape change over time. [Article 2 (PCA)](../02-pca/index.qmd) quantifies how much of the variation lies in each direction.
+- Volatility increases with tenor in absolute terms. The model in [Article 4 (DNS framework)](../04-dns/index.qmd) allows different factors to have different volatilities, which is consistent with this observation.
 - The data covers a low-rate regime, a tightening cycle, and a
-  post-tightening reset. [**Article 5 (Kalman calibration)**](../05-kalman/index.qmd) estimates
+  post-tightening reset. [Article 5](../05-kalman/index.qmd) (Kalman calibration) estimates
   a single set of mean-reversion and volatility parameters across all
   three sub-periods; the appropriateness of that assumption is worth
   flagging now and revisiting then.
