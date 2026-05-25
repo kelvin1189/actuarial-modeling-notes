@@ -101,8 +101,7 @@ express any other way:
    1Y--10Y spread crosses zero in only three weeks of the sample, and
    the deepest inversion is about six basis points.
 
-Static charts can show one or two of these features at a time. The
-animation shows all three at once.
+Static charts can show one or two of these features at a time. The animation shows all three at once.
 
 ## Summary statistics
 
@@ -245,14 +244,10 @@ a question worth coming back to once the model has been estimated.
 
 Three observations from this article carry directly into the next ones:
 
-- Yields move together across tenors, but not identically. Both level
-  and shape change over time. **Article 2 (PCA)** quantifies how much
-  of the variation lies in each direction.
-- Volatility increases with tenor in absolute terms. The model in
-  **Article 3 (DNS framework)** allows different factors to have
-  different volatilities, which is consistent with this observation.
+- Yields move together across tenors, but not identically. Both level and shape change over time. [**Article 2 (PCA)**](../02-pca/index.qmd) quantifies how much of the variation lies in each direction.
+- Volatility increases with tenor in absolute terms. The model in [**Article 4 (DNS framework)**](../04-dns/index.qmd) allows different factors to have different volatilities, which is consistent with this observation.
 - The data covers a low-rate regime, a tightening cycle, and a
-  post-tightening reset. **Article 4 (Kalman calibration)** estimates
+  post-tightening reset. [**Article 5 (Kalman calibration)**](../05-kalman/index.qmd) estimates
   a single set of mean-reversion and volatility parameters across all
   three sub-periods; the appropriateness of that assumption is worth
   flagging now and revisiting then.

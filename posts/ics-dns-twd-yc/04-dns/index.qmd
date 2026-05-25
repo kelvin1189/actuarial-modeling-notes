@@ -1,0 +1,13 @@
+---
+title: "Principal Component Analysis on the Yield Curves of Taiwan Government Bonds"
+subtitle: "Article 2"
+author: "Kelvin Wong"
+date: "2026-05-30"
+order: 2
+categories: [yield-curves, taiwan, exploratory]
+description: "Sixteen years of TWD government bond zero-coupon curves..."
+image: thumbnail.jpg
+draft: true
+---
+
+*Work in progress — coming soon.*
