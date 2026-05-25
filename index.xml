@@ -677,7 +677,7 @@ Table&nbsp;4: Annual mean of the 10-year zero-coupon rate. Source: derived from 
 </div>
 </figure>
 </div>
-<p>The 10-year rate spent approximately three years (2019–2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in Article 4 will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated.</p>
+<p>The 10-year rate spent approximately three years (2019–2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in <a href="../04-dns/index.qmd">Article 4</a> will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated.</p>
 </section>
 <section id="what-this-looks-like-inside-the-modelling-framework" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-looks-like-inside-the-modelling-framework">What this looks like inside the modelling framework</h2>
