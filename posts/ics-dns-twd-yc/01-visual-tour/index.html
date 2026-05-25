@@ -388,7 +388,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="where-the-data-comes-from">Where the data comes from</h2>
 <p>The Taipei Exchange (TPEx) publishes the daily zero-coupon yield curve for Taiwan central government bonds at maturities from one month to thirty years, available at:</p>
 <p><a href="https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html" class="uri">https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html</a></p>
-<p>TPEx provides two fitting methodologies for each day: a Cubic B-Spline non-parametric smoothing fit and a Svensson parametric fit (an extended form of the Nelson-Siegel curve). I use the Svensson curves throughout this series, because Svensson is from the same parametric family as Nelson-Siegel, which keeps the modelling framework internally consistent when the Dynamic Nelson-Siegel model is calibrated in <a href="../04-dns/index.qmd">Article 4</a>.</p>
+<p>TPEx provides two fitting methodologies for each day: a Cubic B-Spline non-parametric smoothing fit and a Svensson parametric fit (an extended form of the Nelson-Siegel curve). I use the Svensson curves throughout this series, because Svensson is from the same parametric family as Nelson-Siegel, which keeps the modelling framework internally consistent when the Dynamic Nelson-Siegel model is calibrated in Article 4.</p>
 </section>
 <section id="how-the-sample-is-constructed" class="level2">
 <h2 class="anchored" data-anchor-id="how-the-sample-is-constructed">How the sample is constructed</h2>
@@ -1028,15 +1028,15 @@ Table&nbsp;4: Annual mean of the 10-year zero-coupon rate. Source: derived from 
 </div>
 </figure>
 </div>
-<p>The 10-year rate spent approximately three years (2019–2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in <a href="../04-dns/index.qmd">Article 4</a> will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated.</p>
+<p>The 10-year rate spent approximately three years (2019–2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in Article 4 will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated.</p>
 </section>
 <section id="what-this-looks-like-inside-the-modelling-framework" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-looks-like-inside-the-modelling-framework">What this looks like inside the modelling framework</h2>
 <p>Three observations from this article carry directly into the next ones:</p>
 <ul>
-<li>Yields move together across tenors, but not identically. Both level and shape change over time. <strong>Article 2 (PCA)</strong> quantifies how much of the variation lies in each direction.</li>
-<li>Volatility increases with tenor in absolute terms. The model in <strong>Article 3 (DNS framework)</strong> allows different factors to have different volatilities, which is consistent with this observation.</li>
-<li>The data covers a low-rate regime, a tightening cycle, and a post-tightening reset. <strong>Article 4 (Kalman calibration)</strong> estimates a single set of mean-reversion and volatility parameters across all three sub-periods; the appropriateness of that assumption is worth flagging now and revisiting then.</li>
+<li>Yields move together across tenors, but not identically. Both level and shape change over time. &lt;strong&gt;Article 2 (PCA)&lt;/strong&gt; quantifies how much of the variation lies in each direction.</li>
+<li>Volatility increases with tenor in absolute terms. The model in &lt;strong&gt;Article 4 (DNS framework)&lt;/strong&gt; allows different factors to have different volatilities, which is consistent with this observation.</li>
+<li>The data covers a low-rate regime, a tightening cycle, and a post-tightening reset. &lt;strong&gt;Article 5 (Kalman calibration)&lt;/strong&gt; estimates a single set of mean-reversion and volatility parameters across all three sub-periods; the appropriateness of that assumption is worth flagging now and revisiting then.</li>
 </ul>
 <p>The next article begins the analytical work proper, with a principal component decomposition of the dataset shown here.</p>
 <hr>
