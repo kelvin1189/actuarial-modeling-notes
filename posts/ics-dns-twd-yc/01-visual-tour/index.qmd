@@ -236,7 +236,7 @@ structure of the sample:
 
 The 10-year rate spent approximately three years (2019--2021) below 1%,
 returned to roughly its 2010 level by 2024, and has been broadly stable
-since. The DNS model that this series calibrates in Article 4 will
+since. The DNS model that this series calibrates in [Article 4](../04-dns/index.qmd) will
 treat the full sixteen-year window as one stationary process; whether
 that is a reasonable treatment, given the visible regime structure, is
 a question worth coming back to once the model has been estimated.
@@ -257,7 +257,7 @@ Three observations from this article carry directly into the next ones:
   three sub-periods; the appropriateness of that assumption is worth
   flagging now and revisiting then.
 
-The next article begins the analytical work proper, with a principal
+The next [article](../02-pca/index.qmd) begins the analytical work proper, with a principal
 component decomposition of the dataset shown here.
 
 ---
