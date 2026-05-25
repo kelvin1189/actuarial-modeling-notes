@@ -37,7 +37,7 @@ thirty years, available at:
 
 <https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html>
 
-TPEX provides two fitting methodologies for each day: a Cubic B-Spline
+TPEx provides two fitting methodologies for each day: a Cubic B-Spline
 non-parametric smoothing fit and a Svensson parametric fit (an extended
 form of the Nelson-Siegel curve). I use the Svensson curves throughout
 this series, because Svensson is from the same parametric family as
@@ -57,7 +57,7 @@ sample used in this series is:
   maturities listed in the ICS calibration methodology. For TWD, ICS
   specifies that 20Y and 30Y data are omitted because the Last
   Observable Term is at year 10 (see [Article 0](../00-intro/index.qmd)). As a secondary
-  consideration, TPEX's Svensson curve at longer tenors is less
+  consideration, TPEx's Svensson curve at longer tenors is less
   reliably anchored to traded bonds, which gives an empirical reason
   to be cautious about long-tenor data even where it is reported.
 - **Date range**: 8 January 2010 to 31 December 2025
@@ -87,7 +87,7 @@ week. The horizontal axis is maturity in years; the vertical axis is
 the zero-coupon rate; the line colour reflects the slope (10-year minus
 1-year spread).
 
-![Animation of TWD zero-coupon yield curves at ICS tenors (1Y--10Y), weekly observations January 2010 -- December 2025. Source: derived from TPEX Treasury Yield Curve data, Svensson methodology.](historical_yield_animation.gif){#fig-yield-animation fig-alt="Animated weekly yield curves from 2010 to 2025"}
+![Animation of TWD zero-coupon yield curves at ICS tenors (1Y--10Y), weekly observations January 2010 -- December 2025. Source: derived from TPEx Treasury Yield Curve data, Svensson methodology.](historical_yield_animation.gif){#fig-yield-animation fig-alt="Animated weekly yield curves from 2010 to 2025"}
 
 A few things are visible from the animation that are difficult to
 express any other way:
@@ -123,24 +123,53 @@ observations.
 | 9 year   | 1.157% | 0.388%  | 0.244% | 0.408%  | 1.217% | 1.656%   | 1.892% |
 | 10 year  | 1.205% | 0.400%  | 0.255% | 0.420%  | 1.264% | 1.727%   | 1.913% |
 
-: Summary statistics by tenor across 824 weekly observations, 2010-01-08 to 2025-12-31. Source: derived from TPEX Treasury Yield Curve data (Svensson methodology). {#tbl-summary-stats}
+: Summary statistics by tenor across 824 weekly observations, 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology). {#tbl-summary-stats}
 
 A few observations from the table:
 
-- The 10-year rate has not exceeded 1.91% in this sample. For an
-  insurance industry that historically priced guaranteed-return
-  products off rate assumptions well above this, the implications for
-  in-force books are significant.
-- Mean yields rise nearly linearly across tenors from 0.69% at 1Y to
-  1.21% at 10Y. The standard deviation also rises with tenor, from
-  0.32% to 0.40% --- longer tenors are modestly more volatile in
-  absolute terms.
-- The dispersion within any single tenor (standard deviation of around
-  0.3%--0.4%) is comparable to the dispersion across tenors at any
-  single date (10Y mean minus 1Y mean is 0.51%). This means level
-  shifts and slope shifts are both first-order drivers of curve
-  variation. Neither dominates the other. Article 2 will revisit this
-  observation through principal component analysis.
+- The 10-year rate has not exceeded 1.91% in this sample. For an insurance industry that historically priced guaranteed-return products off rate assumptions well above this, the implications for in-force books are significant.
+- Mean yields rise nearly linearly across tenors from 0.69% at 1Y to 1.21% at 10Y. The standard deviation also rises with tenor, from 0.32% to 0.40% --- longer tenors are modestly more volatile in absolute terms.
+- The dispersion within any single tenor (standard deviation of around 0.3%--0.4%) is comparable to the dispersion across tenors at any single date (10Y mean minus 1Y mean is 0.51%). This means level shifts and slope shifts are both first-order drivers of curve variation. Neither dominates the other. [Article 2](../02-pca/index.qmd) will revisit this observation through principal component analysis.
+
+### Cross-Tenor Correlations
+
+Beyond the summary statistics of individual tenors, understanding how yields move together is critical. The tables below show the correlation of yield levels and the correlation of weekly yield changes across the tenors.
+
+| Tenor | 1 year | 2 year | 3 year | 4 year | 5 year | 6 year | 7 year | 8 year | 9 year | 10 year |
+|-------|------|------|------|------|------|------|------|------|------|-------|
+| 1 year | 1.0000 | 0.9821 | 0.9397 | 0.8855 | 0.8286 | 0.7735 | 0.7219 | 0.6748 | 0.6325 | 0.5953 |
+| 2 year | 0.9821 | 1.0000 | 0.9864 | 0.9544 | 0.9141 | 0.8714 | 0.8292 | 0.7892 | 0.7524 | 0.7191 |
+| 3 year | 0.9397 | 0.9864 | 1.0000 | 0.9902 | 0.9673 | 0.9378 | 0.9057 | 0.8732 | 0.8418 | 0.8126 |
+| 4 year | 0.8855 | 0.9544 | 0.9902 | 1.0000 | 0.9931 | 0.9764 | 0.9542 | 0.9295 | 0.9042 | 0.8795 |
+| 5 year | 0.8286 | 0.9141 | 0.9673 | 0.9931 | 1.0000 | 0.9949 | 0.9823 | 0.9653 | 0.9462 | 0.9264 |
+| 6 year | 0.7735 | 0.8714 | 0.9378 | 0.9764 | 0.9949 | 1.0000 | 0.9961 | 0.9865 | 0.9734 | 0.9585 |
+| 7 year | 0.7219 | 0.8292 | 0.9057 | 0.9542 | 0.9823 | 0.9961 | 1.0000 | 0.9970 | 0.9896 | 0.9795 |
+| 8 year | 0.6748 | 0.7892 | 0.8732 | 0.9295 | 0.9653 | 0.9865 | 0.9970 | 1.0000 | 0.9977 | 0.9920 |
+| 9 year | 0.6325 | 0.7524 | 0.8418 | 0.9042 | 0.9462 | 0.9734 | 0.9896 | 0.9977 | 1.0000 | 0.9983 |
+| 10 year | 0.5953 | 0.7191 | 0.8126 | 0.8795 | 0.9264 | 0.9585 | 0.9795 | 0.9920 | 0.9983 | 1.0000 |
+
+: Correlation matrix of yield curve levels across tenors. {#tbl-corr-levels}
+
+
+As expected, yields of adjacent tenors are highly correlated in levels, often exceeding 0.98. The correlation decays as the distance between tenors increases, but even the 1-year and 10-year yield levels maintain a correlation of roughly 0.60.
+
+| Tenor | 1 year | 2 year | 3 year | 4 year | 5 year | 6 year | 7 year | 8 year | 9 year | 10 year |
+|-------|------|------|------|------|------|------|------|------|------|-------|
+| 1 year | 1.0000 | 0.9087 | 0.6730 | 0.4442 | 0.3044 | 0.2347 | 0.2057 | 0.1991 | 0.2042 | 0.2150 |
+| 2 year | 0.9087 | 1.0000 | 0.9087 | 0.7399 | 0.6093 | 0.5304 | 0.4881 | 0.4688 | 0.4632 | 0.4653 |
+| 3 year | 0.6730 | 0.9087 | 1.0000 | 0.9497 | 0.8706 | 0.8070 | 0.7632 | 0.7346 | 0.7167 | 0.7051 |
+| 4 year | 0.4442 | 0.7399 | 0.9497 | 1.0000 | 0.9792 | 0.9442 | 0.9117 | 0.8845 | 0.8622 | 0.8425 |
+| 5 year | 0.3044 | 0.6093 | 0.8706 | 0.9792 | 1.0000 | 0.9906 | 0.9724 | 0.9523 | 0.9318 | 0.9104 |
+| 6 year | 0.2347 | 0.5304 | 0.8070 | 0.9442 | 0.9906 | 1.0000 | 0.9948 | 0.9830 | 0.9673 | 0.9482 |
+| 7 year | 0.2057 | 0.4881 | 0.7632 | 0.9117 | 0.9724 | 0.9948 | 1.0000 | 0.9963 | 0.9867 | 0.9718 |
+| 8 year | 0.1991 | 0.4688 | 0.7346 | 0.8845 | 0.9523 | 0.9830 | 0.9963 | 1.0000 | 0.9968 | 0.9874 |
+| 9 year | 0.2042 | 0.4632 | 0.7167 | 0.8622 | 0.9318 | 0.9673 | 0.9867 | 0.9968 | 1.0000 | 0.9967 |
+| 10 year | 0.2150 | 0.4653 | 0.7051 | 0.8425 | 0.9104 | 0.9482 | 0.9718 | 0.9874 | 0.9967 | 1.0000 |
+
+: Correlation matrix of weekly yield curve changes across tenors. {#tbl-corr-changes}
+
+
+When looking at weekly changes, the correlations are naturally lower but still exhibit a strong positive relationship, particularly among adjacent tenors. This comovement is what allows models like the Nelson-Siegel framework to effectively capture curve dynamics using a small number of factors.
 
 ## The slope: 10-year minus 1-year spread
 
@@ -160,7 +189,7 @@ has effectively not experienced a meaningful curve inversion in this
 period --- a contrast worth noting against US Treasuries, which
 inverted substantially over the same window.
 
-![10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEX Treasury Yield Curve data, Svensson methodology.](slope_timeseries.png){#fig-slope-timeseries fig-alt="Time series of 10Y minus 1Y spread"}
+![10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data, Svensson methodology.](slope_timeseries.png){#fig-slope-timeseries fig-alt="Time series of 10Y minus 1Y spread"}
 
 ## A few dates worth knowing
 
@@ -203,7 +232,7 @@ structure of the sample:
 | 2024 | 1.50%         |
 | 2025 | 1.45%         |
 
-: Annual mean of the 10-year zero-coupon rate. Source: derived from TPEX Treasury Yield Curve data (Svensson methodology), weekly sample. {#tbl-annual-10y}
+: Annual mean of the 10-year zero-coupon rate. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology), weekly sample. {#tbl-annual-10y}
 
 The 10-year rate spent approximately three years (2019--2021) below 1%,
 returned to roughly its 2010 level by 2024, and has been broadly stable
