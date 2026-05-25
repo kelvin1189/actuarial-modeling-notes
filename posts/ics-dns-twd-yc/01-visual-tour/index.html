@@ -1,2 +1,1134 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kelvin Wong">
+<meta name="dcterms.date" content="2026-05-25">
+<meta name="description" content="Sixteen years of TWD government bond zero-coupon yield curves at the ICS tenors, sampled weekly from 2010 to 2025: animation, summary statistics, slope dynamics, and the data conventions used throughout the series.">
+
+<title>A Visual Tour of Taiwan’s Yield Curve – WONG | Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-23bbe8b5e4efc1e257f6d59dce478b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-0fee84e8b8ba1d6a9eb33727da05394f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-7a11e25dd7a1f7df286c0b684d1075db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-0fee84e8b8ba1d6a9eb33727da05394f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="google-site-verification" content="haUJj-wPPgU5a0qyePIluTiO4UIAxMqEWfWtq-IIPjA">
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">WONG | Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kelvin1189"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../../index.xml"> <i class="bi bi-rss" role="img" aria-label="RSS feed">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#where-the-data-comes-from" id="toc-where-the-data-comes-from" class="nav-link active" data-scroll-target="#where-the-data-comes-from">Where the data comes from</a></li>
+  <li><a href="#how-the-sample-is-constructed" id="toc-how-the-sample-is-constructed" class="nav-link" data-scroll-target="#how-the-sample-is-constructed">How the sample is constructed</a></li>
+  <li><a href="#what-the-curve-looks-like-week-by-week" id="toc-what-the-curve-looks-like-week-by-week" class="nav-link" data-scroll-target="#what-the-curve-looks-like-week-by-week">What the curve looks like, week by week</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary statistics</a></li>
+  <li><a href="#the-slope-10-year-minus-1-year-spread" id="toc-the-slope-10-year-minus-1-year-spread" class="nav-link" data-scroll-target="#the-slope-10-year-minus-1-year-spread">The slope: 10-year minus 1-year spread</a></li>
+  <li><a href="#a-few-dates-worth-knowing" id="toc-a-few-dates-worth-knowing" class="nav-link" data-scroll-target="#a-few-dates-worth-knowing">A few dates worth knowing</a></li>
+  <li><a href="#what-this-looks-like-inside-the-modelling-framework" id="toc-what-this-looks-like-inside-the-modelling-framework" class="nav-link" data-scroll-target="#what-this-looks-like-inside-the-modelling-framework">What this looks like inside the modelling framework</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/kelvin1189/actuarial-modeling-notes/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">A Visual Tour of Taiwan’s Yield Curve</h1>
+<p class="subtitle lead">Article 1</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">series</div>
+    <div class="quarto-category">ICS</div>
+    <div class="quarto-category">DNS</div>
+    <div class="quarto-category">yield-curves</div>
+    <div class="quarto-category">TPEX</div>
+    <div class="quarto-category">data-exploration</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Sixteen years of TWD government bond zero-coupon yield curves at the ICS tenors, sampled weekly from 2010 to 2025: animation, summary statistics, slope dynamics, and the data conventions used throughout the series.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kelvin Wong </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 25, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This is the first analytical article in a series on the ICS interest rate risk model. The series introduction, scope, disclaimers, references, and data conventions are in <a href="../../../posts/ics-dns-twd-yc/00-intro/index.html">Article 0</a>.</p>
+</div>
+</div>
+</div>
+<p>Before introducing the model, it is worth looking at the data the model is trying to describe. This article shows sixteen years of Taiwan’s government bond zero-coupon yield curves, summarises what those curves have done, and points out a few specific dates that will reappear in the later articles.</p>
+<p>The article is descriptive. No mathematics is required to read it. The later articles in the series will be denser, but they assume the visual intuition built here.</p>
+<section id="where-the-data-comes-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-the-data-comes-from">Where the data comes from</h2>
+<p>The Taipei Exchange (TPEx) publishes the daily zero-coupon yield curve for Taiwan central government bonds at maturities from one month to thirty years, available at:</p>
+<p><a href="https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html" class="uri">https://www.tpex.org.tw/en-us/bond/info/statistics-gb/day/yield.html</a></p>
+<p>TPEX provides two fitting methodologies for each day: a Cubic B-Spline non-parametric smoothing fit and a Svensson parametric fit (an extended form of the Nelson-Siegel curve). I use the Svensson curves throughout this series, because Svensson is from the same parametric family as Nelson-Siegel, which keeps the modelling framework internally consistent when the Dynamic Nelson-Siegel model is calibrated in <a href="../04-dns/index.qmd">Article 4</a>.</p>
+</section>
+<section id="how-the-sample-is-constructed" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-sample-is-constructed">How the sample is constructed</h2>
+<p>To match the ICS calibration document’s data specification (§88), the sample used in this series is:</p>
+<ul>
+<li><strong>Frequency</strong>: weekly observations</li>
+<li><strong>Sampling day</strong>: last available trading day in each ISO calendar week — typically Friday close, with fallback to an earlier trading day when Friday is a holiday</li>
+<li><strong>Tenors</strong>: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 years — the integer-year maturities listed in the ICS calibration methodology. For TWD, ICS specifies that 20Y and 30Y data are omitted because the Last Observable Term is at year 10 (see <a href="../../../posts/ics-dns-twd-yc/00-intro/index.html">Article 0</a>). As a secondary consideration, TPEX’s Svensson curve at longer tenors is less reliably anchored to traded bonds, which gives an empirical reason to be cautious about long-tenor data even where it is reported.</li>
+<li><strong>Date range</strong>: 8 January 2010 to 31 December 2025</li>
+</ul>
+<p>This yields <strong>824 weekly observations</strong>, one for each ISO calendar week in the range — 100% ISO-week coverage. Of these, 752 fall on Fridays. Earlier weekdays appear when Friday is a holiday — most commonly during Lunar New Year week. A small number of observations fall on a Saturday: Taiwan occasionally schedules a make-up trading day on a Saturday to compensate for a weekday holiday adjacent to a long break. These are legitimate trading days and are included as such.</p>
+<p>One caveat about the input data should be stated up front. The Svensson curve is itself a parametric fit to underlying bond trade data; this series uses the fitted curve, not raw bond prices. The ICS methodology explicitly works with fitted zero-coupon spot rates, so this is consistent with the regulatory specification, but readers should understand that volatility estimates produced downstream reflect the volatility of the <em>fitted</em> curve, not raw bond market microstructure.</p>
+</section>
+<section id="what-the-curve-looks-like-week-by-week" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-curve-looks-like-week-by-week">What the curve looks like, week by week</h2>
+<p>The animation below shows the full Svensson curve at the ten ICS tenors on every weekly observation from 2010 through 2025. Each frame is one week. The horizontal axis is maturity in years; the vertical axis is the zero-coupon rate; the line colour reflects the slope (10-year minus 1-year spread).</p>
+<div id="fig-yield-animation" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Animated weekly yield curves from 2010 to 2025">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-yield-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="historical_yield_animation.gif" class="img-fluid figure-img" alt="Animated weekly yield curves from 2010 to 2025">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yield-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Animation of TWD zero-coupon yield curves at ICS tenors (1Y–10Y), weekly observations January 2010 – December 2025. Source: derived from TPEX Treasury Yield Curve data, Svensson methodology.
+</figcaption>
+</figure>
+</div>
+<p>A few things are visible from the animation that are difficult to express any other way:</p>
+<ol type="1">
+<li>The curve <strong>falls in level</strong> roughly continuously from 2010 to 2021, then <strong>rises sharply</strong> through 2022 as Taiwan’s central bank tightened alongside global peers.</li>
+<li>The curve <strong>shape</strong> is mostly upward-sloping with modest curvature, but the slope flattens markedly around 2019 and again in late 2024.</li>
+<li>The curve is <strong>never strongly inverted</strong> in this tenor range. The 1Y–10Y spread crosses zero in only three weeks of the sample, and the deepest inversion is about six basis points.</li>
+</ol>
+<p>Static charts can show one or two of these features at a time. The animation shows all three at once.</p>
+</section>
+<section id="summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics">Summary statistics</h2>
+<p>The table below summarises the level, dispersion, and range of yields at each of the ten ICS tenors, computed across the 824 weekly observations.</p>
+<div id="tbl-summary-stats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Summary statistics by tenor across 824 weekly observations, 2010-01-08 to 2025-12-31. Source: derived from TPEX Treasury Yield Curve data (Svensson methodology).
+</figcaption>
+<div aria-describedby="tbl-summary-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tenor</th>
+<th>Mean</th>
+<th>Std Dev</th>
+<th>Min</th>
+<th>5th pct</th>
+<th>Median</th>
+<th>95th pct</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 year</td>
+<td>0.691%</td>
+<td>0.322%</td>
+<td>0.042%</td>
+<td>0.219%</td>
+<td>0.635%</td>
+<td>1.350%</td>
+<td>1.452%</td>
+</tr>
+<tr class="even">
+<td>2 year</td>
+<td>0.768%</td>
+<td>0.319%</td>
+<td>0.138%</td>
+<td>0.248%</td>
+<td>0.759%</td>
+<td>1.387%</td>
+<td>1.485%</td>
+</tr>
+<tr class="odd">
+<td>3 year</td>
+<td>0.831%</td>
+<td>0.323%</td>
+<td>0.148%</td>
+<td>0.273%</td>
+<td>0.867%</td>
+<td>1.418%</td>
+<td>1.526%</td>
+</tr>
+<tr class="even">
+<td>4 year</td>
+<td>0.888%</td>
+<td>0.332%</td>
+<td>0.173%</td>
+<td>0.300%</td>
+<td>0.981%</td>
+<td>1.447%</td>
+<td>1.644%</td>
+</tr>
+<tr class="odd">
+<td>5 year</td>
+<td>0.944%</td>
+<td>0.342%</td>
+<td>0.189%</td>
+<td>0.326%</td>
+<td>1.042%</td>
+<td>1.474%</td>
+<td>1.727%</td>
+</tr>
+<tr class="even">
+<td>6 year</td>
+<td>1.000%</td>
+<td>0.353%</td>
+<td>0.205%</td>
+<td>0.346%</td>
+<td>1.093%</td>
+<td>1.494%</td>
+<td>1.787%</td>
+</tr>
+<tr class="odd">
+<td>7 year</td>
+<td>1.054%</td>
+<td>0.365%</td>
+<td>0.219%</td>
+<td>0.368%</td>
+<td>1.126%</td>
+<td>1.531%</td>
+<td>1.832%</td>
+</tr>
+<tr class="even">
+<td>8 year</td>
+<td>1.107%</td>
+<td>0.377%</td>
+<td>0.233%</td>
+<td>0.388%</td>
+<td>1.170%</td>
+<td>1.592%</td>
+<td>1.865%</td>
+</tr>
+<tr class="odd">
+<td>9 year</td>
+<td>1.157%</td>
+<td>0.388%</td>
+<td>0.244%</td>
+<td>0.408%</td>
+<td>1.217%</td>
+<td>1.656%</td>
+<td>1.892%</td>
+</tr>
+<tr class="even">
+<td>10 year</td>
+<td>1.205%</td>
+<td>0.400%</td>
+<td>0.255%</td>
+<td>0.420%</td>
+<td>1.264%</td>
+<td>1.727%</td>
+<td>1.913%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>A few observations from the table:</p>
+<ul>
+<li>The 10-year rate has not exceeded 1.91% in this sample. For an insurance industry that historically priced guaranteed-return products off rate assumptions well above this, the implications for in-force books are significant.</li>
+<li>Mean yields rise nearly linearly across tenors from 0.69% at 1Y to 1.21% at 10Y. The standard deviation also rises with tenor, from 0.32% to 0.40% — longer tenors are modestly more volatile in absolute terms.</li>
+<li>The dispersion within any single tenor (standard deviation of around 0.3%–0.4%) is comparable to the dispersion across tenors at any single date (10Y mean minus 1Y mean is 0.51%). This means level shifts and slope shifts are both first-order drivers of curve variation. Neither dominates the other. Article 2 will revisit this observation through principal component analysis.</li>
+</ul>
+</section>
+<section id="the-slope-10-year-minus-1-year-spread" class="level2">
+<h2 class="anchored" data-anchor-id="the-slope-10-year-minus-1-year-spread">The slope: 10-year minus 1-year spread</h2>
+<p>A useful one-dimensional summary of the curve is the slope, here defined as the 10-year rate minus the 1-year rate. Over the weekly sample:</p>
+<ul>
+<li>Mean spread: 51.4 basis points</li>
+<li>Median spread: 49.3 basis points</li>
+<li>Standard deviation: 33.2 basis points</li>
+<li>Maximum: 175.5 basis points</li>
+<li>Minimum: −5.6 basis points</li>
+</ul>
+<p>The spread was negative on 3 of 824 weekly observations (0.4% of the sample), and the deepest inversion was about six basis points. Taiwan has effectively not experienced a meaningful curve inversion in this period — a contrast worth noting against US Treasuries, which inverted substantially over the same window.</p>
+<div id="fig-slope-timeseries" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Time series of 10Y minus 1Y spread">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slope-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slope_timeseries.png" class="img-fluid figure-img" alt="Time series of 10Y minus 1Y spread">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slope-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEX Treasury Yield Curve data, Svensson methodology.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="a-few-dates-worth-knowing" class="level2">
+<h2 class="anchored" data-anchor-id="a-few-dates-worth-knowing">A few dates worth knowing</h2>
+<p>Specific dates from the sample will reappear in the later articles when the calibration and stress scenarios are discussed. The most useful to fix in mind:</p>
+<p><strong>Lowest 10-year rate observed</strong>: 0.255% on 27 November 2020. This was the trough of the post-COVID low-rate regime. The full curve that week was extremely flat — the 1-year rate was approximately 0.18%, meaning roughly 8 basis points of slope across the entire 1-to-10-year range.</p>
+<p><strong>Highest 10-year rate observed</strong>: 1.913% on 21 October 2022. This was near the peak of the 2022 tightening cycle.</p>
+<p><strong>Steepest curve observed</strong>: the 1Y–10Y spread reached 175.5 basis points on 29 January 2010, when short rates were at their cyclical lows (the 1-year rate hit its sample minimum of 0.042% the same week) but long rates had not yet declined.</p>
+<p><strong>Annual averages of the 10-year rate</strong> illustrate the broader structure of the sample:</p>
+<div id="tbl-annual-10y" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-annual-10y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Annual mean of the 10-year zero-coupon rate. Source: derived from TPEX Treasury Yield Curve data (Svensson methodology), weekly sample.
+</figcaption>
+<div aria-describedby="tbl-annual-10y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Year</th>
+<th>Mean 10Y rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2010</td>
+<td>1.64%</td>
+</tr>
+<tr class="even">
+<td>2011</td>
+<td>1.54%</td>
+</tr>
+<tr class="odd">
+<td>2012</td>
+<td>1.32%</td>
+</tr>
+<tr class="even">
+<td>2013</td>
+<td>1.49%</td>
+</tr>
+<tr class="odd">
+<td>2014</td>
+<td>1.64%</td>
+</tr>
+<tr class="even">
+<td>2015</td>
+<td>1.46%</td>
+</tr>
+<tr class="odd">
+<td>2016</td>
+<td>0.97%</td>
+</tr>
+<tr class="even">
+<td>2017</td>
+<td>1.17%</td>
+</tr>
+<tr class="odd">
+<td>2018</td>
+<td>1.01%</td>
+</tr>
+<tr class="even">
+<td>2019</td>
+<td>0.76%</td>
+</tr>
+<tr class="odd">
+<td>2020</td>
+<td>0.46%</td>
+</tr>
+<tr class="even">
+<td>2021</td>
+<td>0.45%</td>
+</tr>
+<tr class="odd">
+<td>2022</td>
+<td>1.23%</td>
+</tr>
+<tr class="even">
+<td>2023</td>
+<td>1.21%</td>
+</tr>
+<tr class="odd">
+<td>2024</td>
+<td>1.50%</td>
+</tr>
+<tr class="even">
+<td>2025</td>
+<td>1.45%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The 10-year rate spent approximately three years (2019–2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in Article 4 will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated.</p>
+</section>
+<section id="what-this-looks-like-inside-the-modelling-framework" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-looks-like-inside-the-modelling-framework">What this looks like inside the modelling framework</h2>
+<p>Three observations from this article carry directly into the next ones:</p>
+<ul>
+<li>Yields move together across tenors, but not identically. Both level and shape change over time. <strong>Article 2 (PCA)</strong> quantifies how much of the variation lies in each direction.</li>
+<li>Volatility increases with tenor in absolute terms. The model in <strong>Article 3 (DNS framework)</strong> allows different factors to have different volatilities, which is consistent with this observation.</li>
+<li>The data covers a low-rate regime, a tightening cycle, and a post-tightening reset. <strong>Article 4 (Kalman calibration)</strong> estimates a single set of mean-reversion and volatility parameters across all three sub-periods; the appropriateness of that assumption is worth flagging now and revisiting then.</li>
+</ul>
+<p>The next article begins the analytical work proper, with a principal component decomposition of the dataset shown here.</p>
+<hr>
+<p><em>This article is part of a series. The series introduction and disclaimers are in <a href="../00-intro/">Article 0</a>. Comments and corrections welcome.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/kelvin1189\.github\.io\/actuarial-modeling-notes\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><em>Disclaimer.</em> The content on this website is for educational and informational purposes only and does not constitute financial, investment, legal, or professional actuarial advice. The views expressed here are my own and do not reflect the position of any current or past employer. All code and models are provided “as is” without warranty.</p>
+<p><span class="footer-meta">© 2026 Kelvin Wong · Source on <a href="https://github.com/kelvin1189/actuarial-modeling-notes">GitHub</a> · Built with <a href="https://quarto.org">Quarto</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/kelvin1189/actuarial-modeling-notes/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
