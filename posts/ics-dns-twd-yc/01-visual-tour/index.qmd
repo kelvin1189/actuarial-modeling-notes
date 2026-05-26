@@ -4,7 +4,7 @@ subtitle: "Article 1"
 author: "Kelvin Wong"
 date: "2026-05-25"
 order: 1
-categories: [series, ICS, DNS, yield-curves, TPEX, data-exploration]
+categories: [series, ICS, DNS, yield-curves, TPEx, data-exploration]
 description: "Sixteen years of TWD government bond zero-coupon yield curves at the ICS tenors, sampled weekly from 2010 to 2025: animation, summary statistics, slope dynamics, and the data conventions used throughout the series."
 image: thumbnail.jpg
 format:
@@ -46,7 +46,7 @@ when the Dynamic Nelson-Siegel model is calibrated in [Article 4](../04-dns/inde
 
 ## How the sample is constructed
 
-To match the ICS calibration document's data specification (§88), the
+To match the ICS calibration document's data specification (paragraph 88), the
 sample used in this series is:
 
 - **Frequency**: weekly observations
@@ -62,14 +62,7 @@ sample used in this series is:
   to be cautious about long-tenor data even where it is reported.
 - **Date range**: 8 January 2010 to 31 December 2025
 
-This yields **824 weekly observations**, one for each ISO calendar
-week in the range --- 100% ISO-week coverage. Of these, 752 fall on
-Fridays. Earlier weekdays appear when Friday is a holiday --- most
-commonly during Lunar New Year week. A small number of observations
-fall on a Saturday: Taiwan occasionally schedules a make-up trading
-day on a Saturday to compensate for a weekday holiday adjacent to a
-long break. These are legitimate trading days and are included as
-such.
+This yields **824 weekly observations**, one for each ISO calendar week in the range --- 100% ISO-week coverage. Of these, 752 fall on Fridays. Earlier weekdays appear when Friday is a holiday --- most commonly during Lunar New Year week. A small number of observations fall on a Saturday: Taiwan occasionally schedules a make-up trading day on a Saturday to compensate for a weekday holiday adjacent to a long break. These are legitimate trading days and are included as such. Each of the 824 observations is a genuine TPEx-published Svensson curve; no interpolation, carry-forward, or other gap-filling was applied.
 
 One caveat about the input data should be stated up front. The Svensson
 curve is itself a parametric fit to underlying bond trade data; this
@@ -131,7 +124,28 @@ A few observations from the table:
 
 - The 10-year rate has not exceeded 1.91% in this sample. For an insurance industry that historically priced guaranteed-return products off rate assumptions well above this, the implications for in-force books are significant.
 - Mean yields rise nearly linearly across tenors from 0.69% at 1Y to 1.21% at 10Y. The standard deviation also rises with tenor, from 0.32% to 0.40% --- longer tenors are modestly more volatile in absolute terms.
-- The dispersion within any single tenor (standard deviation of around 0.3%--0.4%) is comparable to the dispersion across tenors at any single date (10Y mean minus 1Y mean is 0.51%). This means level shifts and slope shifts are both first-order drivers of curve variation. Neither dominates the other. [Article 2](../02-pca/index.qmd) will revisit this observation through principal component analysis.
+- The dispersion within any single tenor (standard deviation of around 0.3%--0.4%) is comparable to the dispersion across tenors at any single date (10Y mean minus 1Y mean is 0.51%). This means level shifts and slope shifts are both first-order drivers of curve variation. Neither dominates the other. [Article 2](../02-pca/index.qmd) quantifies the share of variation attributable to level vs. slope vs. curvature movements via principal component analysis, and compares the PC loadings to the Nelson-Siegel basis functions.
+
+The pattern in standard deviation across tenors is more nuanced than it first appears. Although absolute volatility rises with tenor, the *coefficient of variation* --- standard deviation divided by mean --- falls with tenor, from 0.466 at 1Y to 0.332 at 10Y. In other words, short rates fluctuate proportionally more around their mean than long rates do. This is the empirical signature of a curve anchored at the long end and pinned to monetary policy at the short end: short rates are pulled around by policy and inflation surprises, while long rates reflect a slower-moving expectation of where the economy settles. The DNS framework in [Article 4](../04-dns/index.qmd) captures this asymmetry by allowing different volatilities on the level and slope factors.
+
+| Tenor   | Mean   | Std Dev | Coefficient of Variation |
+| ------- | ------ | ------- | ------------------------ |
+| 1 year  | 0.691% | 0.322%  | 0.466                    |
+| 2 year  | 0.768% | 0.319%  | 0.416                    |
+| 3 year  | 0.831% | 0.323%  | 0.389                    |
+| 4 year  | 0.888% | 0.332%  | 0.373                    |
+| 5 year  | 0.944% | 0.342%  | 0.362                    |
+| 6 year  | 1.000% | 0.353%  | 0.353                    |
+| 7 year  | 1.054% | 0.365%  | 0.346                    |
+| 8 year  | 1.107% | 0.377%  | 0.340                    |
+| 9 year  | 1.157% | 0.388%  | 0.336                    |
+| 10 year | 1.205% | 0.400%  | 0.332                    |
+
+: Coefficient of variation (standard deviation divided by mean) by tenor, weekly observations 2010-01-08 to 2025-12-31. {#tbl-coef-var}
+
+The same level-and-volatility pattern is easier to read off a chart than from the table. Mean rates rise smoothly across tenors, while standard deviations rise more slowly and remain in a narrow band.
+
+![Mean and standard deviation of TWD zero-coupon yields by tenor, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology).](mean_std_by_tenor.png){#fig-mean-std-tenor fig-alt="Bar chart showing mean yield and standard deviation increasing with tenor"}
 
 ### Cross-Tenor Correlations
 
@@ -197,9 +211,7 @@ inverted substantially over the same window.
 
 ## A few dates worth knowing
 
-Specific dates from the sample will reappear in the later articles when
-the calibration and stress scenarios are discussed. The most useful to
-fix in mind:
+Specific dates from the sample will reappear in the later articles when the calibration and stress scenarios are discussed. All three dates below are weekly observations in the 824-week sample described above, not daily extrema; the daily TPEx series contains slightly more extreme values on nearby business days, but those days do not fall on the ISO-week sampling boundary used for this series. The most useful to fix in mind:
 
 **Lowest 10-year rate observed**: 0.255% on 27 November 2020. This was
 the trough of the post-COVID low-rate regime. The full curve that week
@@ -241,12 +253,11 @@ structure of the sample:
 
 :::
 
-The 10-year rate spent approximately three years (2019--2021) below 1%,
-returned to roughly its 2010 level by 2024, and has been broadly stable
-since. The DNS model that this series calibrates in [Article 4](../04-dns/index.qmd) will
-treat the full sixteen-year window as one stationary process; whether
-that is a reasonable treatment, given the visible regime structure, is
-a question worth coming back to once the model has been estimated.
+The bimodal shape of the distribution of the 10-year rate makes the regime structure visible at a glance. Roughly 28% of weekly observations sit below 1%, concentrated in the 2019--2021 low-rate window; the bulk of the sample sits in the 1.2%--1.7% range, drawn from 2010--2014 and from 2022 onward.
+
+![Distribution of the 10-year zero-coupon rate across all 824 weekly observations. The kernel density estimate (red) makes the bimodal shape clearer than the raw histogram. The lower mode reflects the 2019--2021 post-COVID low-rate regime; the upper mode reflects the broader 2010--2014 and 2022--2025 periods. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology).](y10_distribution.png){#fig-y10-dist fig-alt="Histogram of 10-year zero-coupon rate showing bimodal distribution"}
+
+The 10-year rate spent approximately three years (2019--2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in [Article 4](../04-dns/index.qmd) will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated. The ICS calibration specification (paragraph 88) requires using the full window starting 1 January 2010; whether the regime structure visible here violates the stationarity assumption implied by that specification is a question [Article 5](../05-kalman/index.qmd) will return to.
 
 ## What this looks like inside the modelling framework
 

@@ -8,6 +8,7 @@
    4. Typography — headings, bold, italic
    5. Callouts
    6. Article listing cards
+   7. Article page category pills 
 
    To change a color across the whole site, edit the token in
    Section 1 only. Everything else uses var(--token-name).
@@ -254,4 +255,42 @@ body.quarto-dark .quarto-post,
 html[data-bs-theme="dark"] .quarto-post {
   border-left: none !important;
   border-radius: 8px !important;
+}
+
+/* ============================================================
+   7. Article page category pills
+   ============================================================ */
+
+/* --- Article page: category pills displayed as a horizontal row --- */
+/* Targets the categories block in article page headers, not listing pages. */
+.quarto-title-block .quarto-categories,
+.quarto-title-meta .quarto-categories {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.quarto-title-block .quarto-categories .quarto-category,
+.quarto-title-meta .quarto-categories .quarto-category {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;          /* fully rounded pills */
+  background-color: transparent;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;           /* prevent "interest-rate-risk" wrapping mid-pill */
+  line-height: 1.5;
+}
+
+.quarto-title-block .quarto-categories .quarto-category:hover,
+.quarto-title-meta .quarto-categories .quarto-category:hover {
+  background-color: var(--bg-surface);
+  color: var(--accent);
+  cursor: pointer;
 }
