@@ -276,6 +276,10 @@ component decomposition of the dataset shown here.
 
 ---
 
-*This article is part of a series. The series introduction and
-disclaimers are in [Article 0](../00-intro/).
-Comments and corrections welcome.*
+This article is part of a series. The series introduction and
+disclaimers are in [Article 0](../00-intro/). 
+
+*Source code for the figures in this article is available 
+[in the repo](https://github.com/kelvin1189/actuarial-modeling-notes/tree/main/posts/ics-dns-twd-yc/01-visual-tour/code).*
+
+Comments and corrections welcome.
