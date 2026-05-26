@@ -662,6 +662,7 @@ Table&nbsp;4: Correlation matrix of weekly yield curve changes across tenors.
 </div>
 </div>
 <p>When looking at weekly changes, the correlations are naturally lower but still exhibit a strong positive relationship, particularly among adjacent tenors. This comovement is what allows models like the Nelson-Siegel framework to effectively capture curve dynamics using a small number of factors.</p>
+<p>Notice that the correlation of weekly changes drops off much faster than the correlation of levels. While absolute yield levels are highly correlated because they share broad macroeconomic trends over the 16-year sample, taking weekly changes strips away this shared trend and isolates short-term shocks. These weekly shocks are often localized: central bank policy shifts immediately impact the short end, while changes in term premiums or distant growth expectations drive the long end. Because these ends react to different immediate catalysts, the correlation of their week-to-week fluctuations decays rapidly across tenors.</p>
 </section>
 </section>
 <section id="the-slope-10-year-minus-1-year-spread" class="level2">
