@@ -7,6 +7,9 @@ order: 1
 categories: [series, ICS, DNS, yield-curves, TPEx, data-exploration]
 description: "Sixteen years of TWD government bond zero-coupon yield curves at the ICS tenors, sampled weekly from 2010 to 2025: animation, summary statistics, slope dynamics, and the data conventions used throughout the series."
 image: thumbnail.jpg
+comments:
+  utterances:
+    repo: kelvin1189/actuarial-modeling-notes
 format:
   html:
     toc: true
@@ -152,6 +155,7 @@ The same level-and-volatility pattern is easier to read off a chart than from th
 Beyond the summary statistics of individual tenors, understanding how yields move together is critical. The tables below show the correlation of yield levels and the correlation of weekly yield changes across the tenors.
 
 :::{style="max-width: 100%;max-height: 400px; overflow-x: auto;"}
+
 | Tenor | 1 year | 2 year | 3 year | 4 year | 5 year | 6 year | 7 year | 8 year | 9 year | 10 year |
 |-------|------|------|------|------|------|------|------|------|------|-------|
 | 1 year | 1.0000 | 0.9821 | 0.9397 | 0.8855 | 0.8286 | 0.7735 | 0.7219 | 0.6748 | 0.6325 | 0.5953 |
@@ -171,6 +175,7 @@ Beyond the summary statistics of individual tenors, understanding how yields mov
 As expected, yields of adjacent tenors are highly correlated in levels, often exceeding 0.98. The correlation decays as the distance between tenors increases, but even the 1-year and 10-year yield levels maintain a correlation of roughly 0.60.
 
 :::{style="max-width: 100%;max-height: 400px; overflow-x: auto;"}
+
 | Tenor | 1 year | 2 year | 3 year | 4 year | 5 year | 6 year | 7 year | 8 year | 9 year | 10 year |
 |-------|------|------|------|------|------|------|------|------|------|-------|
 | 1 year | 1.0000 | 0.9087 | 0.6730 | 0.4442 | 0.3044 | 0.2347 | 0.2057 | 0.1991 | 0.2042 | 0.2150 |
@@ -187,7 +192,9 @@ As expected, yields of adjacent tenors are highly correlated in levels, often ex
 : Correlation matrix of weekly yield curve changes across tenors. {#tbl-corr-changes}
 :::
 
-When looking at weekly changes, the correlations are naturally lower but still exhibit a strong positive relationship, particularly among adjacent tenors. This comovement is what allows models like the Nelson-Siegel framework to effectively capture curve dynamics using a small number of factors.
+When looking at weekly changes, the correlations are naturally lower but still exhibit a strong positive relationship, particularly among adjacent tenors. This comovement is what allows models like the Nelson-Siegel framework to effectively capture curve dynamics using a small number of factors. 
+
+Notice that the correlation of weekly changes drops off much faster than the correlation of levels. While absolute yield levels are highly correlated because they share broad macroeconomic trends over the 16-year sample, taking weekly changes strips away this shared trend and isolates short-term shocks. These weekly shocks are often localized: central bank policy shifts immediately impact the short end, while changes in term premiums or distant growth expectations drive the long end. Because these ends react to different immediate catalysts, the correlation of their week-to-week fluctuations decays rapidly across tenors.
 
 ## The slope: 10-year minus 1-year spread
 
@@ -201,11 +208,8 @@ sample:
 - Maximum: 175.5 basis points
 - Minimum: −5.6 basis points
 
-The spread was negative on 3 of 824 weekly observations (0.4% of the
-sample), and the deepest inversion was about six basis points. Taiwan
-has effectively not experienced a meaningful curve inversion in this
-period --- a contrast worth noting against US Treasuries, which
-inverted substantially over the same window.
+The spread was negative on 3 of 824 weekly observations (0.4% of the sample), and the deepest inversion was about six basis points. Taiwan
+has effectively not experienced a meaningful curve inversion in this period --- a contrast worth noting against US Treasuries, which inverted substantially over the same window.
 
 ![10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data, Svensson methodology.](slope_timeseries.png){#fig-slope-timeseries fig-alt="Time series of 10Y minus 1Y spread"}
 
@@ -213,23 +217,17 @@ inverted substantially over the same window.
 
 Specific dates from the sample will reappear in the later articles when the calibration and stress scenarios are discussed. All three dates below are weekly observations in the 824-week sample described above, not daily extrema; the daily TPEx series contains slightly more extreme values on nearby business days, but those days do not fall on the ISO-week sampling boundary used for this series. The most useful to fix in mind:
 
-**Lowest 10-year rate observed**: 0.255% on 27 November 2020. This was
-the trough of the post-COVID low-rate regime. The full curve that week
-was extremely flat --- the 1-year rate was approximately 0.18%, meaning
-roughly 8 basis points of slope across the entire 1-to-10-year range.
+**Lowest 10-year rate observed**: 0.255% on 27 November 2020. This was the trough of the post-COVID low-rate regime. The full curve that week was extremely flat --- the 1-year rate was approximately 0.18%, meaning roughly 8 basis points of slope across the entire 1-to-10-year range.
 
-**Highest 10-year rate observed**: 1.913% on 21 October 2022. This was
-near the peak of the 2022 tightening cycle.
+**Highest 10-year rate observed**: 1.913% on 21 October 2022. This was near the peak of the 2022 tightening cycle.
 
-**Steepest curve observed**: the 1Y--10Y spread reached 175.5 basis
-points on 29 January 2010, when short rates were at their cyclical
-lows (the 1-year rate hit its sample minimum of 0.042% the same week)
-but long rates had not yet declined.
+**Steepest curve observed**: the 1Y--10Y spread reached 175.5 basis points on 29 January 2010, when short rates were at their cyclical
+lows (the 1-year rate hit its sample minimum of 0.042% the same week) but long rates had not yet declined.
 
-**Annual averages of the 10-year rate** illustrate the broader
-structure of the sample:
+**Annual averages of the 10-year rate** illustrate the broader structure of the sample:
 
 :::{style="max-width: 100%;max-height: 400px; overflow-x: auto;"}
+
 | Year | Mean 10Y rate |
 |------|---------------|
 | 2010 | 1.64%         |
@@ -271,8 +269,7 @@ Three observations from this article carry directly into the next ones:
   three sub-periods; the appropriateness of that assumption is worth
   flagging now and revisiting then.
 
-The next [article](../02-pca/index.qmd) begins the analytical work proper, with a principal
-component decomposition of the dataset shown here.
+The next [article](../02-pca/index.qmd) begins the analytical work proper, with a principal component decomposition of the dataset shown here.
 
 ---
 

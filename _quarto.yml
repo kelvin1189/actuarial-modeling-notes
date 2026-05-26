@@ -8,8 +8,6 @@ website:
   description: "Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management."
   site-url: https://kelvin1189.github.io/actuarial-modeling-notes/
   repo-url: https://github.com/kelvin1189/actuarial-modeling-notes
-  repo-actions: [issue]
-
   navbar:
     left:
       - href: index.qmd
@@ -31,7 +29,6 @@ website:
       *Disclaimer.* The content on this website is for educational and informational purposes only and does not constitute financial, investment, legal, or professional actuarial advice. The views expressed here are my own and do not reflect the position of any current or past employer. All code and models are provided "as is" without warranty.
 
       [© 2026 Kelvin Wong · Source on [GitHub](https://github.com/kelvin1189/actuarial-modeling-notes) · Built with [Quarto](https://quarto.org)]{.footer-meta}
-
 format:
   html:
     include-in-header:

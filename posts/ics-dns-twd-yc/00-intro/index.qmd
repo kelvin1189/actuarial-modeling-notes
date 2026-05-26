@@ -7,6 +7,9 @@ order: 0
 categories: [series, ICS, DNS, yield-curves]
 description: "Series introduction: what the series covers, what it is not, who it is for, data and code, methodological choices, errata policy, and tone."
 image: thumbnail.jpg
+comments:
+  utterances:
+    repo: kelvin1189/actuarial-modeling-notes
 format:
   html:
     toc: true
