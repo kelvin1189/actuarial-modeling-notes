@@ -336,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-category">ICS</div>
     <div class="quarto-category">DNS</div>
     <div class="quarto-category">yield-curves</div>
-    <div class="quarto-category">TPEX</div>
+    <div class="quarto-category">TPEx</div>
     <div class="quarto-category">data-exploration</div>
   </div>
   </div>
@@ -392,14 +392,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="how-the-sample-is-constructed" class="level2">
 <h2 class="anchored" data-anchor-id="how-the-sample-is-constructed">How the sample is constructed</h2>
-<p>To match the ICS calibration document’s data specification (§88), the sample used in this series is:</p>
+<p>To match the ICS calibration document’s data specification (paragraph 88), the sample used in this series is:</p>
 <ul>
 <li><strong>Frequency</strong>: weekly observations</li>
 <li><strong>Sampling day</strong>: last available trading day in each ISO calendar week — typically Friday close, with fallback to an earlier trading day when Friday is a holiday</li>
 <li><strong>Tenors</strong>: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 years — the integer-year maturities listed in the ICS calibration methodology. For TWD, ICS specifies that 20Y and 30Y data are omitted because the Last Observable Term is at year 10 (see <a href="../../../posts/ics-dns-twd-yc/00-intro/index.html">Article 0</a>). As a secondary consideration, TPEx’s Svensson curve at longer tenors is less reliably anchored to traded bonds, which gives an empirical reason to be cautious about long-tenor data even where it is reported.</li>
 <li><strong>Date range</strong>: 8 January 2010 to 31 December 2025</li>
 </ul>
-<p>This yields <strong>824 weekly observations</strong>, one for each ISO calendar week in the range — 100% ISO-week coverage. Of these, 752 fall on Fridays. Earlier weekdays appear when Friday is a holiday — most commonly during Lunar New Year week. A small number of observations fall on a Saturday: Taiwan occasionally schedules a make-up trading day on a Saturday to compensate for a weekday holiday adjacent to a long break. These are legitimate trading days and are included as such.</p>
+<p>This yields <strong>824 weekly observations</strong>, one for each ISO calendar week in the range — 100% ISO-week coverage. Of these, 752 fall on Fridays. Earlier weekdays appear when Friday is a holiday — most commonly during Lunar New Year week. A small number of observations fall on a Saturday: Taiwan occasionally schedules a make-up trading day on a Saturday to compensate for a weekday holiday adjacent to a long break. These are legitimate trading days and are included as such. Each of the 824 observations is a genuine TPEx-published Svensson curve; no interpolation, carry-forward, or other gap-filling was applied.</p>
 <p>One caveat about the input data should be stated up front. The Svensson curve is itself a parametric fit to underlying bond trade data; this series uses the fitted curve, not raw bond prices. The ICS methodology explicitly works with fitted zero-coupon spot rates, so this is consistent with the regulatory specification, but readers should understand that volatility estimates produced downstream reflect the volatility of the <em>fitted</em> curve, not raw bond market microstructure.</p>
 </section>
 <section id="what-the-curve-looks-like-week-by-week" class="level2">
@@ -567,8 +567,101 @@ Table&nbsp;1: Summary statistics by tenor across 824 weekly observations, 2010-0
 <ul>
 <li>The 10-year rate has not exceeded 1.91% in this sample. For an insurance industry that historically priced guaranteed-return products off rate assumptions well above this, the implications for in-force books are significant.</li>
 <li>Mean yields rise nearly linearly across tenors from 0.69% at 1Y to 1.21% at 10Y. The standard deviation also rises with tenor, from 0.32% to 0.40% — longer tenors are modestly more volatile in absolute terms.</li>
-<li>The dispersion within any single tenor (standard deviation of around 0.3%–0.4%) is comparable to the dispersion across tenors at any single date (10Y mean minus 1Y mean is 0.51%). This means level shifts and slope shifts are both first-order drivers of curve variation. Neither dominates the other. Article 2 will revisit this observation through principal component analysis.</li>
+<li>The dispersion within any single tenor (standard deviation of around 0.3%–0.4%) is comparable to the dispersion across tenors at any single date (10Y mean minus 1Y mean is 0.51%). This means level shifts and slope shifts are both first-order drivers of curve variation. Neither dominates the other. Article 2 quantifies the share of variation attributable to level vs.&nbsp;slope vs.&nbsp;curvature movements via principal component analysis, and compares the PC loadings to the Nelson-Siegel basis functions.</li>
 </ul>
+<p>The pattern in standard deviation across tenors is more nuanced than it first appears. Although absolute volatility rises with tenor, the <em>coefficient of variation</em> — standard deviation divided by mean — falls with tenor, from 0.466 at 1Y to 0.332 at 10Y. In other words, short rates fluctuate proportionally more around their mean than long rates do. This is the empirical signature of a curve anchored at the long end and pinned to monetary policy at the short end: short rates are pulled around by policy and inflation surprises, while long rates reflect a slower-moving expectation of where the economy settles. The DNS framework in Article 4 captures this asymmetry by allowing different volatilities on the level and slope factors.</p>
+<div id="tbl-coef-var" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coef-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Coefficient of variation (standard deviation divided by mean) by tenor, weekly observations 2010-01-08 to 2025-12-31.
+</figcaption>
+<div aria-describedby="tbl-coef-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tenor</th>
+<th>Mean</th>
+<th>Std Dev</th>
+<th>Coefficient of Variation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 year</td>
+<td>0.691%</td>
+<td>0.322%</td>
+<td>0.466</td>
+</tr>
+<tr class="even">
+<td>2 year</td>
+<td>0.768%</td>
+<td>0.319%</td>
+<td>0.416</td>
+</tr>
+<tr class="odd">
+<td>3 year</td>
+<td>0.831%</td>
+<td>0.323%</td>
+<td>0.389</td>
+</tr>
+<tr class="even">
+<td>4 year</td>
+<td>0.888%</td>
+<td>0.332%</td>
+<td>0.373</td>
+</tr>
+<tr class="odd">
+<td>5 year</td>
+<td>0.944%</td>
+<td>0.342%</td>
+<td>0.362</td>
+</tr>
+<tr class="even">
+<td>6 year</td>
+<td>1.000%</td>
+<td>0.353%</td>
+<td>0.353</td>
+</tr>
+<tr class="odd">
+<td>7 year</td>
+<td>1.054%</td>
+<td>0.365%</td>
+<td>0.346</td>
+</tr>
+<tr class="even">
+<td>8 year</td>
+<td>1.107%</td>
+<td>0.377%</td>
+<td>0.340</td>
+</tr>
+<tr class="odd">
+<td>9 year</td>
+<td>1.157%</td>
+<td>0.388%</td>
+<td>0.336</td>
+</tr>
+<tr class="even">
+<td>10 year</td>
+<td>1.205%</td>
+<td>0.400%</td>
+<td>0.332</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The same level-and-volatility pattern is easier to read off a chart than from the table. Mean rates rise smoothly across tenors, while standard deviations rise more slowly and remain in a narrow band.</p>
+<div id="fig-mean-std-tenor" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Bar chart showing mean yield and standard deviation increasing with tenor">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mean-std-tenor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mean_std_by_tenor.png" class="img-fluid figure-img" alt="Bar chart showing mean yield and standard deviation increasing with tenor">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mean-std-tenor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Mean and standard deviation of TWD zero-coupon yields by tenor, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology).
+</figcaption>
+</figure>
+</div>
 <section id="cross-tenor-correlations" class="level3">
 <h3 class="anchored" data-anchor-id="cross-tenor-correlations">Cross-Tenor Correlations</h3>
 <p>Beyond the summary statistics of individual tenors, understanding how yields move together is critical. The tables below show the correlation of yield levels and the correlation of weekly yield changes across the tenors.</p>
@@ -576,7 +669,7 @@ Table&nbsp;1: Summary statistics by tenor across 824 weekly observations, 2010-0
 <div id="tbl-corr-levels" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corr-levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Correlation matrix of yield curve levels across tenors.
+Table&nbsp;3: Correlation matrix of yield curve levels across tenors.
 </figcaption>
 <div aria-describedby="tbl-corr-levels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -750,7 +843,7 @@ Table&nbsp;2: Correlation matrix of yield curve levels across tenors.
 <div id="tbl-corr-changes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corr-changes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Correlation matrix of weekly yield curve changes across tenors.
+Table&nbsp;4: Correlation matrix of weekly yield curve changes across tenors.
 </figcaption>
 <div aria-describedby="tbl-corr-changes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -939,14 +1032,14 @@ Table&nbsp;3: Correlation matrix of weekly yield curve changes across tenors.
 <img src="slope_timeseries.png" class="img-fluid figure-img" alt="Time series of 10Y minus 1Y spread">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slope-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: 10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data, Svensson methodology.
+Figure&nbsp;3: 10Y minus 1Y spread over time, weekly observations 2010-01-08 to 2025-12-31. Source: derived from TPEx Treasury Yield Curve data, Svensson methodology.
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="a-few-dates-worth-knowing" class="level2">
 <h2 class="anchored" data-anchor-id="a-few-dates-worth-knowing">A few dates worth knowing</h2>
-<p>Specific dates from the sample will reappear in the later articles when the calibration and stress scenarios are discussed. The most useful to fix in mind:</p>
+<p>Specific dates from the sample will reappear in the later articles when the calibration and stress scenarios are discussed. All three dates below are weekly observations in the 824-week sample described above, not daily extrema; the daily TPEx series contains slightly more extreme values on nearby business days, but those days do not fall on the ISO-week sampling boundary used for this series. The most useful to fix in mind:</p>
 <p><strong>Lowest 10-year rate observed</strong>: 0.255% on 27 November 2020. This was the trough of the post-COVID low-rate regime. The full curve that week was extremely flat — the 1-year rate was approximately 0.18%, meaning roughly 8 basis points of slope across the entire 1-to-10-year range.</p>
 <p><strong>Highest 10-year rate observed</strong>: 1.913% on 21 October 2022. This was near the peak of the 2022 tightening cycle.</p>
 <p><strong>Steepest curve observed</strong>: the 1Y–10Y spread reached 175.5 basis points on 29 January 2010, when short rates were at their cyclical lows (the 1-year rate hit its sample minimum of 0.042% the same week) but long rates had not yet declined.</p>
@@ -955,7 +1048,7 @@ Figure&nbsp;2: 10Y minus 1Y spread over time, weekly observations 2010-01-08 to 
 <div id="tbl-annual-10y" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-annual-10y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Annual mean of the 10-year zero-coupon rate. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology), weekly sample.
+Table&nbsp;5: Annual mean of the 10-year zero-coupon rate. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology), weekly sample.
 </figcaption>
 <div aria-describedby="tbl-annual-10y-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -1036,7 +1129,18 @@ Table&nbsp;4: Annual mean of the 10-year zero-coupon rate. Source: derived from 
 </figure>
 </div>
 </div>
-<p>The 10-year rate spent approximately three years (2019–2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in Article 4 will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated.</p>
+<p>The bimodal shape of the distribution of the 10-year rate makes the regime structure visible at a glance. Roughly 28% of weekly observations sit below 1%, concentrated in the 2019–2021 low-rate window; the bulk of the sample sits in the 1.2%–1.7% range, drawn from 2010–2014 and from 2022 onward.</p>
+<div id="fig-y10-dist" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Histogram of 10-year zero-coupon rate showing bimodal distribution">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-y10-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="y10_distribution.png" class="img-fluid figure-img" alt="Histogram of 10-year zero-coupon rate showing bimodal distribution">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-y10-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Distribution of the 10-year zero-coupon rate across all 824 weekly observations. The kernel density estimate (red) makes the bimodal shape clearer than the raw histogram. The lower mode reflects the 2019–2021 post-COVID low-rate regime; the upper mode reflects the broader 2010–2014 and 2022–2025 periods. Source: derived from TPEx Treasury Yield Curve data (Svensson methodology).
+</figcaption>
+</figure>
+</div>
+<p>The 10-year rate spent approximately three years (2019–2021) below 1%, returned to roughly its 2010 level by 2024, and has been broadly stable since. The DNS model that this series calibrates in Article 4 will treat the full sixteen-year window as one stationary process; whether that is a reasonable treatment, given the visible regime structure, is a question worth coming back to once the model has been estimated. The ICS calibration specification (paragraph 88) requires using the full window starting 1 January 2010; whether the regime structure visible here violates the stationarity assumption implied by that specification is a question Article 5 will return to.</p>
 </section>
 <section id="what-this-looks-like-inside-the-modelling-framework" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-looks-like-inside-the-modelling-framework">What this looks like inside the modelling framework</h2>
