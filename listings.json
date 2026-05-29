@@ -2,8 +2,15 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/misc/pca-simple-example/index.html",
       "/posts/ics-dns-twd-yc/01-visual-tour/index.html",
       "/posts/ics-dns-twd-yc/00-intro/index.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/posts/ics-dns-twd-yc/index.html"
     ]
   },
   {
@@ -11,12 +18,6 @@
     "items": [
       "/posts/ics-dns-twd-yc/00-intro/index.html",
       "/posts/ics-dns-twd-yc/01-visual-tour/index.html"
-    ]
-  },
-  {
-    "listing": "/projects.html",
-    "items": [
-      "/posts/ics-dns-twd-yc/index.html"
     ]
   }
 ]

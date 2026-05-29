@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/about.html</loc>
-    <lastmod>2026-05-26T15:47:20.455Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/index.html</loc>
-    <lastmod>2026-05-26T15:47:20.455Z</lastmod>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/misc/pca-simple-example/index.html</loc>
+    <lastmod>2026-05-29T05:50:01.124Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/01-visual-tour/index.html</loc>
-    <lastmod>2026-05-26T15:47:20.460Z</lastmod>
+    <lastmod>2026-05-29T05:50:01.118Z</lastmod>
   </url>
   <url>
-    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/00-intro/index.html</loc>
-    <lastmod>2026-05-26T15:47:20.455Z</lastmod>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/index.html</loc>
+    <lastmod>2026-05-29T05:50:01.111Z</lastmod>
   </url>
   <url>
-    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/index.html</loc>
-    <lastmod>2026-05-26T15:47:20.463Z</lastmod>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/about.html</loc>
+    <lastmod>2026-05-29T05:50:01.111Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/projects.html</loc>
-    <lastmod>2026-05-26T15:47:20.463Z</lastmod>
+    <lastmod>2026-05-29T05:50:01.128Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/00-intro/index.html</loc>
+    <lastmod>2026-05-29T05:50:01.111Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/index.html</loc>
+    <lastmod>2026-05-29T05:50:01.123Z</lastmod>
   </url>
 </urlset>
