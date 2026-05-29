@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -400,7 +419,7 @@ window.Quarto = {
 </header>
 
 
-<p>Principal component analysis is one of the standard tools used to decompose yield curve movements into a small number of independent factors. On real yield curve data with ten or more tenors, the procedure typically delivers a Level / Slope / Curvature decomposition that accounts for roughly 95% of variance. The mechanism is described in many places; the canonical reference is <span class="citation" data-cites="litterman1991">@litterman1991</span>.</p>
+<p>Principal component analysis is one of the standard tools used to decompose yield curve movements into a small number of independent factors. On real yield curve data with ten or more tenors, the procedure typically delivers a Level / Slope / Curvature decomposition that accounts for roughly 95% of variance. The mechanism is described in many places; the canonical reference is <span class="citation" data-cites="litterman1991">Litterman and Scheinkman (<a href="#ref-litterman1991" role="doc-biblioref">1991</a>)</span>.</p>
 <p>This article does not work on a real yield curve. It works on a deliberately small example — two tenors, five days, fabricated numbers chosen so that every value is reproducible by hand. The point is to fix the mechanics of the method in a setting where every intermediate quantity can be drawn on a single page. With two tenors, the data lives in the plane; the rotation that PCA performs is a literal rotation, and the eigenvectors are literal axes.</p>
 <p>A two-tenor, five-day example has real limitations, and the limitations matter for what readers should and should not take away. They are stated explicitly in <a href="#sec-caveat">§ 2D limitations</a> below before the stress-scenario construction. The mechanism shown here extends without modification to ten or sixty tenors; the <em>interpretation</em> of components beyond the first is what changes when more tenors are available.</p>
 <section id="the-raw-data" class="level2">
@@ -652,7 +671,7 @@ Figure&nbsp;4: Before and after PCA. <strong>Left:</strong> raw centered changes
 <section id="sec-caveat" class="level2">
 <h2 class="anchored" data-anchor-id="sec-caveat">2D limitations</h2>
 <p>Two facts about this toy example need explicit statement before any of the apparatus is interpreted too literally.</p>
-<p>First, PCA on two variables can only ever produce two components. The famous Level / Slope / Curvature decomposition of <span class="citation" data-cites="litterman1991">@litterman1991</span> requires at least three maturities to surface. Curvature is structurally absent from this article. The label “Steepness” applied to PC2 here is a useful intuition pump — a 2-vs-10 spread is genuinely related to the slope of a yield curve — but it is not the same object as the second principal component that emerges from a full multi-maturity decomposition. On a real ten-tenor dataset, PC2 exhibits a sign pattern that is clearly identifiable as slope (short tenors load with one sign, long tenors with the other), and PC3 exhibits the characteristic curvature pattern (the middle tenors loading opposite to the ends). None of that can be demonstrated here.</p>
+<p>First, PCA on two variables can only ever produce two components. The famous Level / Slope / Curvature decomposition of <span class="citation" data-cites="litterman1991">Litterman and Scheinkman (<a href="#ref-litterman1991" role="doc-biblioref">1991</a>)</span> requires at least three maturities to surface. Curvature is structurally absent from this article. The label “Steepness” applied to PC2 here is a useful intuition pump — a 2-vs-10 spread is genuinely related to the slope of a yield curve — but it is not the same object as the second principal component that emerges from a full multi-maturity decomposition. On a real ten-tenor dataset, PC2 exhibits a sign pattern that is clearly identifiable as slope (short tenors load with one sign, long tenors with the other), and PC3 exhibits the characteristic curvature pattern (the middle tenors loading opposite to the ends). None of that can be demonstrated here.</p>
 <p>Second, this article works on yield <em>changes</em>, not yield <em>levels</em>. The distinction matters. Levels are highly persistent: PC1 of yield levels tends to capture “where on average yields are sitting” rather than “how they move.” Stress testing requires the second concept. The Litterman–Scheinkman decomposition, and virtually all regulatory frameworks built on it, operate on changes.</p>
 </section>
 <section id="reverse-construction-building-stress-scenarios" class="level2">
@@ -769,15 +788,29 @@ Table&nbsp;6: Scenario B: +1 SD shock on PC2.
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
-<p><span class="citation" data-cites="litterman1991">@litterman1991</span> is the seminal paper introducing PCA to fixed-income portfolios and identifying the Level / Slope / Curvature decomposition. <span class="citation" data-cites="hull2018risk">@hull2018risk</span> covers Value at Risk and historical simulation, including step-by-step numerical examples of the covariance-to-eigenvalue-to-stress-scenario workflow used here. <span class="citation" data-cites="tuckman2022fixed">@tuckman2022fixed</span> has chapters on empirical risk metrics that show how asset-liability management desks use PCA to measure portfolio sensitivity to twists and butterfly shifts. <span class="citation" data-cites="alexander2008market">@alexander2008market</span> gives the explicit matrix-algebra implementation of PCA in finance.</p>
+<p><span class="citation" data-cites="litterman1991">Litterman and Scheinkman (<a href="#ref-litterman1991" role="doc-biblioref">1991</a>)</span> is the seminal paper introducing PCA to fixed-income portfolios and identifying the Level / Slope / Curvature decomposition. <span class="citation" data-cites="hull2018risk">Hull (<a href="#ref-hull2018risk" role="doc-biblioref">2018</a>)</span> covers Value at Risk and historical simulation, including step-by-step numerical examples of the covariance-to-eigenvalue-to-stress-scenario workflow used here. <span class="citation" data-cites="tuckman2022fixed">Tuckman and Serrat (<a href="#ref-tuckman2022fixed" role="doc-biblioref">2022</a>)</span> has chapters on empirical risk metrics that show how asset-liability management desks use PCA to measure portfolio sensitivity to twists and butterfly shifts. <span class="citation" data-cites="alexander2008market">Alexander (<a href="#ref-alexander2008market" role="doc-biblioref">2008</a>)</span> gives the explicit matrix-algebra implementation of PCA in finance.</p>
 <hr>
 <p><em>Source code for the figures in this article is available <a href="https://github.com/kelvin1189/actuarial-modeling-notes/tree/main/posts/pca-toy/code">in the repo</a>.</em></p>
 <p>Comments and corrections welcome.</p>
 
 
+
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-alexander2008market" class="csl-entry" role="listitem">
+Alexander, Carol. 2008. <em>Market Risk Analysis, Volume II: Practical Financial Econometrics</em>. Wiley.
+</div>
+<div id="ref-hull2018risk" class="csl-entry" role="listitem">
+Hull, John C. 2018. <em>Risk Management and Financial Institutions</em>. 5th ed. Wiley.
+</div>
+<div id="ref-litterman1991" class="csl-entry" role="listitem">
+Litterman, Robert, and Jose Scheinkman. 1991. <span>“Common Factors Affecting Bond Returns.”</span> <em>Journal of Fixed Income</em> 1 (1): 54–61. <a href="https://doi.org/10.3905/jfi.1991.692347">https://doi.org/10.3905/jfi.1991.692347</a>.
+</div>
+<div id="ref-tuckman2022fixed" class="csl-entry" role="listitem">
+Tuckman, Bruce, and Angel Serrat. 2022. <em>Fixed Income Securities: Tools for Today’s Markets</em>. 4th ed. Wiley.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
