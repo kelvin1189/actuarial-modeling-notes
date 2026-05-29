@@ -5,6 +5,7 @@ date: "2026-05-26"
 categories: [PCA, yield-curves, fixed-income, risk-management]
 description: "A deliberately small two-maturity, five-day example used to walk through the mechanics of PCA on yield changes: centering, the covariance matrix, eigendecomposition, the geometric meaning of the rotation, the PC scores, and the reverse construction of stress scenarios."
 image: thumbnail.jpg
+bibliography: references.bib
 comments:
   utterances:
     repo: kelvin1189/actuarial-modeling-notes
