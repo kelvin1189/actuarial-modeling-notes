@@ -30,7 +30,7 @@ Everything published here is my own opinion and does not represent the views of 
 
 ## Background
 
-I hold an M.Sc. in Risk Management and Insurance from Taiwan and an undergraduate degree in Mathematics and Physics. I'm an SOA candidate. I have experience across life and P&C insurance capital and risk modeling, and I work primarily in R, Python, and SQL.
+I hold an M.Sc. in Risk Management and Insurance from Taiwan and an undergraduate degree in Mathematics and Physics. I'm a SOA candidate. I have experience across life and P&C insurance capital and risk modeling, and I work primarily in R, Python, and SQL.
 
 ## A note on AI assistance
 
