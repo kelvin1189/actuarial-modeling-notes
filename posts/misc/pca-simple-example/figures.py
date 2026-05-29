@@ -106,7 +106,7 @@ def make_rotation_sequence():
     max_var = eigvals[0]
     xlim, ylim = (-6, 6), (-4.5, 4.5)
 
-    fig, axes = plt.subplots(2, 3, figsize=(13, 8))
+    fig, axes = plt.subplots(2, 3, figsize=(13, 7))
     axes = axes.flatten()
 
     for i, ang in enumerate(angles):
@@ -246,7 +246,7 @@ def make_before_after_pca():
     ax.grid(True, alpha=0.25)
 
     plt.tight_layout()
-    plt.savefig("before_after_pca.png", dpi=150, bbox_inches="tight")
+    plt.savefig("before_after_pca.png", dpi=140, bbox_inches="tight")
     plt.close()
     print("  wrote before_after_pca.png")
 

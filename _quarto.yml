@@ -8,6 +8,7 @@ website:
   description: "Notes on actuarial modeling, yield curves, solvency capital, and quantitative risk management."
   site-url: https://kelvin1189.github.io/actuarial-modeling-notes/
   repo-url: https://github.com/kelvin1189/actuarial-modeling-notes
+  google-analytics: "G-ZE7XDNH3W9"
   navbar:
     left:
       - href: index.qmd
