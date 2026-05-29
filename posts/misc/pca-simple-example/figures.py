@@ -106,7 +106,7 @@ def make_rotation_sequence():
     max_var = eigvals[0]
     xlim, ylim = (-6, 6), (-4.5, 4.5)
 
-    fig, axes = plt.subplots(2, 3, figsize=(13, 7))
+    fig, axes = plt.subplots(2, 3, figsize=(13, 8))
     axes = axes.flatten()
 
     for i, ang in enumerate(angles):
@@ -150,10 +150,16 @@ def make_rotation_sequence():
 # Figure 3: rotation_animation.gif -- animated GIF
 # -----------------------------------------------------------------
 def make_rotation_animation():
+    # NOTE: PillowWriter does NOT honour bbox_inches="tight" the way savefig
+    # does for static PNGs. So we cannot put the suptitle at y > 1.0 and rely
+    # on a tight bbox to expand the canvas — it will be clipped. Instead we
+    # reserve top margin explicitly via subplots_adjust and place the
+    # suptitle inside the figure boundary at y < 1.0.
     fig, (ax_main, ax_var) = plt.subplots(
-        1, 2, figsize=(12, 5.5),
+        1, 2, figsize=(12, 6.0),
         gridspec_kw={"width_ratios": [1.2, 1]},
     )
+    fig.subplots_adjust(top=0.86, bottom=0.12, left=0.06, right=0.97, wspace=0.25)
 
     sweep_angles = np.linspace(0, -theta_pc * 1.3, 80)
     all_angles_fine = np.linspace(-60, 60, 500)
@@ -199,7 +205,7 @@ def make_rotation_animation():
         ax_var.grid(True, alpha=0.2)
 
         fig.suptitle("PCA is the rotation that maximises horizontal variance",
-                     fontsize=13, fontweight="bold", y=1.01)
+                     fontsize=13, fontweight="bold", y=0.95)
         return []
 
     ani = FuncAnimation(fig, update, frames=len(sweep_angles),
@@ -246,7 +252,7 @@ def make_before_after_pca():
     ax.grid(True, alpha=0.25)
 
     plt.tight_layout()
-    plt.savefig("before_after_pca.png", dpi=140, bbox_inches="tight")
+    plt.savefig("before_after_pca.png", dpi=150, bbox_inches="tight")
     plt.close()
     print("  wrote before_after_pca.png")
 
