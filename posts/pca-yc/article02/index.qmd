@@ -1,0 +1,241 @@
+---
+title: "PCA on Yield Curves: a 2-tenor, 5-day example"
+subtitle: "Article 1"
+author: "Kelvin Wong"
+date: "2026-05-26"
+order: 1
+categories: [series, PCA, yield-curves, stress-scenarios, risk-management]
+description: "A deliberately small two-maturity, five-day example used to walk through the mechanics of PCA on yield changes: centering, the covariance matrix, eigendecomposition, the geometric meaning of the rotation, the PC scores, and the reverse construction of stress scenarios."
+image: thumbnail.jpg
+bibliography: ../references.bib
+comments:
+  utterances:
+    repo: kelvin1189/actuarial-modeling-notes
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+::: {.callout-note appearance="simple"}
+This is the first article of a two-article series on PCA for yield curves. The series introduction --- covering the stress-testing problem that motivates the technique, the mathematics of the eigenvalue derivation, and why the procedure maximises variance rather than minimises it --- is in [Article 0](../00-intro/index.qmd). The next article, [Article 2](../02-3tenor/index.qmd), extends the same machinery to three tenors and demonstrates the full Level / Slope / Curvature decomposition.
+:::
+
+[Article 0](../00-intro/index.qmd) introduced PCA as the standard tool for decomposing yield curve movements into a small number of independent factors, and showed why the procedure works: variance is the measure of information PCA is trying to preserve, and the eigenvectors of the sample covariance matrix are the variance-aligned axes of the data cloud. The aim of this article is to make that abstract machinery concrete on the smallest possible worked example --- two tenors, five days, fabricated numbers chosen so that every value is reproducible by hand.
+
+With two tenors the data lives in the plane, the rotation that PCA performs is a literal rotation, and the eigenvectors are literal axes. Every step of the derivation in [Article 0](../00-intro/index.qmd) can be drawn rather than computed: the covariance matrix, the eigenvector directions, the rotation that aligns the data with those directions, the variance along each new axis.
+
+A two-tenor, five-day example has real limitations, and the limitations matter for what readers should and should not take away. They are stated explicitly in [§ 2D limitations](#sec-caveat) below before the stress-scenario construction. The most important: with only two tenors, the canonical three-factor Level / Slope / Curvature decomposition cannot appear. That requires at least three tenors, and is the subject of [Article 2](../02-3tenor/index.qmd).
+
+## The raw data
+
+The example uses five days of observed daily changes (in basis points) on two hypothetical tenors, a "2-year" and a "10-year":
+
+| Day   | Δy₂ (bps) | Δy₁₀ (bps) |
+|-------|-----------|------------|
+| Day 1 | 2.0       | 1.5        |
+| Day 2 | 5.0       | 4.0        |
+| Day 3 | −3.0      | −2.0       |
+| Day 4 | −1.0      | −1.0       |
+| Day 5 | 1.0       | 0.5        |
+
+: Five days of yield changes (fabricated data). {#tbl-raw}
+
+The sample means are 0.80 bps on the 2-year and 0.60 bps on the 10-year. PCA operates on deviations from the mean, so the first step is to subtract these:
+
+| Day   | Centered Δy₂ | Centered Δy₁₀ |
+|-------|--------------|---------------|
+| Day 1 | 1.2          | 0.9           |
+| Day 2 | 4.2          | 3.4           |
+| Day 3 | −3.8         | −2.6          |
+| Day 4 | −1.8         | −1.6          |
+| Day 5 | 0.2          | −0.1          |
+
+: Mean-centered yield changes. Each column sums to zero. {#tbl-centered}
+
+Centering matters because variance is measured relative to the mean. PCA finds the directions of maximum variance; if the data is not centered, the first principal component will point partly toward wherever the mean happens to sit rather than toward the direction of greatest variability.
+
+## The data is highly correlated
+
+Plotting the centered data on a scatter shows the central problem PCA is built to address. The five points lie nearly on a straight line: a day with a large move in the 2-year is almost always a day with a large move in the same direction in the 10-year. The sample correlation is approximately 0.99.
+
+![Centered daily changes on the two tenors. The five points lie on a near-45° line, indicating very high correlation. Shocking the 2-year and 10-year independently in this sample would generate scenarios that have never been observed.](before_pca.png){#fig-before-pca fig-alt="Scatter plot of centered 2-year vs 10-year daily yield changes showing near-perfect linear relationship"}
+
+This is the condition that makes independent stress testing on the original variables unrealistic. A scenario like "+5 bps to the 2-year, 0 to the 10-year" lies far off the cloud of observed joint behaviour and would imply a yield curve geometry the sample never produced. PCA addresses this by finding new axes --- rotated relative to the original ones --- along which the data is uncorrelated by construction.
+
+## Extracting the principal components
+
+The sample covariance matrix (using the n − 1 = 4 denominator, matching R's `cov()` and `prcomp()` defaults) is:
+
+$$
+\Sigma = \begin{bmatrix} 9.20 & 7.025 \\ 7.025 & 5.425 \end{bmatrix}
+$$
+
+Solving the characteristic equation det(Σ − λI) = 0 gives two eigenvalues and two corresponding eigenvectors:
+
+| Component | Eigenvalue | Eigenvector              | Variance share |
+|-----------|------------|--------------------------|----------------|
+| PC1       | 14.587     | [0.7936, 0.6085]         | 99.74%         |
+| PC2       | 0.038      | [−0.6085, 0.7936]        | 0.26%          |
+
+: Eigendecomposition of the sample covariance matrix. {#tbl-eig}
+
+PC1 points in the direction (0.79, 0.61) --- roughly along the 45° line where the 2-year and 10-year move together. This is naturally interpreted as the **Level** factor: a positive PC1 score corresponds to both yields moving up together.
+
+PC2 points in the direction (−0.61, 0.79), perpendicular to PC1. The 2-year and 10-year move in opposite directions along it. With only two tenors, this can be informally read as **Steepness**, with the caveat covered in [§ 2D limitations](#sec-caveat).
+
+The 99.74% / 0.26% split is an artefact of this toy. The two tenors here are nearly collinear in this 5-day sample, so almost all variance is captured by the first component. On real yield curves with ten or more tenors, PC1 typically explains 70–90% of variance, PC2 a further 5–15%, and PC3 around 1–5%. Reporting "PC1 explains 99.7%" as a general fact about yield curves would be misleading; it is a fact about this toy.
+
+Two conventions affect reproducibility. Eigenvectors are defined up to sign, so software may return (−0.79, −0.61) instead of (0.79, 0.61); the two are the same direction and the choice does not change any downstream analysis. The convention adopted here is that PC1's first loading is positive. The covariance estimator uses the n − 1 denominator throughout, matching R's defaults; `numpy.cov` requires `ddof=1` to match.
+
+## PCA as a rotation
+
+The eigendecomposition above is correct but somewhat abstract. There is a more concrete geometric reading: **PCA is the rotation of the data that maximises the variance along one axis.** Starting from the raw centered data and rotating progressively, the variance along the horizontal axis grows until it reaches a maximum at one specific angle. That angle is the angle of PC1; the maximum value is the PC1 eigenvalue.
+
+The reason we want to *maximise* variance --- rather than minimise it, or optimise some other quantity --- is the subject of [Article 0 § 5](../00-intro/index.qmd#why-we-maximise-the-variance). The short version: variance along an axis measures how much of the data's actual variability that axis captures, so the maximum-variance axis is the one along which the data is most "really" moving. The directions with low variance are the ones where the data barely moves at all, and discarding them loses little. This is why the procedure is set up to find high-variance directions and keep them, rather than low-variance ones.
+
+![PCA as a rotation. Six panels show the same five centered points after rotating by progressively larger angles, from 0° (raw data) to 37.5° (full PC1 alignment). Above each panel: the rotation angle and the variance along the horizontal axis. The variance grows from 9.20 (the variance of the raw Δy₂) to 14.59 (the PC1 eigenvalue) as the rotation approaches the PC1 angle. The final frame is identical to the PC1 / PC2 scores plot shown in the next section.](rotation_sequence.png){#fig-rotation-sequence fig-alt="Six-panel figure showing the centered data rotated by 0, 7.5, 15, 22.5, 30, and 37.5 degrees, with variance along the horizontal axis growing from 9.20 to 14.59"}
+
+The angle of PC1 from the original 2-year axis is arctan(0.6085 / 0.7936) ≈ 37.48°. Rotating by exactly this angle aligns the long spine of the data cloud with the horizontal axis, leaving only the small residual spread perpendicular to it. The terminal variance of 14.59 in the right-most panel is exactly the PC1 eigenvalue: the eigenvalue *is* the variance along the principal direction.
+
+This is also the geometric content of the Lagrangian derivation in [Article 0 § 4](../00-intro/index.qmd#the-mathematics). The eigenvalue equation $\Sigma \mathbf{w} = \lambda \mathbf{w}$ says exactly this: the variance along the direction $\mathbf{w}$ (which is $\mathbf{w}^T \Sigma \mathbf{w}$) equals the eigenvalue $\lambda$. The animation below makes the optimisation visible. As the rotation angle changes, the horizontal-axis variance traces out a smooth curve in the right panel; its maximum is the largest eigenvalue, achieved at the eigenvector's angle.
+
+![Animated rotation. The left panel shows the data rotating; the right panel shows the variance along the horizontal axis as a function of rotation angle. The maximum is reached at 37.48° and equals the PC1 eigenvalue.](rotation_animation.gif){#fig-rotation-animation fig-alt="Animated GIF showing yield change data rotating continuously while variance along the horizontal axis traces out a curve with a maximum at the PC1 angle"}
+
+The visualisation uses one shortcut for readability: the data points are shown rotating while the page-frame stays fixed. The mathematically clean statement is the reverse --- the data stays fixed and the *axes* rotate to align with it. The two views are equivalent.
+
+## The PCA scores
+
+Projecting each day's centered observation onto the two eigenvectors gives the **PCA scores**: the coordinates of each day in the new, rotated coordinate system.
+
+| Day   | PC1 (Level) | PC2 (Steepness) |
+|-------|-------------|-----------------|
+| Day 1 | 1.500       | −0.020          |
+| Day 2 | 5.402       | 0.143           |
+| Day 3 | −4.598      | 0.249           |
+| Day 4 | −2.402      | −0.174          |
+| Day 5 | 0.098       | −0.198          |
+
+: PCA scores. Each row is one day's coordinates in the (PC1, PC2) system. {#tbl-scores}
+
+The PC1 column ranges from −4.60 to +5.40 --- about ten basis points of spread. The PC2 column ranges from −0.20 to +0.25 --- about half a basis point of spread. This twenty-fold scale difference is the 99.74%-vs-0.26% variance split rendered in the data.
+
+A direct verification of one row: for Day 1, PC1 = 1.2 × 0.7936 + 0.9 × 0.6085 = 1.500, and PC2 = 1.2 × (−0.6085) + 0.9 × 0.7936 = −0.020.
+
+The before-and-after scatter makes the rotation visible in a single image. Side by side, the correlated raw data and the uncorrelated scores are easy to compare:
+
+![Before and after PCA. **Left:** raw centered changes lie on a near-45° line, indicating high correlation. **Right:** after projection onto the principal components, the data spreads almost entirely along PC1 with negligible spread on PC2. The dramatic asymmetry between the axis scales --- ±5 on the horizontal vs ±0.3 on the vertical --- is the visual encoding of the 99.74% / 0.26% variance split.](before_after_pca.png){#fig-before-after fig-alt="Side-by-side comparison: left panel shows correlated raw data, right panel shows uncorrelated PCA scores"}
+
+Day 5 is worth a sentence on its own. Its raw change was (+1.0, +0.5) bps --- both yields rose. But that change was very close to the average daily move in the sample, (+0.8, +0.6). So in the *centered* frame, Day 5 shows almost no level movement. What residual movement remained was a slight twist: the 2-year rose marginally more than its average while the 10-year rose marginally less. PC2 captures exactly that. Inspection of the raw yields would not have flagged Day 5 as a structurally unusual day; the PC2 column does.
+
+## 2D limitations {#sec-caveat}
+
+Two facts about this toy example need explicit statement before any of the apparatus is interpreted too literally.
+
+First, PCA on two variables can only ever produce two components. The famous Level / Slope / Curvature decomposition of @litterman1991 requires at least three maturities to surface. Curvature is structurally absent from this article. The label "Steepness" applied to PC2 here is a useful intuition pump --- a 2-vs-10 spread is genuinely related to the slope of a yield curve --- but it is not the same object as the second principal component that emerges from a full multi-maturity decomposition. On a real ten-tenor dataset, PC2 exhibits a sign pattern that is clearly identifiable as slope (short tenors load with one sign, long tenors with the other), and PC3 exhibits the characteristic curvature pattern (the middle tenors loading opposite to the ends). None of that can be demonstrated here.
+
+Second, this article works on yield *changes*, not yield *levels*. The distinction matters. Levels are highly persistent: PC1 of yield levels tends to capture "where on average yields are sitting" rather than "how they move." Stress testing requires the second concept. The Litterman--Scheinkman decomposition, and virtually all regulatory frameworks built on it, operate on changes.
+
+## Reverse construction: building stress scenarios
+
+The forward use of PCA goes from raw yield changes to PCA scores. The reverse use goes from a hypothetical PC score back to a yield change, by projecting the score along the eigenvector and adding the sample mean:
+
+$$
+\text{Stressed change} = \text{Mean} + (\text{Shock magnitude}) \times \text{Eigenvector}
+$$
+
+In risk frameworks the shock magnitude is calibrated in standard deviations of the relevant principal component. The standard deviations are the square roots of the eigenvalues:
+
+- 1 SD of PC1 = √14.587 ≈ 3.819 bps
+- 1 SD of PC2 = √0.038 ≈ 0.196 bps
+
+PC1's standard deviation is roughly nineteen times PC2's. This is not an external choice; it is a property of the data, telling the modeller automatically that level shifts are much larger than pure twists historically.
+
+The "1 SD" choice here is for illustration. Real regulatory frameworks use higher percentiles --- Solvency II uses 99.5% one-year Value-at-Risk, which corresponds to roughly 2.58 standard deviations under a Gaussian assumption. The mechanism is identical; only the multiplier changes.
+
+### Scenario A: a level shock (+1 SD on PC1)
+
+Shocking PC1 by +1 SD (3.819) and holding PC2 at zero simulates a coherent upward shift of the curve that respects the historical correlation between the 2-year and 10-year.
+
+| Tenor   | Mean change (bps) | PC1 impact (bps)         | Stressed change (bps) |
+|---------|-------------------|--------------------------|-----------------------|
+| 2-Year  | 0.80              | 3.819 × 0.7936 = 3.031   | 3.831                 |
+| 10-Year | 0.60              | 3.819 × 0.6085 = 2.324   | 2.924                 |
+
+: Scenario A: +1 SD shock on PC1. {#tbl-scenario-a}
+
+Both yields rise, in approximately the historical ratio of co-movement. This is a statistically coherent "parallel up" scenario --- one that the joint distribution of the historical sample would not consider improbable on geometric grounds.
+
+### Scenario B: a steepness shock (+1 SD on PC2)
+
+Shocking PC2 by +1 SD (0.196) and holding PC1 at zero isolates a pure curve twist.
+
+| Tenor   | Mean change (bps) | PC2 impact (bps)            | Stressed change (bps) |
+|---------|-------------------|-----------------------------|-----------------------|
+| 2-Year  | 0.80              | 0.196 × (−0.6085) = −0.119  | 0.681                 |
+| 10-Year | 0.60              | 0.196 × 0.7936 = 0.155      | 0.755                 |
+
+: Scenario B: +1 SD shock on PC2. {#tbl-scenario-b}
+
+The 2-year rises slightly less than its mean while the 10-year rises slightly more. The 10-vs-2 spread widens by roughly 0.27 bps relative to the unstressed baseline --- a mild steepening.
+
+The asymmetry between Scenario A and Scenario B is the point of the exercise. A "1 SD" shock to Level produces about 3 bps of yield movement; the same "1 SD" shock to Steepness produces about 0.15 bps. The framework recognises --- without being told --- that level shifts are historically large and pure twists are historically small. This is the role of the eigenvalues: they convert the abstract idea of a "one-standard-deviation shock" into the right scale for each factor.
+
+### Stresses in the context of the sample
+
+Both stress scenarios can be plotted in raw yield-change space alongside the 5 observed days. This is the geometry behind the numbers in the two tables above.
+
+![Stress scenarios overlaid on the 5 observed days, in raw yield-change space. The two PCA-derived stress points are constructed by adding 1 SD of PC1 (Stress A) or 1 SD of PC2 (Stress B) to the sample mean. Stress A lies on the diagonal of the data cloud, between Day 1 and Day 2 --- geometrically a "plausible new day." Stress B is almost on top of the sample mean: the PC2 standard deviation of 0.196 bps is too small to be visually separable at this scale. The dashed lines show the PC1 and PC2 eigenvector directions through the mean.](stress_overlay.png){#fig-stress-overlay fig-alt="Scatter plot showing 5 observed days, sample mean, and two stress scenarios. Stress A lies along the PC1 line between Day 1 and Day 2. Stress B is visually on top of the mean and Day 5."}
+
+Stress A sits between Day 1 and Day 2, along the PC1 dashed line. In PC1 score units, Day 1 = 1.50, Stress A = 3.82, Day 2 = 5.40 --- so the +1 SD shock is a yield move slightly larger than Day 1's level move but smaller than Day 2's. Visually it lies on the diagonal of the data cloud, exactly as expected from a stress that respects the historical correlation between the 2-year and 10-year.
+
+Stress B is essentially on top of the sample mean. The PC2 standard deviation of 0.196 bps is below the scale at which the eye can separate distinct points in this figure. Day 5 (raw change (1.0, 0.5)) and the mean (0.80, 0.60) are similarly close; in raw yield-change space the three are visually indistinguishable. The PC framework knows they are different things --- Day 5 has PC2 = −0.198 and Stress B has PC2 = +0.196 by construction --- but the raw scatter is too coarse to discriminate. This is the visual statement of "PC2 captures a real but tiny axis of variation."
+
+Day 2 is more extreme than Stress A. In PC1 score units Day 2 sits at roughly 1.41 SD, so a +1 SD stress is *less* severe than the most extreme observed day in this 5-day sample. The 99.5% one-year VaR multiplier of 2.58 SD mentioned earlier would place the stress point at approximately (8.6, 6.6) bps --- visibly beyond Day 2, which is consistent with what a once-in-200-year shock should look like.
+
+The contrast with a "naïve" stress built independently on each tenor is also visible. A scenario like "shock the 2-year by +3 bps, hold the 10-year fixed" would land at (3.80, 0.60) --- well *below* the diagonal of the data cloud, visually obvious as a scenario that has never occurred in the sample. The PCA-derived stresses do not have this problem because they are projections along directions the data actually moves in.
+
+### Each observation before and after the shock
+
+The shock vector that defined the two stress scenarios is the same fixed vector regardless of where it is applied: (+3.03, +2.32) bps for the +1 SD PC1 shock, and (−0.12, +0.16) bps for the +1 SD PC2 shock. In the previous section it was added to the sample mean to produce Stress A and Stress B. The same vector can be added to each of the 5 observed days, which corresponds to a scenario-based stress framework where each historical day is treated as a possible current state and the same shock is applied to each.
+
+| Day | Original (Δy₂, Δy₁₀) | After +1 SD on PC1 | After +1 SD on PC2 |
+|-----|----------------------|--------------------|--------------------|
+| 1   | (+2.00, +1.50)       | (+5.03, +3.82)     | (+1.88, +1.66)     |
+| 2   | (+5.00, +4.00)       | (+8.03, +6.32)     | (+4.88, +4.16)     |
+| 3   | (−3.00, −2.00)       | (+0.03, +0.32)     | (−3.12, −1.84)     |
+| 4   | (−1.00, −1.00)       | (+2.03, +1.32)     | (−1.12, −0.84)     |
+| 5   | (+1.00, +0.50)       | (+4.03, +2.82)     | (+0.88, +0.66)     |
+
+: The 5 days before and after each stress. Same shock vector added to each day. {#tbl-per-day-stress}
+
+The values are constructed entry by entry. For Day 3 under the +1 SD PC1 shock: original (−3.00, −2.00) plus shock (+3.03, +2.32) gives (+0.03, +0.32). For Day 3 under the +1 SD PC2 shock: original (−3.00, −2.00) plus shock (−0.12, +0.16) gives (−3.12, −1.84). Every other row follows the same arithmetic.
+
+![The 5 days before and after each stress shock. **Left:** under +1 SD on PC1, every day translates by (+3.03, +2.32) bps; the cloud is rigidly shifted up-and-right, and the relative geometry of the 5 days is preserved. **Right:** under +1 SD on PC2, every day translates by (−0.12, +0.16) bps; the stressed cloud is visually indistinguishable from the original at this scale. Grey arrows in both panels connect each original day to its stressed counterpart.](before_after_stress.png){#fig-before-after-stress fig-alt="Two-panel figure. Left panel shows 5 original days as blue circles and 5 stressed-by-PC1 days as rust diamonds, connected by arrows showing the uniform translation. Right panel shows the same 5 original days and 5 stressed-by-PC2 days as green triangles, with the stressed points essentially overlapping the originals."}
+
+The left panel shows the cloud translation under the +1 SD PC1 shock. Every day moves by the same vector (+3.03, +2.32) bps, so the cloud is rigidly translated. The slope of the cloud, the spread of the days along the diagonal, the relative ordering --- all are unchanged. Day 3, originally at the lower-left extreme of the cloud at (−3.0, −2.0), is moved essentially to the origin at (+0.03, +0.32). Day 2 at the upper-right extreme moves further out to (+8.03, +6.32) --- beyond anything the sample produced.
+
+The right panel shows the cloud translation under the +1 SD PC2 shock. The shock vector (−0.12, +0.16) bps is an order of magnitude smaller than the spacing between individual days. Each day translates by this tiny vector, and the stressed cloud sits essentially on top of the original cloud. This is the cloud-level analogue of what §8.3 showed for the mean alone: PC2 stresses are arithmetically present but visually inconsequential at the scale of historical yield changes.
+
+A consistency check: the mean of the +1 SD PC1 stressed cloud is (3.83, 2.92), which is exactly the Stress A point from §8.3. The mean of the +1 SD PC2 stressed cloud is (0.68, 0.76), which is Stress B. This is mechanical --- if every day is translated by the same vector, the mean of the stressed cloud equals the original mean translated by that vector --- but it confirms that the two pictures (single stress scenario in §8.3, full cloud translation here) are saying the same thing.
+
+## What carries to the real-data setting
+
+Three observations from this toy carry directly into PCA on real, multi-tenor yield curve datasets.
+
+- PCA finds independent factors from correlated data by rotating the coordinate system. The mechanism is identical at any dimensionality; what changes is how many components are needed to capture most of the variance.
+- The eigenvalues are not just diagnostic numbers; they automatically provide the scale at which each factor can be plausibly shocked. This is what makes PCA useful for stress generation, not only descriptive analysis.
+- The interpretation of PC1 as Level survives the move from two tenors to ten or more. The interpretation of PC2 as Slope and PC3 as Curvature requires the full multi-tenor dataset to demonstrate; the 2D toy cannot show it.
+
+## What comes next
+
+[Article 2](../02-3tenor/index.qmd) extends the same machinery to three tenors --- the smallest setting in which the canonical three-factor Level / Slope / Curvature decomposition can appear. The procedure is identical to what was shown here: center the data, compute the covariance matrix, find its eigenvectors and eigenvalues, use them to construct independent factors and to build stress scenarios. The new feature is the existence of a third principal component, which on three tenors corresponds to a "butterfly" or curvature movement of the curve; this cannot be demonstrated in 2D.
+
+The series references --- @litterman1991, @hull2018risk, @tuckman2022fixed, @alexander2008market --- are consolidated in [Article 0](../00-intro/index.qmd).
+
+---
+
+*Source code for the figures in this article is available
+[in the repo](https://github.com/kelvin1189/actuarial-modeling-notes/tree/main/posts/pca-yield-curves/01-2tenor-toy/code).*
+
+Comments and corrections welcome.

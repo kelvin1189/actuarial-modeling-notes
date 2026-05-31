@@ -1,0 +1,37 @@
+---
+title: "What PCA actually does: yield curve worked examples"
+subtitle: "A short series on Principal Component Analysis applied to yield curves"
+author: "Kelvin Wong"
+date: "2026-06-01"
+categories: [PCA, yield-curves, stress-scenarios, risk-management]
+image: thumbnail.jpg
+description: "A two-article worked-example series on PCA for yield curves. Article 0 introduces the technique from first principles. Article 1 makes the rotation mechanism visualisable on two tenors. Article 2 extends to three tenors and demonstrates the Level / Slope / Curvature decomposition."
+listing:
+  contents:
+    - "*/index.qmd"
+  sort: "order asc"
+  type: default
+  fields: [order, title, subtitle, date, reading-time]
+  field-display-names:
+    order: "#"
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  id: series-articles
+page-layout: full
+title-block-banner: false
+format:
+  html:
+    toc: false
+---
+
+This series is a worked exposition of Principal Component Analysis applied to yield curve data. It began as personal notes from two encounters with PCA --- once at work, looking at a Dynamic Nelson-Siegel model and noticing the connection to PCA's empirical factors, and again while preparing for the SOA SRM exam. The mechanism only really clicked for me when I drew a 2-tenor rotation plot and could finally *see* what the algorithm was doing to the data.
+
+The series is structured around that visualisation. [Article 0](00-intro/index.qmd) introduces the technique from first principles: the stress-testing problem it solves, the mathematics that produces the eigenvalue equation, and the reason maximising variance is the right thing to want. [Article 1](01-2tenor-toy/index.qmd) makes the rotation mechanism visualisable on two tenors. [Article 2](02-3tenor/index.qmd) extends to three tenors and demonstrates the canonical Level / Slope / Curvature decomposition. PCA on real Taiwan TWD data is the subject of [Article 3 of the DNS series](../ics-dns-twd-yc/03-pca-twd/index.qmd) (forthcoming) rather than this one.
+
+::: {#series-articles}
+:::
+
+---
+
+Comments and corrections welcome. Please reach out to the author on [GitHub](https://github.com/kelvin1189/actuarial-modeling-notes/issues/new).
