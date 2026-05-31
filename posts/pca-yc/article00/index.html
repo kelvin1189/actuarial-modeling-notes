@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kelvin Wong">
+<meta name="dcterms.date" content="2026-05-26">
+<meta name="description" content="Series introduction. Starts from the stress-testing problem that PCA was invented to solve, derives the eigenvalue equation from a variance-maximisation problem, and explains why maximising variance is the right thing to do.">
+
+<title>PCA on Yield Curves: introduction – WONG | Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-6b6957c917596b414ec0b78690761e87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-4ea889f8855cf48074658e9f0fd2e67a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-e70ec2cf6ff0e462ed6772ad11d06af6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-4ea889f8855cf48074658e9f0fd2e67a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZE7XDNH3W9"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZE7XDNH3W9', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="google-site-verification" content="haUJj-wPPgU5a0qyePIluTiO4UIAxMqEWfWtq-IIPjA">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">WONG | Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kelvin1189"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../../index.xml"> <i class="bi bi-rss" role="img" aria-label="RSS feed">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#how-this-series-came-to-be" id="toc-how-this-series-came-to-be" class="nav-link active" data-scroll-target="#how-this-series-came-to-be">How this series came to be</a></li>
+  <li><a href="#the-problem-this-technique-solves" id="toc-the-problem-this-technique-solves" class="nav-link" data-scroll-target="#the-problem-this-technique-solves">The problem this technique solves</a></li>
+  <li><a href="#what-you-would-want-a-good-solution-to-do" id="toc-what-you-would-want-a-good-solution-to-do" class="nav-link" data-scroll-target="#what-you-would-want-a-good-solution-to-do">What you would want a good solution to do</a></li>
+  <li><a href="#the-empirical-fact-that-makes-the-problem-tractable" id="toc-the-empirical-fact-that-makes-the-problem-tractable" class="nav-link" data-scroll-target="#the-empirical-fact-that-makes-the-problem-tractable">The empirical fact that makes the problem tractable</a></li>
+  <li><a href="#the-mathematics" id="toc-the-mathematics" class="nav-link" data-scroll-target="#the-mathematics">The mathematics</a></li>
+  <li><a href="#why-we-maximise-the-variance" id="toc-why-we-maximise-the-variance" class="nav-link" data-scroll-target="#why-we-maximise-the-variance">Why we maximise the variance</a></li>
+  <li><a href="#why-this-technique-fits-yield-curves-specifically" id="toc-why-this-technique-fits-yield-curves-specifically" class="nav-link" data-scroll-target="#why-this-technique-fits-yield-curves-specifically">Why this technique fits yield curves specifically</a></li>
+  <li><a href="#what-the-rest-of-the-series-covers" id="toc-what-the-rest-of-the-series-covers" class="nav-link" data-scroll-target="#what-the-rest-of-the-series-covers">What the rest of the series covers</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PCA on Yield Curves: introduction</h1>
+<p class="subtitle lead">Article 0</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">series</div>
+    <div class="quarto-category">PCA</div>
+    <div class="quarto-category">yield-curves</div>
+    <div class="quarto-category">stress-scenarios</div>
+    <div class="quarto-category">risk-management</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Series introduction. Starts from the stress-testing problem that PCA was invented to solve, derives the eigenvalue equation from a variance-maximisation problem, and explains why maximising variance is the right thing to do.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kelvin Wong </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This is the introduction to a two-article series on PCA for yield curves. The series consists of <a href="../01-2tenor-toy/index.qmd">Article 1</a> (a 2-tenor pedagogical toy showing the rotation mechanism clearly) and <a href="../02-3tenor/index.qmd">Article 2</a> (a 3-tenor example demonstrating the Level / Slope / Curvature decomposition). For PCA on real Taiwan TWD data and the comparison to Nelson-Siegel basis functions, see Article 3 of the <a href="../../ics-dns-twd-yc/03-pca-twd/index.qmd">DNS series</a> (forthcoming).</p>
+</div>
+</div>
+</div>
+<section id="how-this-series-came-to-be" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-series-came-to-be">How this series came to be</h2>
+<p>This series grew out of two encounters with PCA on yield curves, and a moment of understanding that came considerably later than either.</p>
+<p>The first encounter was at work. I was looking at a Dynamic Nelson-Siegel (DNS) model — a parametric model of the yield curve that decomposes any observed curve into three factors named <em>level</em>, <em>slope</em>, and <em>curvature</em>, each with a prescribed functional shape across tenors. In the literature surrounding DNS I kept seeing references to PCA producing factors that “looked like” the DNS basis functions on real yield-curve data: the first principal component looking like a parallel shift, the second like a tilt, the third like a butterfly. The two approaches arrive at similar-looking factors from very different starting points — DNS imposes them by parametric choice, PCA derives them from the empirical covariance — but the result is the same family of three interpretable factors. The connection was striking, but at that point I did not really understand <em>why</em> PCA was producing factors that looked like that.</p>
+<p>The second encounter was while preparing for the SOA Statistics for Risk Modeling exam, in which PCA appears as a standard statistical technique. The textbook treatment was abstract: cover the data, find the covariance matrix, take its eigendecomposition, project onto the top components. I could do the calculations. I still did not really understand what was happening to the data when PCA was applied.</p>
+<p>The moment things finally clicked came when I drew a 2-tenor rotation plot. With only two tenors, the entire PCA mechanism fits on a single page: the data is a cloud of points in the plane, and PCA is a literal rotation of the coordinate axes. As I rotated the axes step by step, I could watch the variance along one axis grow until it hit a maximum, at which point the rotated horizontal axis had aligned itself with the long spine of the data cloud. That maximum value was the first eigenvalue. That direction was the first eigenvector. The procedure was not a sequence of opaque matrix operations; it was an optimisation in plain geometric terms — <em>find the rotation that puts the most variance on one axis</em> — and the result was a coordinate system aligned with how the data was actually shaped.</p>
+<p>This series exists because the 2-tenor visualisation is, in my experience, the shortest path from “I can compute the eigendecomposition” to “I understand what PCA is doing.” The two articles that follow this introduction are worked exercises: the first shows the rotation mechanism in two dimensions where the geometry is fully visualisable, and the second extends to three dimensions where the canonical Level / Slope / Curvature decomposition first appears. Together they cover both halves of what I had been missing: the mechanism (Article 1) and the interpretation (Article 2).</p>
+<p>The rest of this introduction does what I wish someone had laid out for me before I had to find my own way through PCA: the problem the technique was invented to solve, the mathematics that produces the eigenvalue equation, and the reason maximising variance is the right thing to want. A reader who wants only the worked examples can skip to <a href="../01-2tenor-toy/index.qmd">Article 1</a>.</p>
+</section>
+<section id="the-problem-this-technique-solves" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-this-technique-solves">The problem this technique solves</h2>
+<p>Once it is clear what PCA does mechanically, the question is: what problem in fixed-income risk management does it solve? The motivating use case is stress testing.</p>
+<p>Consider an insurer that holds a portfolio of bonds. The regulator asks for a stress test: what happens to the portfolio’s value under an “extreme but plausible” movement in the yield curve? “Extreme” is quantified — something like the worst case that would not be exceeded in 199 years out of 200, the 99.5% one-year Value-at-Risk threshold. “Plausible” is harder to pin down but at minimum means: a scenario that could conceivably occur, given how yield curves have moved historically.</p>
+<p>The naïve approach is to shock each tenor independently. Move the 2-year up by some severe amount; move the 5-year up by some severe amount; move the 10-year up by some severe amount; combine. The trouble is that this produces scenarios that have essentially never occurred. Yield curves move together. A day where the 2-year jumps 20 bps while the 10-year stays exactly flat is not a stress that the market produces; it is a stress that violates the historical correlation structure of the curve. Building capital requirements on the basis of such scenarios over-states risk against shocks the curve has never actually displayed, while potentially under-stating risk against the kinds of moves it actually does display.</p>
+<p>The honest version of the problem: <strong>build stress scenarios that respect how the curve has moved historically.</strong> The components of the scenario across tenors should not be independent — they should be correlated the way real curve movements are correlated. But the scenarios across factors should be independent — we should be able to ask separately “what if the level shifts up?”, “what if the curve steepens?”, “what if it bows?”, without these questions contaminating each other.</p>
+<p>These two requirements — per-tenor correlation respected, per-factor independence achieved — are difficult to satisfy in raw tenor space because the tenors themselves are highly correlated. PCA is the technique that delivers them simultaneously, by re-expressing the data in a coordinate system where the new axes are uncorrelated <em>by construction</em> while preserving everything else about the data.</p>
+</section>
+<section id="what-you-would-want-a-good-solution-to-do" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-would-want-a-good-solution-to-do">What you would want a good solution to do</h2>
+<p>Before building the mathematics, it is worth being explicit about the properties a good solution should have. This is the “spec” that PCA satisfies; everything technical below is in service of meeting it.</p>
+<p><strong>Independence of new factors.</strong> The new coordinate axes should be uncorrelated with one another, so that shocking one without shocking the others is a coherent question. In raw tenor space, this is impossible — the 2-year and the 10-year are roughly 0.6-0.9 correlated in most samples.</p>
+<p><strong>Faithful representation of correlation.</strong> When the new factor scores are projected back into the original tenor space, the historical correlation structure must be preserved. Shocks built in the new coordinate system, when translated back, must look like the kinds of yield-curve moves that actually occurred.</p>
+<p><strong>Compression.</strong> A 30-tenor curve has 30 degrees of freedom. In practice, almost all of the day-to-day variation in real yield curves is captured by a much smaller number of independent factors — the textbook number is three. A good solution finds those few factors and discards the rest.</p>
+<p><strong>Automatic scaling.</strong> Different factors have different historical magnitudes. Level shifts are typically much larger than curvature shifts. The new coordinate system should not just provide independent axes; it should provide them with calibrated scales, so that “1 standard deviation along factor X” is automatically the right unit for X.</p>
+<p><strong>Interpretability.</strong> A solution that produces three independent factors is more useful if the factors have meaningful names than if they are arbitrary linear combinations. We want the leading factor to look like “the curve shifts up and down”, the second to look like “the curve tilts”, the third to look like “the curve bows”. This last requirement is empirical rather than mathematical — PCA does not promise interpretable factors — but on yield curve data the leading factors typically turn out to be interpretable. Why this happens is part of why PCA is the right tool for this problem rather than just a generic dimensionality reduction.</p>
+</section>
+<section id="the-empirical-fact-that-makes-the-problem-tractable" class="level2">
+<h2 class="anchored" data-anchor-id="the-empirical-fact-that-makes-the-problem-tractable">The empirical fact that makes the problem tractable</h2>
+<p>A 30-tenor yield curve lives in 30-dimensional space. But the data does not actually fill that space. On any given day the curve has a particular shape; on the next day it has a <em>slightly different</em> shape, with all tenors moving in roughly coordinated ways. The 2-year and 5-year almost always move in the same direction; the 5-year and 10-year almost always move in the same direction; the 2-year and 10-year are weaker but still positively correlated.</p>
+<p>This means that out of the 30 directions in which a curve <em>could</em> move, only a few are actually used. The other directions correspond to shapes that the curve essentially never takes — a day where the 5-year moves opposite to both the 2-year and the 10-year while everything else is flat, for example. Such shapes are <em>available</em> in the 30-dimensional space, but the historical data does not visit them.</p>
+<p>Geometrically, the 30-dimensional data cloud is highly elongated along a few directions and almost flat along the others. It is shaped less like a 30-dimensional ball and more like a long thin slab embedded in 30-dimensional space. The slab itself is roughly 3-dimensional even though the ambient space is 30-dimensional.</p>
+<p>This is the empirical fact that makes the rest of the technique work. If yield-curve changes were genuinely 30-dimensional — if every direction were equally likely to be visited — PCA would buy nothing. Each “principal component” would explain roughly 1/30 of the total variance and we would gain no compression. But because the data is intrinsically low-dimensional even though the ambient space is high-dimensional, the procedure below can find the low-dimensional structure and provide a coordinate system aligned with it.</p>
+<p><span class="citation" data-cites="litterman1991">Litterman and Scheinkman (<a href="#ref-litterman1991" role="doc-biblioref">1991</a>)</span> documented this empirically for U.S. Treasury yields: three principal components explained roughly 95% of the variance in their sample. Similar three-factor structure has been documented across many countries, many sample periods, and many fixed-income markets. The empirical regularity is robust; whatever PCA is doing on yield curves, it is doing something that the data was already shaped to allow.</p>
+</section>
+<section id="the-mathematics" class="level2">
+<h2 class="anchored" data-anchor-id="the-mathematics">The mathematics</h2>
+<p>Let <span class="math inline">\(\mathbf{X}\)</span> be an <span class="math inline">\(N \times K\)</span> matrix of mean-centered yield changes: <span class="math inline">\(N\)</span> daily or weekly observations on <span class="math inline">\(K\)</span> tenors. The sample covariance matrix is</p>
+<p><span class="math display">\[
+\Sigma = \frac{1}{N-1} \mathbf{X}^T \mathbf{X}.
+\]</span></p>
+<p><span class="math inline">\(\Sigma\)</span> is symmetric and positive semi-definite by construction (it is, after all, a covariance matrix of real-valued data).</p>
+<p>We want to find a direction in <span class="math inline">\(K\)</span>-dimensional space along which the data varies as much as possible. A direction is a unit vector <span class="math inline">\(\mathbf{w} \in \mathbb{R}^K\)</span> with <span class="math inline">\(\|\mathbf{w}\| = 1\)</span>. The variance of the data when projected onto <span class="math inline">\(\mathbf{w}\)</span> is</p>
+<p><span class="math display">\[
+\text{Var}(\mathbf{X} \mathbf{w}) = \frac{1}{N-1} \|\mathbf{X} \mathbf{w}\|^2 = \mathbf{w}^T \Sigma \mathbf{w}.
+\]</span></p>
+<p>The first principal direction is the unit vector <span class="math inline">\(\mathbf{w}\)</span> that maximises this quantity:</p>
+<p><span class="math display">\[
+\max_{\mathbf{w}} \mathbf{w}^T \Sigma \mathbf{w} \quad \text{subject to} \quad \mathbf{w}^T \mathbf{w} = 1.
+\]</span></p>
+<section id="a-brief-detour-on-lagrange-multipliers" class="level3">
+<h3 class="anchored" data-anchor-id="a-brief-detour-on-lagrange-multipliers">A brief detour on Lagrange multipliers</h3>
+<p>Most calculus courses cover optimisation of a function with no constraints: take the gradient, set it to zero, solve. The problem above is different because the candidate solutions <span class="math inline">\(\mathbf{w}\)</span> are restricted to the unit sphere <span class="math inline">\(\mathbf{w}^T \mathbf{w} = 1\)</span>. The gradient of the objective <span class="math inline">\(\mathbf{w}^T \Sigma \mathbf{w}\)</span> does not have to vanish at the optimum; it only has to vanish in the directions <em>along the constraint surface</em>. In other directions — the ones that would take <span class="math inline">\(\mathbf{w}\)</span> off the unit sphere — it can be anything.</p>
+<p>The Lagrange multiplier method captures this. Introduce a new variable <span class="math inline">\(\lambda\)</span> (the multiplier) and consider the function</p>
+<p><span class="math display">\[
+L(\mathbf{w}, \lambda) = \mathbf{w}^T \Sigma \mathbf{w} - \lambda (\mathbf{w}^T \mathbf{w} - 1).
+\]</span></p>
+<p>The optimum of the original problem occurs at a stationary point of <span class="math inline">\(L\)</span>. Taking the gradient with respect to <span class="math inline">\(\mathbf{w}\)</span> and setting it to zero:</p>
+<p><span class="math display">\[
+\nabla_{\mathbf{w}} L = 2 \Sigma \mathbf{w} - 2 \lambda \mathbf{w} = 0,
+\]</span></p>
+<p>which simplifies to</p>
+<p><span class="math display">\[
+\Sigma \mathbf{w} = \lambda \mathbf{w}.
+\]</span></p>
+</section>
+<section id="what-just-happened" class="level3">
+<h3 class="anchored" data-anchor-id="what-just-happened">What just happened</h3>
+<p>This equation is the <strong>eigenvalue equation</strong>. The vector <span class="math inline">\(\mathbf{w}\)</span> that maximises the variance subject to the unit-length constraint is an <em>eigenvector</em> of <span class="math inline">\(\Sigma\)</span>, and the multiplier <span class="math inline">\(\lambda\)</span> is the corresponding <em>eigenvalue</em>.</p>
+<p>Substituting back into the objective tells us what the maximum value is:</p>
+<p><span class="math display">\[
+\mathbf{w}^T \Sigma \mathbf{w} = \mathbf{w}^T (\lambda \mathbf{w}) = \lambda \mathbf{w}^T \mathbf{w} = \lambda.
+\]</span></p>
+<p>The maximum variance achievable along any unit-vector direction is the largest eigenvalue of <span class="math inline">\(\Sigma\)</span>, and it is achieved by the corresponding eigenvector. This is the headline result.</p>
+<p>The spectral theorem (the proof of which is in any linear algebra textbook — <span class="citation" data-cites="strang2016">Strang (<a href="#ref-strang2016" role="doc-biblioref">2016</a>)</span> Chapter 6 or <span class="citation" data-cites="axler2015">Axler (<a href="#ref-axler2015" role="doc-biblioref">2015</a>)</span> Chapter 7) guarantees that a real symmetric matrix like <span class="math inline">\(\Sigma\)</span> has <span class="math inline">\(K\)</span> real eigenvalues <span class="math inline">\(\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_K \geq 0\)</span> and a set of <span class="math inline">\(K\)</span> corresponding eigenvectors that are mutually orthogonal. So the same construction extends to higher-order principal components:</p>
+<ul>
+<li>PC2 is the eigenvector corresponding to <span class="math inline">\(\lambda_2\)</span>, the largest eigenvalue <em>other than</em> <span class="math inline">\(\lambda_1\)</span>. Geometrically, PC2 is the variance-maximising direction <em>subject to being orthogonal to PC1</em>.</li>
+<li>PC3 corresponds to <span class="math inline">\(\lambda_3\)</span>, the variance-maximising direction orthogonal to both PC1 and PC2.</li>
+<li>And so on.</li>
+</ul>
+<p>The orthogonality between eigenvectors is the property that makes the PC factors uncorrelated — different components of the data along different eigenvectors are statistically independent (uncorrelated, technically), because the eigenvectors meet at right angles. This is the property we wanted from the specification in §2.</p>
+</section>
+<section id="a-reader-who-wants-to-skip-the-math" class="level3">
+<h3 class="anchored" data-anchor-id="a-reader-who-wants-to-skip-the-math">A reader who wants to skip the math</h3>
+<p>If the derivation above is more than was wanted, the headline result is:</p>
+<blockquote class="blockquote">
+<p><em>The eigenvectors of the covariance matrix are the variance-aligned directions of the data, ordered by how much variance each captures. The eigenvalues are the variances. The eigenvectors are orthogonal, which means the new coordinate system has independent (uncorrelated) axes.</em></p>
+</blockquote>
+<p>Articles 1 and 2 of the series will perform this computation on small worked examples and inspect the eigenvectors and eigenvalues directly. The math above is what is happening underneath.</p>
+</section>
+</section>
+<section id="why-we-maximise-the-variance" class="level2">
+<h2 class="anchored" data-anchor-id="why-we-maximise-the-variance">Why we maximise the variance</h2>
+<p>The derivation above shows that the procedure produces eigenvectors of the covariance matrix when we maximise variance. It does not yet explain <em>why maximising variance is the right thing to want</em>. A reader at this point can reasonably ask: maybe the wrong quantity was set up at the top of §4. Why not minimise variance? Or maximise something else?</p>
+<p>The answer is the most important conceptual point in this article. PCA is a recipe for compressing the data into fewer dimensions with minimal information loss. <strong>Variance is the measure of information PCA is trying to preserve.</strong> Maximising variance along the new axes is not a goal in itself — it is what comes out of trying to keep as much of the original data as possible while throwing some directions away.</p>
+<p>Four steps make this concrete.</p>
+<p><strong>(1) High-dimensional data is hard to work with.</strong> A yield curve at 30 tenors lives in 30-dimensional space. You cannot visualise it; covariance matrices are large and noisy; regressions on raw tenors run into multicollinearity because tenors are highly correlated. Practical work in fixed income wants to re-express the data in fewer dimensions — three is typical — without losing the structure that matters.</p>
+<p><strong>(2) Some directions in the data are more “real” than others.</strong> Consider a data cloud of five points lying almost on a straight line. The diagonal direction along that line is where the data genuinely varies. The perpendicular direction is where the data barely moves at all — it is nearly all measurement noise or sampling jitter. If you had to throw away one direction, you would throw away the perpendicular one. The diagonal carries almost all the actual information about how the data moves; the perpendicular carries almost none.</p>
+<p><strong>(3) Variance measures how much the data actually varies along a direction.</strong> When the data spreads out along a direction, the variance along that direction is large. When the data is bunched up along a direction, the variance is small. “The direction the data most genuinely varies in” and “the direction with the largest variance” are the same direction, just named differently.</p>
+<p><strong>(4) Therefore: to keep the most information when reducing dimensions, find the highest-variance direction and use that as your first new axis.</strong> Then find the highest-variance direction perpendicular to it (because you have already used that information; you want the <em>next</em> most-informative independent direction), and use that as your second new axis. Continue until you have as many axes as you want to keep. The directions you ignore are the low-variance ones — they carry little information, the ones where the data was almost not moving anyway.</p>
+<p>That is why PCA maximises variance. It is selecting the directions that carry the most information about how the data spreads out, so that when you drop the remaining directions you lose as little as possible.</p>
+<p>There is a precise mathematical statement of this, and it is worth knowing. Among all rank-<span class="math inline">\(r\)</span> linear approximations to the data, the approximation that minimises reconstruction error (in the squared sense) is the projection onto the top <span class="math inline">\(r\)</span> principal components. This is the Eckart-Young-Mirsky theorem; <span class="citation" data-cites="alexander2008market">Alexander (<a href="#ref-alexander2008market" role="doc-biblioref">2008</a>)</span> discusses its role in financial applications. Maximising variance along the kept directions is mathematically equivalent to minimising the reconstruction error from discarding the rest.</p>
+<p>Minimising variance, by contrast, would pick out the directions where the data was hardly moving — the noise directions — and call them principal. Reconstructing the data from those directions would discard almost all of the actual signal. It is exactly the wrong choice.</p>
+</section>
+<section id="why-this-technique-fits-yield-curves-specifically" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-technique-fits-yield-curves-specifically">Why this technique fits yield curves specifically</h2>
+<p>Three properties of yield-curve data make PCA particularly effective on this kind of data.</p>
+<p><strong>Strong cross-tenor correlation.</strong> Adjacent tenors are correlated above 0.95 in most samples; even distant tenors (2y vs 10y, say) are correlated 0.6-0.9. This is the empirical condition under which a few principal components capture most of the variation. A dataset with low correlation across columns would produce a flat eigenvalue spectrum and no useful compression; yield-curve data does the opposite.</p>
+<p><strong>Smooth structure across tenors.</strong> Yield curves are not just correlated; they are smooth. The 2-year and the 3-year are physically related — they price the same underlying interest-rate expectations, just over different horizons — so their dynamics are intrinsically linked. This smoothness is what causes the principal components to look like coherent “shapes” (parallel shift, tilt, bow) rather than random patterns: each component is essentially a smooth function across the tenor axis.</p>
+<p><strong>Stable factor structure over time.</strong> The L/S/C decomposition appears not just in any individual sample but persistently across decades, market regimes, and countries. PC1 looks like Level on the 1990s U.S. Treasury data and it still looks like Level on 2020s Taiwan TWD data. This stability is what makes the technique useful for risk management: the factors identified on historical data can be expected to behave reasonably on future data.</p>
+<p>PCA on a randomly-generated K-dimensional dataset with no structure would technically still produce K eigenvectors and eigenvalues, but they would be uninterpretable noise. PCA on yield-curve data produces eigenvectors that any fixed-income practitioner recognises on sight. The technique is general; the success on yield curves is empirical.</p>
+</section>
+<section id="what-the-rest-of-the-series-covers" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-rest-of-the-series-covers">What the rest of the series covers</h2>
+<p>The two articles that follow are worked examples. They show what PCA actually does, in settings small enough that the mechanism can be visualised completely on a single page.</p>
+<p><a href="../01-2tenor-toy/index.qmd"><strong>Article 1</strong></a> is a deliberately small 2-tenor, 5-day example. Two tenors live in the plane, so the rotation that PCA performs is a literal rotation in 2D, and the entire mechanism can be drawn. The article shows how the variance along one axis is maximised by exactly the right rotation, with the maximum value being the largest eigenvalue. The structural limitation of two tenors — the L/S/C decomposition cannot appear, because there are only two principal components — is stated explicitly.</p>
+<p><a href="../02-3tenor/index.qmd"><strong>Article 2</strong></a> is a 3-tenor, 10-week example calibrated to produce the textbook Level / Slope / Curvature signatures. The eigenvector loadings are inspected directly and shown to have the canonical patterns: PC1 all-positive (Level), PC2 short-vs-long opposite (Slope), PC3 ends-vs-belly opposite (Curvature). Stress scenarios are built at +1 SD severity and at the 99.5% VaR severity required by capital regulation, in tenor-coordinate space and as yield-curve transformations.</p>
+<p>Both articles work on engineered data. Real yield-curve PCA is the subject of <a href="../../ics-dns-twd-yc/03-pca-twd/index.qmd">Article 3 of the DNS series</a>, which applies the same machinery to actual Taiwan TWD yield curve data and compares the PC loadings to Nelson-Siegel basis functions.</p>
+<hr>
+<p><em>Source code for the figures in this article is available <a href="https://github.com/kelvin1189/actuarial-modeling-notes/tree/main/posts/pca-yield-curves">in the repo</a>.</em></p>
+<p>Comments and corrections welcome.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-alexander2008market" class="csl-entry" role="listitem">
+Alexander, Carol. 2008. <em>Market Risk Analysis, Volume II: Practical Financial Econometrics</em>. Wiley.
+</div>
+<div id="ref-axler2015" class="csl-entry" role="listitem">
+Axler, Sheldon. 2015. <em>Linear Algebra Done Right</em>. 3rd ed. Springer.
+</div>
+<div id="ref-litterman1991" class="csl-entry" role="listitem">
+Litterman, Robert, and Jose Scheinkman. 1991. <span>“Common Factors Affecting Bond Returns.”</span> <em>Journal of Fixed Income</em> 1 (1): 54–61. <a href="https://doi.org/10.3905/jfi.1991.692347">https://doi.org/10.3905/jfi.1991.692347</a>.
+</div>
+<div id="ref-strang2016" class="csl-entry" role="listitem">
+Strang, Gilbert. 2016. <em>Introduction to Linear Algebra</em>. 5th ed. Wellesley-Cambridge Press.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/kelvin1189\.github\.io\/actuarial-modeling-notes\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="kelvin1189/actuarial-modeling-notes" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><em>Disclaimer.</em> The content on this website is for educational and informational purposes only and does not constitute financial, investment, legal, or professional actuarial advice. The views expressed here are my own and do not reflect the position of any current or past employer. All code and models are provided “as is” without warranty.</p>
+<p><span class="footer-meta">© 2026 Kelvin Wong · Source on <a href="https://github.com/kelvin1189/actuarial-modeling-notes">GitHub</a> · Built with <a href="https://quarto.org">Quarto</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/pca-yc/article01/index.html</loc>
+    <lastmod>2026-05-31T16:49:56.590Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/pca-yc/article00/index.html</loc>
+    <lastmod>2026-05-31T16:49:56.586Z</lastmod>
+  </url>
+  <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/misc/pca-simple-example/index.html</loc>
-    <lastmod>2026-05-29T08:20:47.348Z</lastmod>
+    <lastmod>2026-05-31T16:49:56.582Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/01-visual-tour/index.html</loc>
-    <lastmod>2026-05-29T08:20:47.342Z</lastmod>
+    <lastmod>2026-05-31T16:49:56.579Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/index.html</loc>
-    <lastmod>2026-05-29T08:20:47.337Z</lastmod>
+    <lastmod>2026-05-31T16:49:56.574Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/about.html</loc>
-    <lastmod>2026-05-29T08:20:47.337Z</lastmod>
+    <lastmod>2026-05-31T16:49:56.574Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/projects.html</loc>
-    <lastmod>2026-05-29T08:20:47.353Z</lastmod>
+    <lastmod>2026-05-31T16:49:56.619Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/00-intro/index.html</loc>
-    <lastmod>2026-05-29T08:20:47.338Z</lastmod>
+    <lastmod>2026-05-31T16:49:56.574Z</lastmod>
   </url>
   <url>
     <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/ics-dns-twd-yc/index.html</loc>
-    <lastmod>2026-05-29T08:20:47.347Z</lastmod>
+    <lastmod>2026-05-31T16:49:56.581Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/pca-yc/article02/index.html</loc>
+    <lastmod>2026-05-31T16:49:56.612Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kelvin1189.github.io/actuarial-modeling-notes/posts/pca-yc/index.html</loc>
+    <lastmod>2026-05-31T16:49:56.619Z</lastmod>
   </url>
 </urlset>
