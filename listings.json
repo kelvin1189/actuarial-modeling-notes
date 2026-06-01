@@ -1,13 +1,9 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/posts/ics-dns-twd-yc/index.html",
     "items": [
-      "/posts/pca-yc/article01/index.html",
-      "/posts/misc/pca-simple-example/index.html",
-      "/posts/pca-yc/article00/index.html",
-      "/posts/pca-yc/article02/index.html",
-      "/posts/ics-dns-twd-yc/01-visual-tour/index.html",
-      "/posts/ics-dns-twd-yc/00-intro/index.html"
+      "/posts/ics-dns-twd-yc/00-intro/index.html",
+      "/posts/ics-dns-twd-yc/01-visual-tour/index.html"
     ]
   },
   {
@@ -18,10 +14,13 @@
     ]
   },
   {
-    "listing": "/posts/ics-dns-twd-yc/index.html",
+    "listing": "/index.html",
     "items": [
-      "/posts/ics-dns-twd-yc/00-intro/index.html",
-      "/posts/ics-dns-twd-yc/01-visual-tour/index.html"
+      "/posts/pca-yc/article01/index.html",
+      "/posts/pca-yc/article00/index.html",
+      "/posts/pca-yc/article02/index.html",
+      "/posts/ics-dns-twd-yc/01-visual-tour/index.html",
+      "/posts/ics-dns-twd-yc/00-intro/index.html"
     ]
   },
   {
