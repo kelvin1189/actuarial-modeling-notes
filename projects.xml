@@ -21,11 +21,11 @@
 
 
 
-<p>This series is a worked exposition of Principal Component Analysis applied to yield curve data. It began as personal notes from two encounters with PCA — once at work, looking at a Dynamic Nelson-Siegel model and noticing the connection to PCA’s empirical factors, and again while preparing for the SOA SRM exam. The mechanism only really clicked for me when I drew a 2-tenor rotation plot and could finally <em>see</em> what the algorithm was doing to the data.</p>
-<p>The series is structured around that visualisation. <a href="00-intro/index.qmd">Article 0</a> introduces the technique from first principles: the stress-testing problem it solves, the mathematics that produces the eigenvalue equation, and the reason maximising variance is the right thing to want. <a href="01-2tenor-toy/index.qmd">Article 1</a> makes the rotation mechanism visualisable on two tenors. <a href="02-3tenor/index.qmd">Article 2</a> extends to three tenors and demonstrates the canonical Level / Slope / Curvature decomposition. PCA on real Taiwan TWD data is the subject of <a href="../ics-dns-twd-yc/03-pca-twd/index.qmd">Article 3 of the DNS series</a> (forthcoming) rather than this one.</p>
+<p>This series is a worked exposition of Principal Component Analysis applied to yield curve data. It began as personal notes from two encounters with PCA — once at work, looking at a Dynamic Nelson-Siegel model and noticing the connection to PCA’s empirical factors, and again while preparing for the SOA exam. The mechanism only really clicked for me when I drew a 2-tenor rotation plot and could finally <em>see</em> what the algorithm was doing to the data.</p>
+<p>The series is structured around that visualisation. <a href="../../posts/pca-yc/article00/index.html">Article 0</a> introduces the technique from first principles: the stress-testing problem it solves, the mathematics that produces the eigenvalue equation, and the reason maximising variance is the right thing to want. <a href="../../posts/pca-yc/article01/index.html">Article 1</a> makes the rotation mechanism visualisable on two tenors. <a href="../../posts/pca-yc/article02/index.html">Article 2</a> extends to three tenors and demonstrates the canonical Level / Slope / Curvature decomposition. PCA on real Taiwan TWD data is the subject of <a href="../ics-dns-twd-yc/03-pca-twd/index.qmd">Article 3 of the DNS series</a> (forthcoming) rather than this one.</p>
 <div id="listing-series-articles" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDUENBJTJDeWllbGQtY3VydmVzJTJDc3RyZXNzLXNjZW5hcmlvcyUyQ3Jpc2stbWFuYWdlbWVudA==" data-listing-date-sort="1779753600000" data-listing-file-modified-sort="1780300812592" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3299">
+<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDUENBJTJDeWllbGQtY3VydmVzJTJDc3RyZXNzLXNjZW5hcmlvcyUyQ3Jpc2stbWFuYWdlbWVudA==" data-listing-date-sort="1779753600000" data-listing-file-modified-sort="1780669515283" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3299">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../posts/pca-yc/article00/index.html" class="no-external">PCA on Yield Curves: introduction</a>
@@ -46,7 +46,7 @@ May 26, 2026
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="c2VyaWVzJTJDUENBJTJDeWllbGQtY3VydmVzJTJDc3RyZXNzLXNjZW5hcmlvcyUyQ3Jpc2stbWFuYWdlbWVudA==" data-listing-date-sort="1779753600000" data-listing-file-modified-sort="1780300812623" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4361">
+<div class="quarto-post image-right" data-index="1" data-categories="c2VyaWVzJTJDUENBJTJDeWllbGQtY3VydmVzJTJDc3RyZXNzLXNjZW5hcmlvcyUyQ3Jpc2stbWFuYWdlbWVudA==" data-listing-date-sort="1779753600000" data-listing-file-modified-sort="1780669515314" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4361">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../posts/pca-yc/article02/index.html" class="no-external">PCA on Yield Curves: a 2-tenor, 5-day example</a>
@@ -67,7 +67,7 @@ May 26, 2026
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="c2VyaWVzJTJDUENBJTJDeWllbGQtY3VydmVzJTJDc3RyZXNzLXNjZW5hcmlvcyUyQ3Jpc2stbWFuYWdlbWVudA==" data-listing-date-sort="1780099200000" data-listing-file-modified-sort="1780300812597" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="36" data-listing-word-count-sort="7031">
+<div class="quarto-post image-right" data-index="2" data-categories="c2VyaWVzJTJDUENBJTJDeWllbGQtY3VydmVzJTJDc3RyZXNzLXNjZW5hcmlvcyUyQ3Jpc2stbWFuYWdlbWVudA==" data-listing-date-sort="1780099200000" data-listing-file-modified-sort="1780669515288" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="36" data-listing-word-count-sort="7031">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../posts/pca-yc/article01/index.html" class="no-external">PCA on Yield Curves: a 10-week, 3-tenor example</a>
@@ -119,7 +119,7 @@ May 30, 2026
 <p>Translating regulatory text into functioning capital models. This series explores the IAIS ICS interest rate module through a practical lens, calculating capital charges using Taiwan’s TPEx yield data. Read <em>Article 0</em> for project scope and disclaimers, or jump straight to the implementations below.</p>
 <div id="listing-series-articles" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDSUNTJTJDRE5TJTJDeWllbGQtY3VydmVz" data-listing-date-sort="1779062400000" data-listing-file-modified-sort="1780300812583" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1704">
+<div class="quarto-post image-right" data-index="0" data-categories="c2VyaWVzJTJDSUNTJTJDRE5TJTJDeWllbGQtY3VydmVz" data-listing-date-sort="1779062400000" data-listing-file-modified-sort="1780669515275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1704">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../posts/ics-dns-twd-yc/00-intro/index.html" class="no-external">Series introduction, scope, and disclaimers</a>
@@ -140,7 +140,7 @@ May 18, 2026
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="c2VyaWVzJTJDSUNTJTJDRE5TJTJDeWllbGQtY3VydmVzJTJDVFBFeCUyQ2RhdGEtZXhwbG9yYXRpb24=" data-listing-date-sort="1779667200000" data-listing-file-modified-sort="1780300812589" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3337">
+<div class="quarto-post image-right" data-index="1" data-categories="c2VyaWVzJTJDSUNTJTJDRE5TJTJDeWllbGQtY3VydmVzJTJDVFBFeCUyQ2RhdGEtZXhwbG9yYXRpb24=" data-listing-date-sort="1779667200000" data-listing-file-modified-sort="1780669515280" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3337">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../posts/ics-dns-twd-yc/01-visual-tour/index.html" class="no-external">A Visual Tour of Taiwan’s Yield Curve</a>
